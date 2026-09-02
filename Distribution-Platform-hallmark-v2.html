@@ -1,0 +1,2582 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>分销平台 · 分享好物，赚取佣金</title>
+    <meta
+      name="description"
+      content="加入分销，选择适合自己的店铺，联系卖家、获取推广链接、分享促成订单，佣金自动结算。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Hallmark · macrostructure: Demo-Led · tone: bold-neon
+       * theme: custom (brand violet · paper dark · display Space Grotesk)
+       * enrichment: none (typography + motion) · nav: N5 scroll-morph · footer: Ft2 inline
+       * axes: paper-band dark · display grotesk-sans · accent violet
+       */
+      :root {
+        --color-paper: oklch(98% 0.008 300);
+        --color-paper-2: oklch(96% 0.012 300);
+        --color-paper-3: oklch(93% 0.018 300);
+        --color-ink: oklch(22% 0.03 290);
+        --color-ink-2: oklch(42% 0.02 290);
+        --color-ink-3: oklch(56% 0.02 290);
+        --color-rule: oklch(90% 0.02 300);
+        --color-accent: oklch(56% 0.24 286);
+        --color-accent-strong: oklch(55% 0.27 286);
+        --color-accent-strong-2: oklch(46% 0.26 286);
+        --color-accent-ink: oklch(100% 0 0);
+        --color-accent-ring: oklch(56% 0.24 286 / 0.45);
+        --color-focus: oklch(52% 0.22 286);
+        --color-success: oklch(50% 0.16 150);
+        --color-success-soft: oklch(95% 0.04 150);
+        --glass: oklch(100% 0 0 / 0.62);
+        --glass-border: oklch(56% 0.05 286 / 0.16);
+
+        --font-display:
+          "Space Grotesk", "PingFang SC", "Microsoft YaHei", system-ui,
+          sans-serif;
+        --font-body:
+          "Inter", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+
+        --space-xs: 0.75rem;
+        --space-sm: 1rem;
+        --space-md: 1.5rem;
+        --space-lg: 2rem;
+        --space-xl: 3rem;
+        --space-2xl: 4.5rem;
+        --space-3xl: 7rem;
+
+        --text-display: clamp(2.6rem, 5.5vw + 0.5rem, 4.75rem);
+        --text-2xl: clamp(1.7rem, 3vw + 0.5rem, 2.5rem);
+        --text-xl: 1.5rem;
+        --text-lg: 1.2rem;
+        --text-md: 1.05rem;
+        --text-sm: 0.95rem;
+        --text-xs: 0.82rem;
+
+        --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+        --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        --dur-short: 220ms;
+        --dur-med: 420ms;
+        --radius-card: 18px;
+        --radius-pill: 999px;
+        --radius-input: 12px;
+        --maxw: 1160px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      * {
+        margin: 0;
+      }
+      html {
+        -webkit-text-size-adjust: 100%;
+        overflow-x: clip;
+        scroll-behavior: smooth;
+        scroll-padding-top: 6rem;
+      }
+      body {
+        overflow-x: clip;
+        font-family: var(--font-body);
+        background: var(--color-paper);
+        color: var(--color-ink);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font: inherit;
+        cursor: pointer;
+        color: inherit;
+      }
+      :focus-visible {
+        outline: 3px solid var(--color-focus);
+        outline-offset: 2px;
+        border-radius: 4px;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: var(--font-display);
+        font-weight: 700;
+        line-height: 1.12;
+        font-style: normal;
+        letter-spacing: -0.01em;
+        overflow-wrap: anywhere;
+        min-width: 0;
+      }
+      .container {
+        width: 100%;
+        max-width: var(--maxw);
+        margin-inline: auto;
+        padding-inline: var(--space-md);
+      }
+      .section {
+        position: relative;
+        padding-block: var(--space-2xl);
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: var(--text-xs);
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--color-accent);
+      }
+      .eyebrow::before {
+        content: "";
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 50%;
+        background: var(--color-accent);
+        box-shadow: 0 0 12px var(--color-accent);
+      }
+      .section-head {
+        max-width: 640px;
+      }
+      .section-head h2 {
+        font-size: var(--text-2xl);
+        margin-top: 0.5rem;
+      }
+      .section-head p {
+        margin-top: 0.75rem;
+        color: var(--color-ink-2);
+        font-size: var(--text-md);
+      }
+
+      /* ---------- 背景光斑 ---------- */
+      .bg {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        overflow: hidden;
+        pointer-events: none;
+      }
+      .bg__grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(var(--color-rule) 1px, transparent 1px),
+          linear-gradient(90deg, var(--color-rule) 1px, transparent 1px);
+        background-size: 56px 56px;
+        mask-image: radial-gradient(
+          ellipse 90% 60% at 50% 0%,
+          #000 20%,
+          transparent 75%
+        );
+        opacity: 0.5;
+      }
+      .bg__orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(90px);
+        opacity: 0.55;
+        will-change: transform;
+      }
+      .bg__orb--1 {
+        width: 520px;
+        height: 520px;
+        top: -160px;
+        left: -120px;
+        background: oklch(80% 0.14 286 / 0.55);
+        animation: drift1 18s ease-in-out infinite;
+      }
+      .bg__orb--2 {
+        width: 460px;
+        height: 460px;
+        top: 30%;
+        right: -160px;
+        background: oklch(82% 0.12 330 / 0.5);
+        animation: drift2 22s ease-in-out infinite;
+      }
+      .bg__orb--3 {
+        width: 380px;
+        height: 380px;
+        bottom: -120px;
+        left: 30%;
+        background: oklch(84% 0.11 230 / 0.5);
+        animation: drift1 26s ease-in-out infinite reverse;
+      }
+      @keyframes drift1 {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        50% {
+          transform: translate(60px, 40px) scale(1.12);
+        }
+      }
+      @keyframes drift2 {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        50% {
+          transform: translate(-70px, -50px) scale(1.15);
+        }
+      }
+
+      /* ---------- 按钮 ---------- */
+      .btn {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.85rem 1.5rem;
+        border: 1px solid transparent;
+        border-radius: var(--radius-pill);
+        font-weight: 600;
+        font-size: var(--text-md);
+        white-space: nowrap;
+        transition:
+          transform var(--dur-short) var(--ease-out),
+          box-shadow var(--dur-short) var(--ease-out),
+          background var(--dur-short) var(--ease-out),
+          border-color var(--dur-short) var(--ease-out);
+      }
+      .btn svg {
+        width: 1.1rem;
+        height: 1.1rem;
+      }
+      .btn--primary {
+        background: linear-gradient(
+          135deg,
+          var(--color-accent-strong),
+          var(--color-accent-strong-2)
+        );
+        color: var(--color-accent-ink);
+        box-shadow: 0 10px 30px -10px var(--color-accent-ring);
+      }
+      .btn--primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 40px -10px var(--color-accent-ring);
+      }
+      .btn--primary:active {
+        transform: translateY(0) scale(0.98);
+      }
+      .btn--ghost {
+        background: var(--glass);
+        border-color: var(--glass-border);
+        color: var(--color-ink);
+        backdrop-filter: blur(8px);
+      }
+      .btn--ghost:hover {
+        border-color: var(--color-accent);
+        color: var(--color-accent);
+        transform: translateY(-2px);
+      }
+      .btn--block {
+        width: 100%;
+      }
+      .btn--sm {
+        padding: 0.6rem 1.1rem;
+        font-size: var(--text-sm);
+      }
+
+      /* ---------- 导航 ---------- */
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        transition:
+          background var(--dur-med) var(--ease-out),
+          box-shadow var(--dur-med) var(--ease-out),
+          border-color var(--dur-med) var(--ease-out);
+        border-bottom: 1px solid transparent;
+      }
+      .nav.is-scrolled {
+        background: oklch(98% 0.008 300 / 0.72);
+        backdrop-filter: blur(14px);
+        border-color: var(--glass-border);
+        box-shadow: 0 12px 40px -24px rgb(0 0 0 / 0.18);
+      }
+      .nav__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        height: 68px;
+        box-shadow: 0 4px 10px 0 #dec3ff;
+        padding-inline: var(--space-md);
+      }
+      .nav__brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 1.15rem;
+      }
+      .nav__logo {
+        display: grid;
+        place-items: center;
+      }
+      .nav__logo svg {
+        width: 1.1rem;
+        height: 1.1rem;
+      }
+      .nav__links {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+      .nav__links a {
+        position: relative;
+        padding: 0.5rem 0.85rem;
+        border-radius: var(--radius-pill);
+        font-size: var(--text-sm);
+        color: var(--color-ink-2);
+        transition: color var(--dur-short) var(--ease-out);
+      }
+      .nav__links a:hover {
+        color: var(--color-ink);
+      }
+      .nav__links a.is-active {
+        color: var(--color-accent);
+        background: color-mix(in oklch, var(--color-accent) 12%, transparent);
+      }
+      .nav__toggle {
+        display: none;
+        width: 2.4rem;
+        height: 2.4rem;
+        border: 1px solid var(--glass-border);
+        border-radius: 0.6rem;
+        background: var(--glass);
+        place-items: center;
+      }
+      .nav__toggle svg {
+        width: 1.2rem;
+        height: 1.2rem;
+      }
+      .nav__progress {
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        height: 2px;
+        width: 100%;
+        transform-origin: 0 50%;
+        transform: scaleX(0);
+        background: linear-gradient(
+          90deg,
+          var(--color-accent-strong),
+          var(--color-accent)
+        );
+        transition: transform 0.1s linear;
+      }
+
+      /* ---------- Hero ---------- */
+      .hero {
+        position: relative;
+        padding-top: calc(48px + var(--space-2xl));
+        padding-bottom: var(--space-xl);
+      }
+      .hero__inner {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+        gap: var(--space-xl);
+        align-items: center;
+      }
+      .hero__title {
+        font-size: var(--text-display);
+      }
+      .hero__accent {
+        display: inline-block;
+        background: linear-gradient(
+          100deg,
+          var(--color-accent),
+          oklch(80% 0.14 320),
+          var(--color-accent)
+        );
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: shimmer 5s linear infinite;
+      }
+      @keyframes shimmer {
+        to {
+          background-position: 200% 0;
+        }
+      }
+      .hero__lede {
+        margin-top: var(--space-sm);
+        max-width: 36rem;
+        color: var(--color-ink-2);
+        font-size: var(--text-lg);
+      }
+      .hero__cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: var(--space-lg);
+      }
+      .cta-pulse::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        box-shadow: 0 0 0 0 var(--color-accent-ring);
+        animation: pulse 2.4s var(--ease-out) infinite;
+        z-index: -1;
+      }
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 var(--color-accent-ring);
+          opacity: 0.8;
+        }
+        100% {
+          box-shadow: 0 0 0 18px transparent;
+          opacity: 0;
+        }
+      }
+      .hero__points {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.25rem;
+        list-style: none;
+        padding: 0;
+        margin-top: var(--space-lg);
+        color: var(--color-ink-2);
+        font-size: var(--text-sm);
+      }
+      .hero__points li {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+      }
+      .hero__points li::before {
+        content: "";
+        width: 0.45rem;
+        height: 0.45rem;
+        border-radius: 50%;
+        background: var(--color-success);
+        box-shadow: 0 0 8px var(--color-success);
+      }
+
+      /* ---------- 收益试算卡 ---------- */
+      .calc {
+        position: relative;
+        padding: var(--space-md);
+        border-radius: var(--radius-card);
+        background: oklch(0.83 0.09 287.93 / 0.5);
+        border: 1px solid var(--glass-border);
+        backdrop-filter: blur(14px);
+        box-shadow: 0 30px 80px -44px rgb(0 0 0 / 0.22);
+      }
+      .calc__tag {
+        font-size: var(--text-xs);
+        letter-spacing: 0.05em;
+        color: var(--color-ink-3);
+        margin-bottom: var(--space-sm);
+      }
+      .calc__store {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem;
+        border-radius: 14px;
+        background: var(--color-paper-2);
+        border: 1px solid var(--color-rule);
+      }
+      .calc__store-icon {
+        display: grid;
+        place-items: center;
+        flex: none;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 0.7rem;
+        background: linear-gradient(
+          135deg,
+          var(--color-accent-strong),
+          var(--color-accent-strong-2)
+        );
+        color: var(--color-accent-ink);
+      }
+      .calc__store-icon svg {
+        width: 1.3rem;
+        height: 1.3rem;
+        color: #fff;
+      }
+      .calc__store strong {
+        display: block;
+        font-family: var(--font-display);
+        font-size: var(--text-md);
+      }
+      .calc__store span {
+        font-size: var(--text-xs);
+        color: var(--color-ink-3);
+      }
+      .calc__field {
+        margin-top: var(--space-md);
+      }
+      .calc__label {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        font-size: var(--text-sm);
+        color: var(--color-ink-2);
+      }
+      .calc__label output {
+        font-family: var(--font-display);
+        font-size: var(--text-lg);
+        font-weight: 700;
+        color: var(--color-ink);
+      }
+      .calc input[type="range"] {
+        width: 100%;
+        margin-top: 0.5rem;
+        accent-color: var(--color-accent-strong);
+        height: 6px;
+        cursor: pointer;
+      }
+      .calc__rates {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+      .calc__rate {
+        padding: 0.4rem 0.85rem;
+        border-radius: var(--radius-pill);
+        border: 1px solid var(--color-rule);
+        background: transparent;
+        font-size: var(--text-sm);
+        font-weight: 600;
+        color: var(--color-ink-2);
+        transition: all var(--dur-short) var(--ease-out);
+      }
+      .calc__rate:hover {
+        border-color: var(--color-accent);
+        color: var(--color-accent);
+      }
+      .calc__rate.is-active {
+        background: var(--color-accent-strong);
+        border-color: var(--color-accent-strong);
+        color: var(--color-accent-ink);
+      }
+      .calc__result {
+        margin-top: var(--space-md);
+        padding: var(--space-md);
+        border-radius: 14px;
+        background: linear-gradient(
+          135deg,
+          color-mix(in oklch, var(--color-accent-strong) 30%, transparent),
+          color-mix(in oklch, var(--color-accent-strong-2) 26%, transparent)
+        );
+        border: 1px solid var(--color-accent-ring);
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+      }
+      .calc__result span {
+        font-size: var(--text-sm);
+        color: var(--color-ink-2);
+      }
+      .calc__result strong {
+        font-family: var(--font-display);
+        font-size: 2.4rem;
+        font-weight: 700;
+        color: var(--color-accent);
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
+      }
+      .calc__note {
+        margin-top: 0.75rem;
+        font-size: var(--text-xs);
+        color: var(--color-ink-3);
+        line-height: 1.5;
+      }
+
+      /* ---------- 滚动提示 ---------- */
+      .scroll-hint {
+        display: flex;
+        justify-content: center;
+        margin-top: var(--space-xl);
+        color: var(--color-ink-3);
+        font-size: var(--text-xs);
+        letter-spacing: 0.05em;
+      }
+      .scroll-hint span {
+        display: inline-block;
+        animation: bounce 2s ease-in-out infinite;
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(6px);
+        }
+      }
+
+      /* ---------- Marquee ---------- */
+      .marquee {
+        position: relative;
+        padding-block: var(--space-sm);
+        border-block: 1px solid var(--color-rule);
+        overflow: hidden;
+        background: oklch(0.8 0.02 255.26 / 0.55);
+      }
+      .marquee__track {
+        display: flex;
+        width: max-content;
+        animation: marquee 22s linear infinite;
+      }
+      .marquee span {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        padding-right: 2.5rem;
+        font-family: var(--font-display);
+        font-size: var(--text-sm);
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: var(--color-ink-3);
+        white-space: nowrap;
+      }
+      .marquee span::after {
+        content: "✦";
+        color: var(--color-accent);
+      }
+      @keyframes marquee {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ---------- 流程演示（视频式） ---------- */
+      .demo__wrap {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+        gap: var(--space-xl);
+        align-items: center;
+        margin-top: var(--space-xl);
+      }
+      .demo__screen {
+        position: relative;
+        aspect-ratio: 16 / 10;
+        border-radius: var(--radius-card);
+        border: 1px solid var(--glass-border);
+        background: oklch(96% 0.012 300);
+        overflow: hidden;
+        box-shadow: 0 40px 90px -44px rgb(0 0 0 / 0.22);
+      }
+      .demo__stage {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+      }
+      .demo__scene {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        place-items: center;
+      }
+      .demo__bubble {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 1rem;
+        border-radius: 16px;
+        background: var(--color-paper-2);
+        border: 1px solid var(--color-rule);
+        box-shadow: 0 20px 50px -24px rgb(0 0 0 / 0.22);
+        opacity: 0;
+        transform: scale(0.85) translateY(10px);
+        transition:
+          opacity var(--dur-med) var(--ease-out),
+          transform var(--dur-med) var(--ease-out);
+      }
+      .demo__bubble.is-on {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+      .demo__bubble-icon {
+        display: grid;
+        place-items: center;
+        width: 2.75rem;
+        height: 2.75rem;
+        border-radius: 0.8rem;
+        background: linear-gradient(
+          135deg,
+          var(--color-accent-strong),
+          var(--color-accent-strong-2)
+        );
+        color: var(--color-accent-ink);
+      }
+      .demo__bubble-icon svg {
+        width: 1.4rem;
+        height: 1.4rem;
+      }
+      .demo__bubble b {
+        font-family: var(--font-display);
+        font-size: var(--text-sm);
+      }
+      .demo__bubble i {
+        font-style: normal;
+        font-size: var(--text-xs);
+        color: var(--color-ink-3);
+      }
+      .demo__flowline {
+        position: absolute;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          var(--color-accent-strong),
+          var(--color-accent)
+        );
+        opacity: 0.5;
+      }
+      .demo__controls {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        padding: 0.85rem 1rem;
+        background: linear-gradient(transparent, oklch(98% 0.008 300 / 0.92));
+      }
+      .demo__play {
+        display: grid;
+        place-items: center;
+        flex: none;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        border: 0;
+        background: var(--color-accent-strong);
+        color: var(--color-accent-ink);
+        box-shadow: 0 8px 20px -8px var(--color-accent-ring);
+        transition: transform var(--dur-short) var(--ease-out);
+      }
+      .demo__play:hover {
+        transform: scale(1.08);
+      }
+      .demo__play svg {
+        width: 1rem;
+        height: 1rem;
+      }
+      .demo__track {
+        flex: 1;
+        height: 4px;
+        border-radius: var(--radius-pill);
+        background: var(--color-paper-3);
+        overflow: hidden;
+      }
+      .demo__bar {
+        height: 100%;
+        width: 0%;
+        border-radius: inherit;
+        background: linear-gradient(
+          90deg,
+          var(--color-accent-strong),
+          var(--color-accent)
+        );
+        transition: width 0.4s linear;
+      }
+      .demo__time {
+        flex: none;
+        font-size: var(--text-xs);
+        font-family: var(--font-display);
+        font-weight: 600;
+        color: var(--color-ink-2);
+        font-variant-numeric: tabular-nums;
+      }
+      .demo__list {
+        list-style: none;
+        padding: 0;
+        display: grid;
+        gap: 0.75rem;
+      }
+      .demo__item {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+        padding: 1rem;
+        border-radius: 14px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition:
+          background var(--dur-short) var(--ease-out),
+          border-color var(--dur-short) var(--ease-out);
+      }
+      .demo__item:hover {
+        background: var(--color-paper-2);
+      }
+      .demo__item.is-active {
+        background: var(--color-paper-2);
+        border-color: var(--color-accent-ring);
+      }
+      .demo__item-num {
+        flex: none;
+        display: grid;
+        place-items: center;
+        width: 2.4rem;
+        height: 2.4rem;
+        border-radius: 50%;
+        border: 1px solid var(--color-rule);
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: var(--text-sm);
+        color: var(--color-ink-3);
+        transition: all var(--dur-short) var(--ease-out);
+      }
+      .demo__item.is-active .demo__item-num {
+        background: var(--color-accent-strong);
+        border-color: var(--color-accent-strong);
+        color: var(--color-accent-ink);
+      }
+      .demo__item h3 {
+        font-size: var(--text-md);
+      }
+      .demo__item p {
+        margin-top: 0.3rem;
+        font-size: var(--text-sm);
+        color: var(--color-ink-2);
+      }
+
+      /* ---------- 店铺列表 ---------- */
+      .filterbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: var(--space-lg);
+      }
+      .filter {
+        padding: 0.55rem 1.1rem;
+        border-radius: var(--radius-pill);
+        border: 1px solid var(--color-rule);
+        background: transparent;
+        font-size: var(--text-sm);
+        font-weight: 600;
+        color: var(--color-ink-2);
+        transition: all var(--dur-short) var(--ease-out);
+      }
+      .filter:hover {
+        border-color: var(--color-accent);
+        color: var(--color-accent);
+      }
+      .filter.is-active {
+        background: linear-gradient(
+          135deg,
+          var(--color-accent-strong),
+          var(--color-accent-strong-2)
+        );
+        border-color: transparent;
+        color: var(--color-accent-ink);
+        box-shadow: 0 8px 22px -10px var(--color-accent-ring);
+      }
+      .store-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--space-md);
+        margin-top: var(--space-lg);
+      }
+      .store-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        padding: var(--space-md);
+        border-radius: var(--radius-card);
+        background: var(--glass);
+        border: 1px solid var(--glass-border);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 12px 34px -20px rgb(0 0 0 / 0.2);
+        transform-style: preserve-3d;
+        transition:
+          border-color var(--dur-short) var(--ease-out),
+          box-shadow var(--dur-short) var(--ease-out),
+          opacity var(--dur-med) var(--ease-out),
+          transform var(--dur-med) var(--ease-out);
+      }
+      .store-card:hover {
+        border-color: var(--color-accent-ring);
+        box-shadow: 0 24px 60px -30px var(--color-accent-ring);
+      }
+      .store-card.is-hiding {
+        opacity: 0;
+        transform: scale(0.92);
+        pointer-events: none;
+      }
+      .store-card__head {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+      }
+      .store-card__icon {
+        display: grid;
+        place-items: center;
+        flex: none;
+        width: 2.75rem;
+        height: 2.75rem;
+        border-radius: 0.8rem;
+        background: linear-gradient(
+          135deg,
+          oklch(0.59 0.05 297.57),
+          oklch(0.73 0.11 266.08)
+        );
+        color: var(--color-accent-ink);
+        box-shadow: 0 10px 22px -12px var(--color-accent-ring);
+        transition: transform var(--dur-med) var(--ease-out);
+      }
+      .store-card:hover .store-card__icon {
+        transform: scale(1.06);
+      }
+      .store-card__icon svg {
+        width: 1.4rem;
+        height: 1.4rem;
+      }
+      .store-card__meta {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        min-width: 0;
+      }
+      .store-card__title {
+        font-size: 1.15rem;
+        font-weight: 700;
+      }
+      .store-card__badge {
+        align-self: flex-start;
+        border-radius: var(--radius-pill);
+        padding: 0.15rem 0.6rem;
+        font-size: var(--text-xs);
+        font-weight: 600;
+        color: var(--color-accent);
+        background: color-mix(in oklch, var(--color-accent) 14%, transparent);
+      }
+      .store-card__desc {
+        margin-top: 0.9rem;
+        font-size: var(--text-sm);
+        color: var(--color-ink-2);
+        min-height: 2.6em;
+      }
+      .store-card__commission {
+        margin-top: var(--space-sm);
+        display: flex;
+        align-items: baseline;
+        gap: 0.5rem;
+        padding: var(--space-sm) var(--space-md);
+        background: var(--color-paper-2);
+        border-radius: 12px;
+      }
+      .store-card__commission span {
+        font-size: var(--text-xs);
+        color: var(--color-ink-3);
+      }
+      .store-card__commission strong {
+        font-family: var(--font-display);
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--color-success);
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
+      }
+      .store-card .btn {
+        margin-top: var(--space-md);
+      }
+      .store-card[hidden] {
+        display: none;
+      }
+      .btn--joined {
+        background: var(--color-success-soft);
+        color: var(--color-success);
+        border: 1px solid
+          color-mix(in oklch, var(--color-success) 30%, transparent);
+      }
+      .btn--joined svg {
+        animation: pop 0.4s var(--ease-spring);
+      }
+      @keyframes pop {
+        0% {
+          transform: scale(0.4);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      /* ---------- FAQ ---------- */
+      .faq-list {
+        margin-top: var(--space-lg);
+        border-top: 1px solid var(--color-rule);
+        max-width: 780px;
+      }
+      .faq-item {
+        border-bottom: 1px solid var(--color-rule);
+      }
+      .faq-item > summary {
+        list-style: none;
+        cursor: pointer;
+        padding: var(--space-md) 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: var(--text-md);
+        color: var(--color-ink);
+      }
+      .faq-item > summary::-webkit-details-marker {
+        display: none;
+      }
+      .faq-item > summary::after {
+        content: "";
+        flex: none;
+        width: 1.1rem;
+        height: 1.1rem;
+        background: var(--color-ink-3);
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E")
+          center / contain no-repeat;
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E")
+          center / contain no-repeat;
+        transition:
+          transform var(--dur-short) var(--ease-out),
+          background var(--dur-short) var(--ease-out);
+      }
+      .faq-item[open] > summary::after {
+        transform: rotate(45deg);
+        background: var(--color-accent);
+      }
+      .faq-item__body {
+        padding-bottom: var(--space-md);
+        color: var(--color-ink-2);
+        font-size: var(--text-md);
+        max-width: 64ch;
+        animation: fadeIn 0.35s var(--ease-out);
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-6px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* ---------- 沟通话术卡 ---------- */
+      .chat-script {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 1px solid var(--color-rule);
+        border-radius: var(--radius-card);
+        overflow: hidden;
+        background: var(--color-paper-2);
+      }
+      .chat-script__head {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.85rem 1rem;
+        background: color-mix(in oklch, var(--color-accent) 12%, transparent);
+      }
+      .chat-script__badge {
+        display: grid;
+        place-items: center;
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 0.6rem;
+        background: linear-gradient(
+          135deg,
+          var(--color-accent-strong),
+          var(--color-accent-strong-2)
+        );
+        color: var(--color-accent-ink);
+      }
+      .chat-script__badge svg {
+        width: 1.1rem;
+        height: 1.1rem;
+      }
+      .chat-script__title {
+        font-size: var(--text-sm);
+        font-weight: 600;
+        color: var(--color-ink);
+      }
+      .chat-script__subtitle {
+        font-size: var(--text-xs);
+        color: var(--color-ink-3);
+      }
+      .chat-script__quote {
+        margin: 0;
+        padding: 1rem;
+        font-size: var(--text-md);
+        line-height: 1.55;
+        color: var(--color-ink);
+        background: var(--color-paper);
+        border-left: 3px solid var(--color-accent);
+      }
+      .chat-script__tips {
+        padding: 1rem;
+        display: grid;
+        gap: 0.75rem;
+      }
+      .chat-script__tip {
+        display: flex;
+        gap: 0.6rem;
+        font-size: var(--text-sm);
+        color: var(--color-ink-2);
+        line-height: 1.5;
+      }
+      .chat-script__tip strong {
+        flex: none;
+        color: var(--color-ink);
+        font-weight: 600;
+      }
+      .chat-script__copy {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 0;
+        border-top: 1px solid var(--color-rule);
+        background: var(--color-paper-2);
+        color: var(--color-accent);
+        font-size: var(--text-sm);
+        font-weight: 600;
+        transition:
+          background var(--dur-short) var(--ease-out),
+          color var(--dur-short) var(--ease-out);
+      }
+      .chat-script__copy:hover {
+        background: color-mix(in oklch, var(--color-accent) 12%, transparent);
+      }
+      .chat-script__copy.is-done {
+        color: var(--color-success);
+      }
+      .chat-script__copy svg {
+        width: 1rem;
+        height: 1rem;
+      }
+
+      /* ---------- FAQ 图文卡 ---------- */
+      .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-md);
+        margin-top: var(--space-xl);
+      }
+      .faq-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: var(--space-md);
+        border-radius: var(--radius-card);
+        background: var(--glass);
+        border: 1px solid var(--glass-border);
+        box-shadow: 0 12px 34px -20px rgb(0 0 0 / 0.2);
+        overflow: hidden;
+      }
+      .faq-card--media {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: var(--space-lg);
+        align-items: center;
+      }
+      .faq-card--reverse .faq-card__content {
+        order: 2;
+      }
+      .faq-card--reverse .faq-card__figure {
+        order: 1;
+      }
+      .faq-card__step {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.75rem;
+        font-family: var(--font-display);
+        font-size: 3rem;
+        font-weight: 700;
+        line-height: 1;
+        color: var(--color-accent);
+        opacity: 0.12;
+      }
+      .faq-card h3 {
+        font-size: var(--text-lg);
+        font-weight: 700;
+        padding-right: 2.5rem;
+        margin-bottom: 0.75rem;
+      }
+      .faq-card p {
+        color: var(--color-ink-2);
+        font-size: var(--text-sm);
+      }
+      .faq-card__bullets {
+        margin: 0.5rem 0 0;
+        padding-left: 1.2rem;
+        color: var(--color-ink-2);
+        font-size: var(--text-sm);
+      }
+      .faq-card__bullets li {
+        padding-left: 0.3rem;
+      }
+      .faq-card__bullets li::marker {
+        color: var(--color-accent);
+      }
+      .faq-card__figure {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .faq-card__image {
+        position: relative;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid var(--color-rule);
+        background: var(--color-paper-2);
+        box-shadow: 0 16px 44px -24px rgb(0 0 0 / 0.25);
+      }
+      .faq-card__image img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .faq-card__tag {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        padding: 0.35rem 0.7rem;
+        border-radius: var(--radius-pill);
+        font-size: var(--text-xs);
+        font-weight: 600;
+        color: var(--color-accent-ink);
+        background: linear-gradient(
+          135deg,
+          var(--color-accent-strong),
+          var(--color-accent-strong-2)
+        );
+        box-shadow: 0 4px 12px -4px var(--color-accent-ring);
+      }
+      .faq-card__figure figcaption {
+        text-align: center;
+        font-size: var(--text-xs);
+        color: var(--color-ink-3);
+      }
+      @media (max-width: 860px) {
+        .faq-grid {
+          grid-template-columns: 1fr;
+        }
+        .faq-card--media {
+          grid-template-columns: 1fr;
+        }
+        .faq-card--reverse .faq-card__content,
+        .faq-card--reverse .faq-card__figure {
+          order: unset;
+        }
+      }
+
+      /* ---------- CTA ---------- */
+      .cta-strip {
+        position: relative;
+        text-align: center;
+        padding: var(--space-2xl) var(--space-md);
+        border-radius: var(--radius-card);
+        overflow: hidden;
+        background: linear-gradient(
+          135deg,
+          oklch(0.78 0.14 296.3),
+          oklch(0.48 0.26 271.93 / 0.84)
+        );
+        box-shadow: 0 40px 100px -40px var(--color-accent-ring);
+      }
+      .cta-strip::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at 50% 0%,
+          oklch(100% 0 0 / 0.18),
+          transparent 60%
+        );
+      }
+      .cta-strip h2 {
+        position: relative;
+        color: var(--color-accent-ink);
+        font-size: var(--text-2xl);
+      }
+      .cta-strip p {
+        position: relative;
+        color: color-mix(in oklch, var(--color-accent-ink) 78%, transparent);
+        margin-top: 0.5rem;
+      }
+      .cta-strip .btn {
+        position: relative;
+        margin-top: var(--space-lg);
+        background: var(--color-accent-ink);
+        color: var(--color-accent-strong);
+      }
+      .cta-strip .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 40px -12px rgb(0 0 0 / 0.3);
+      }
+
+      /* ---------- Footer ---------- */
+      .footer {
+        padding-block: var(--space-lg);
+        border-top: 1px solid var(--color-rule);
+      }
+      .footer__inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        color: var(--color-ink-3);
+        font-size: var(--text-sm);
+      }
+      .footer__brand {
+        font-family: var(--font-display);
+        font-weight: 700;
+        color: var(--color-ink);
+      }
+
+      /* ---------- Reveal ---------- */
+      html.js .reveal {
+        opacity: 0;
+        transform: translateY(26px);
+        transition:
+          opacity 0.6s var(--ease-out),
+          transform 0.6s var(--ease-out);
+      }
+      html.js .reveal.is-in {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ---------- 入场动画（首屏） ---------- */
+      .hero .reveal {
+        animation: heroIn 0.7s var(--ease-out) both;
+      }
+      .hero .reveal:nth-child(2) {
+        animation-delay: 0.08s;
+      }
+      .hero .reveal:nth-child(3) {
+        animation-delay: 0.16s;
+      }
+      .hero .reveal:nth-child(4) {
+        animation-delay: 0.24s;
+      }
+      .hero .reveal:nth-child(5) {
+        animation-delay: 0.32s;
+      }
+      @keyframes heroIn {
+        from {
+          opacity: 0;
+          transform: translateY(26px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* ---------- 响应式 ---------- */
+      @media (max-width: 900px) {
+        .hero__inner {
+          grid-template-columns: 1fr;
+        }
+        .demo__wrap {
+          grid-template-columns: 1fr;
+        }
+        .store-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 720px) {
+        .nav__links {
+          position: absolute;
+          top: 68px;
+          left: 0;
+          right: 0;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          padding: 0.5rem var(--space-md) 1rem;
+          background: oklch(98% 0.008 300 / 0.97);
+          backdrop-filter: blur(14px);
+          border-bottom: 1px solid var(--glass-border);
+          display: none;
+        }
+        .nav.is-open .nav__links {
+          display: flex;
+        }
+        .nav__links a {
+          padding: 0.8rem 0.85rem;
+        }
+        .nav__toggle {
+          display: grid;
+        }
+        .store-grid {
+          grid-template-columns: 1fr;
+        }
+        .demo__bubble {
+          padding: 0.6rem;
+          gap: 0.35rem;
+        }
+        .demo__bubble-icon {
+          width: 2rem;
+          height: 2rem;
+        }
+        .demo__bubble-icon svg {
+          width: 1rem;
+          height: 1rem;
+        }
+        .demo__bubble i {
+          display: none;
+        }
+        .demo__bubble b {
+          font-size: var(--text-xs);
+        }
+      }
+
+      /* ---------- 减少动效 ---------- */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.001ms !important;
+        }
+        html {
+          scroll-behavior: auto;
+        }
+        html.js .reveal {
+          opacity: 1;
+          transform: none;
+        }
+        .marquee__track {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 背景 -->
+    <div class="bg" aria-hidden="true">
+      <div class="bg__orb bg__orb--1"></div>
+      <div class="bg__orb bg__orb--2"></div>
+      <div class="bg__orb bg__orb--3"></div>
+      <div class="bg__grid"></div>
+    </div>
+
+    <!-- SVG symbols -->
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <symbol
+        id="store-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7" />
+        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+        <path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4" />
+        <path d="M2 7h20" />
+        <path
+          d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7"
+        />
+      </symbol>
+      <symbol
+        id="chat-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+      </symbol>
+      <symbol
+        id="copy-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+        <path d="M4 16c-1.1 0-2-.9-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2" />
+      </symbol>
+      <symbol
+        id="check-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M20 6 9 17l-5-5" />
+      </symbol>
+      <symbol
+        id="play-icon"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        stroke="none"
+      >
+        <path
+          d="M7 4.5v15a1 1 0 0 0 1.54.84l11.5-7.5a1 1 0 0 0 0-1.68L8.54 3.66A1 1 0 0 0 7 4.5Z"
+        />
+      </symbol>
+      <symbol
+        id="pause-icon"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        stroke="none"
+      >
+        <rect width="4.5" height="16" x="5" y="4" rx="1.2" />
+        <rect width="4.5" height="16" x="14.5" y="4" rx="1.2" />
+      </symbol>
+      <symbol
+        id="link-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+        <path
+          d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+        />
+      </symbol>
+      <symbol
+        id="cart-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="8" cy="21" r="1" />
+        <circle cx="19" cy="21" r="1" />
+        <path
+          d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"
+        />
+      </symbol>
+      <symbol
+        id="coin-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 6v12" />
+        <path
+          d="M15 9.5c-.5-1-1.5-1.5-3-1.5-2 0-3 .8-3 2s1 1.5 3 2 3 1 3 2.5-1.5 2-3 2c-1.5 0-2.5-.5-3-1.5"
+        />
+      </symbol>
+    </svg>
+
+    <!-- Nav -->
+    <nav class="nav" id="nav">
+      <div class="nav__inner">
+        <a class="nav__brand" href="#top">
+          <span class="nav__logo" aria-hidden="true">
+            <img
+              src="https://da-test.flylinking.com/_nuxt/Flylinking-logo.fjmDM9jT.svg"
+              alt="Flylink"
+            />
+          </span>
+          分销平台
+        </a>
+        <div class="nav__links" id="navLinks">
+          <a href="#stores">精选店铺</a>
+          <a href="#how">分销流程</a>
+          <a href="#faq">常见问题</a>
+        </div>
+        <a class="btn btn--primary btn--sm" href="#stores">立即加入</a>
+        <button
+          class="nav__toggle"
+          id="navToggle"
+          aria-label="展开菜单"
+          aria-expanded="false"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </button>
+      </div>
+      <div class="nav__progress" id="navProgress"></div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero" id="top">
+      <div class="container hero__inner">
+        <div class="hero__copy">
+          <span class="eyebrow reveal">零门槛 · 佣金自动结算</span>
+          <h1 class="hero__title reveal">
+            分享好物<br />
+            <span class="hero__accent">赚取佣金</span>
+          </h1>
+          <p class="hero__lede reveal">
+            选择适合自己的店铺加入分销，在商品详情页通过 WhatsApp
+            联系卖家、进入分销后台「产品」页获取专属推广链接，分享给好友促成订单，佣金自动结算到你的账户。
+          </p>
+          <div class="hero__cta reveal">
+            <a class="btn btn--primary cta-pulse" href="#stores">
+              立即加入分销
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+            </a>
+            <a class="btn btn--ghost" href="#how">
+              <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                <use href="#play-icon" />
+              </svg>
+              看 60 秒流程
+            </a>
+          </div>
+          <ul class="hero__points reveal">
+            <li>无需囤货</li>
+            <li>佣金自动结算</li>
+            <li>可同时分销多店</li>
+          </ul>
+        </div>
+
+        <!-- 收益试算器 -->
+        <aside class="calc reveal" aria-label="收益试算器">
+          <div class="calc__tag">收益试算 · 实时计算</div>
+          <div class="calc__store">
+            <span class="calc__store-icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <use href="#store-icon" />
+              </svg>
+            </span>
+            <div>
+              <strong>山野茶韵茶业</strong>
+              <span>茶饮冲调 · 佣金比例 20%</span>
+            </div>
+          </div>
+          <div class="calc__field">
+            <label class="calc__label" for="calcPrice">
+              客单价
+              <output id="calcPriceOut">¥200</output>
+            </label>
+            <input
+              type="range"
+              id="calcPrice"
+              min="50"
+              max="2000"
+              value="200"
+              step="10"
+            />
+          </div>
+          <div class="calc__field">
+            <div class="calc__label">佣金比例</div>
+            <div class="calc__rates" id="calcRates">
+              <button class="calc__rate" data-rate="8">8%</button>
+              <button class="calc__rate" data-rate="10">10%</button>
+              <button class="calc__rate" data-rate="12">12%</button>
+              <button class="calc__rate" data-rate="15">15%</button>
+              <button class="calc__rate" data-rate="18">18%</button>
+              <button class="calc__rate is-active" data-rate="20">20%</button>
+            </div>
+          </div>
+          <div class="calc__result">
+            <span>单笔佣金</span>
+            <strong id="calcResult">¥40</strong>
+          </div>
+          <p class="calc__note" id="calcNote">
+            示例估算：假设每天 3 单，月佣金约
+            ¥3,600。实际收益以成交与佣金政策为准。
+          </p>
+        </aside>
+      </div>
+      <a class="scroll-hint" href="#how"><span>滚动探索 ↓</span></a>
+    </header>
+
+    <!-- Marquee -->
+    <section class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>美食饮品</span><span>服饰鞋包</span><span>数码 3C</span
+        ><span>母婴童装</span><span>健康食品</span><span>茶饮冲调</span>
+        <span>美食饮品</span><span>服饰鞋包</span><span>数码 3C</span
+        ><span>母婴童装</span><span>健康食品</span><span>茶饮冲调</span>
+      </div>
+    </section>
+
+    <!-- 分销流程演示（视频式） -->
+    <section class="section demo" id="how">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">分销流程</span>
+          <h2>60 秒看懂分销</h2>
+          <p>四步开始，全程无需囤货与垫付。点击右侧步骤或让它自动播放。</p>
+        </div>
+        <div class="demo__wrap">
+          <!-- 如需真实视频：可将 .demo__scene 替换为 <video src="..." autoplay muted loop playsinline></video> -->
+          <div class="demo__screen reveal" id="demoScreen">
+            <div class="demo__stage">
+              <div class="demo__scene">
+                <div
+                  class="demo__bubble"
+                  data-b="1"
+                  style="left: 12%; top: 30%"
+                >
+                  <span class="demo__bubble-icon"
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <use href="#store-icon" /></svg
+                  ></span>
+                  <b>加入店铺</b>
+                  <i>选店获分销资格</i>
+                </div>
+                <div
+                  class="demo__bubble"
+                  data-b="2"
+                  style="left: 44%; top: 14%"
+                >
+                  <span class="demo__bubble-icon"
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <use href="#chat-icon" /></svg
+                  ></span>
+                  <b>联系卖家</b>
+                  <i>咨询商品与佣金</i>
+                </div>
+                <div
+                  class="demo__bubble"
+                  data-b="3"
+                  style="right: 12%; top: 30%"
+                >
+                  <span class="demo__bubble-icon"
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <use href="#link-icon" /></svg
+                  ></span>
+                  <b>获取链接</b>
+                  <i>复制专属推广链接</i>
+                </div>
+                <div
+                  class="demo__bubble"
+                  data-b="4"
+                  style="left: 28%; bottom: 12%"
+                >
+                  <span class="demo__bubble-icon"
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <use href="#coin-icon" /></svg
+                  ></span>
+                  <b>成单结算</b>
+                  <i>好友下单 · 佣金入账</i>
+                </div>
+              </div>
+            </div>
+            <div class="demo__controls">
+              <button class="demo__play" id="demoPlay" aria-label="播放">
+                <svg viewBox="0 0 24 24"><use href="#pause-icon" /></svg>
+              </button>
+              <div class="demo__track">
+                <div class="demo__bar" id="demoBar"></div>
+              </div>
+              <span class="demo__time" id="demoTime">01 / 04</span>
+            </div>
+          </div>
+
+          <ol class="demo__list reveal" id="demoList">
+            <li class="demo__item is-active" data-step="1">
+              <span class="demo__item-num">01</span>
+              <div>
+                <h3>加入店铺</h3>
+                <p>
+                  浏览店铺列表，选择佣金比例高、品类适合你客群的店铺，点击加入即可获得分销资格。
+                </p>
+              </div>
+            </li>
+            <li class="demo__item" data-step="2">
+              <span class="demo__item-num">02</span>
+              <div>
+                <h3>联系卖家</h3>
+                <p>
+                  打开商品详情页，点击右下角的 WhatsApp
+                  按钮，向卖家发送商品信息、佣金或库存相关咨询。
+                </p>
+              </div>
+            </li>
+            <li class="demo__item" data-step="3">
+              <span class="demo__item-num">03</span>
+              <div>
+                <h3>获取链接</h3>
+                <p>
+                  进入分销后台的「产品」页，点击「获取分销链接」，复制带有你分销标识的推广链接。
+                </p>
+              </div>
+            </li>
+            <li class="demo__item" data-step="4">
+              <span class="demo__item-num">04</span>
+              <div>
+                <h3>成单结算</h3>
+                <p>
+                  好友通过你的链接下单付款后，佣金自动记录并按周期结算到你的账户。
+                </p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 店铺列表 -->
+    <section class="section" id="stores">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">可加入分销的店铺</span>
+          <h2>挑选适合你客群的优质店铺</h2>
+          <p>
+            精选高佣金、好出单的店铺，按品类筛选，加入后即可获取推广链接开始分销。
+          </p>
+        </div>
+
+        <div class="filterbar reveal" role="group" aria-label="按品类筛选店铺">
+          <button class="filter is-active" data-filter="all">全部</button>
+          <button class="filter" data-filter="food">美食饮品</button>
+          <button class="filter" data-filter="fashion">服饰鞋包</button>
+          <button class="filter" data-filter="digital">数码 3C</button>
+        </div>
+
+        <div class="store-grid" id="storeGrid">
+          <article class="store-card reveal" data-cat="food">
+            <div class="store-card__head">
+              <span class="store-card__icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <use href="#store-icon" />
+                </svg>
+              </span>
+              <div class="store-card__meta">
+                <h3 class="store-card__title">鲜橙直采旗舰店</h3>
+                <span class="store-card__badge">生鲜水果</span>
+              </div>
+            </div>
+            <p class="store-card__desc">
+              产地直采的新鲜水果，适合日常家庭消费与节日送礼。
+            </p>
+            <div class="store-card__commission">
+              <span>佣金比例</span>
+              <strong>15%</strong>
+            </div>
+            <button class="btn btn--primary btn--block" data-join>
+              加入分销
+            </button>
+          </article>
+
+          <article class="store-card reveal" data-cat="fashion">
+            <div class="store-card__head">
+              <span class="store-card__icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <use href="#store-icon" />
+                </svg>
+              </span>
+              <div class="store-card__meta">
+                <h3 class="store-card__title">素衣坊原创设计</h3>
+                <span class="store-card__badge">女装服饰</span>
+              </div>
+            </div>
+            <p class="store-card__desc">
+              原创设计女装，款式更新快，适合追求品质与风格的女性客群。
+            </p>
+            <div class="store-card__commission">
+              <span>佣金比例</span>
+              <strong>12%</strong>
+            </div>
+            <button class="btn btn--primary btn--block" data-join>
+              加入分销
+            </button>
+          </article>
+
+          <article class="store-card reveal" data-cat="digital">
+            <div class="store-card__head">
+              <span class="store-card__icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <use href="#store-icon" />
+                </svg>
+              </span>
+              <div class="store-card__meta">
+                <h3 class="store-card__title">智家数码配件</h3>
+                <span class="store-card__badge">数码 3C</span>
+              </div>
+            </div>
+            <p class="store-card__desc">
+              实用型数码配件，覆盖手机、桌面与智能生活场景。
+            </p>
+            <div class="store-card__commission">
+              <span>佣金比例</span>
+              <strong>8%</strong>
+            </div>
+            <button class="btn btn--primary btn--block" data-join>
+              加入分销
+            </button>
+          </article>
+
+          <article class="store-card reveal" data-cat="food">
+            <div class="store-card__head">
+              <span class="store-card__icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <use href="#store-icon" />
+                </svg>
+              </span>
+              <div class="store-card__meta">
+                <h3 class="store-card__title">山野茶韵茶业</h3>
+                <span class="store-card__badge">茶饮冲调</span>
+              </div>
+            </div>
+            <p class="store-card__desc">
+              精选茶叶与冲泡好物，适合注重生活品质与健康饮品的人群。
+            </p>
+            <div class="store-card__commission">
+              <span>佣金比例</span>
+              <strong>20%</strong>
+            </div>
+            <button class="btn btn--primary btn--block" data-join>
+              加入分销
+            </button>
+          </article>
+
+          <article class="store-card reveal" data-cat="fashion">
+            <div class="store-card__head">
+              <span class="store-card__icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <use href="#store-icon" />
+                </svg>
+              </span>
+              <div class="store-card__meta">
+                <h3 class="store-card__title">趣玩童装工厂店</h3>
+                <span class="store-card__badge">母婴童装</span>
+              </div>
+            </div>
+            <p class="store-card__desc">
+              舒适耐穿的儿童服饰，覆盖日常穿搭与亲子出行需求。
+            </p>
+            <div class="store-card__commission">
+              <span>佣金比例</span>
+              <strong>10%</strong>
+            </div>
+            <button class="btn btn--primary btn--block" data-join>
+              加入分销
+            </button>
+          </article>
+
+          <article class="store-card reveal" data-cat="food">
+            <div class="store-card__head">
+              <span class="store-card__icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <use href="#store-icon" />
+                </svg>
+              </span>
+              <div class="store-card__meta">
+                <h3 class="store-card__title">轻食研究所</h3>
+                <span class="store-card__badge">健康食品</span>
+              </div>
+            </div>
+            <p class="store-card__desc">
+              轻负担的日常健康食品，适合健身、轻食与规律生活人群。
+            </p>
+            <div class="store-card__commission">
+              <span>佣金比例</span>
+              <strong>18%</strong>
+            </div>
+            <button class="btn btn--primary btn--block" data-join>
+              加入分销
+            </button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">常见问题</span>
+          <h2>开始分销前，先了解这些</h2>
+          <p>5 个关键问题，2 张步骤图，从联系卖家到佣金到账一目了然。</p>
+        </div>
+        <div class="faq-grid reveal">
+          <article class="faq-card faq-card--media">
+            <div class="faq-card__content">
+              <span class="faq-card__step" aria-hidden="true">01</span>
+              <h3>如何与卖家沟通商品信息？</h3>
+              <p>
+                打开任意商品详情页，点击右下角的 <strong>WhatsApp</strong>
+                按钮，即可向卖家发送消息。建议提前咨询主推商品、库存、佣金与推广素材。
+              </p>
+              <ul class="faq-card__bullets">
+                <li>主推商品与库存情况</li>
+                <li>佣金比例与结算周期</li>
+                <li>可提供的推广素材</li>
+              </ul>
+              <div class="chat-script">
+                <div class="chat-script__head">
+                  <span class="chat-script__badge" aria-hidden="true">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <use href="#chat-icon" />
+                    </svg>
+                  </span>
+                  <div>
+                    <div class="chat-script__title">卖家沟通型</div>
+                    <div class="chat-script__subtitle">联系卖家</div>
+                  </div>
+                </div>
+                <blockquote class="chat-script__quote" id="seller-script">
+                  您好，我对贵店的户外电源产品很感兴趣，想了解主推款、库存和佣金政策，方便进一步沟通吗？
+                </blockquote>
+                <div class="chat-script__tips">
+                  <div class="chat-script__tip">
+                    <strong>使用场景</strong
+                    >适合申请加入分销后，向卖家确认主推商品与合作细节
+                  </div>
+                  <div class="chat-script__tip">
+                    <strong>推广技巧</strong
+                    >先说明感兴趣的品类，再询问库存、佣金和推广素材，沟通会更高效
+                  </div>
+                </div>
+                <button class="chat-script__copy" type="button" id="copyBtn">
+                  <svg
+                    class="copy-ico"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <use href="#copy-icon" />
+                  </svg>
+                  <span>复制话术</span>
+                </button>
+              </div>
+              <p>在商品详情页右下角点击 WhatsApp 图标即可联系卖家</p>
+            </div>
+            <figure class="faq-card__figure">
+              <div class="faq-card__image">
+                <img
+                  src="https://kamelnet-prod-oss-public.oss-cn-beijing.aliyuncs.com/eos/1788339171034_20260902-164940.jpg"
+                  alt="商品详情页右下角显示 WhatsApp 联系卖家入口"
+                  loading="lazy"
+                />
+                <span class="faq-card__tag">联系入口</span>
+              </div>
+            </figure>
+          </article>
+
+          <article class="faq-card faq-card--media faq-card--reverse">
+            <div class="faq-card__content">
+              <span class="faq-card__step" aria-hidden="true">02</span>
+              <h3>推广链接在哪里获取？</h3>
+              <p>
+                加入分销后，进入分销后台的「产品」页，找到想推广的商品，点击
+                <strong>Get Affiliate Link</strong>。
+              </p>
+              <ol class="faq-card__bullets">
+                <li>点击「Get Affiliate Link」生成专属链接</li>
+                <li>在弹窗中点击「Copy link」一键复制</li>
+                <li>分享到朋友圈、微信群或私聊都有效</li>
+              </ol>
+            </div>
+            <figure class="faq-card__figure">
+              <div class="faq-card__image">
+                <img
+                  src="https://kamelnet-prod-oss-public.oss-cn-beijing.aliyuncs.com/eos/1788339210635_faq-affiliate-link.png"
+                  alt="Generate affiliate link 弹窗，显示 Copy link 按钮"
+                  loading="lazy"
+                />
+                <span class="faq-card__tag">复制链接</span>
+              </div>
+              <figcaption>
+                弹窗中点击 Copy link 即可复制你的专属推广链接
+              </figcaption>
+            </figure>
+          </article>
+
+          <article class="faq-card">
+            <span class="faq-card__step" aria-hidden="true">03</span>
+            <h3>我可以同时加入多家店铺吗？</h3>
+            <p>
+              可以。你可以同时加入多家店铺，分别获取各自的推广链接，按客群需要灵活推广，互不影响。
+            </p>
+          </article>
+
+          <article class="faq-card">
+            <span class="faq-card__step" aria-hidden="true">04</span>
+            <h3>佣金什么时候到账？</h3>
+            <p>
+              当买家通过你的推广链接完成下单并付款后，系统会自动记录佣金，并在约定结算周期（如
+              T+1）打入你的账户，无需手动申请。
+            </p>
+          </article>
+
+          <article class="faq-card">
+            <span class="faq-card__step" aria-hidden="true">05</span>
+            <h3>需要自己囤货或发货吗？</h3>
+            <p>
+              不需要。你只负责推广与促成订单，仓储、发货与售后都由卖家处理，零库存压力开启副业。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-strip reveal">
+          <h2>选好店铺，今天就开始分销</h2>
+          <p>无需囤货，佣金自动结算，多店同时分销。</p>
+          <a class="btn" href="#stores">立即加入分销</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <span class="footer__brand">分销平台</span>
+        <span>·</span>
+        <span>分享好物，赚取佣金</span>
+        <span>·</span>
+        <span>© 2026 分销平台</span>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        "use strict";
+        var reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        document.documentElement.classList.add("js");
+
+        /* ---------- 滚动进度 + 导航 ---------- */
+        var nav = document.getElementById("nav");
+        var navProgress = document.getElementById("navProgress");
+        var navToggle = document.getElementById("navToggle");
+        var navLinks = document.getElementById("navLinks");
+
+        function onScroll() {
+          var y = window.scrollY || 0;
+          nav.classList.toggle("is-scrolled", y > 10);
+          var h = document.documentElement.scrollHeight - window.innerHeight;
+          var p = h > 0 ? y / h : 0;
+          navProgress.style.transform = "scaleX(" + p + ")";
+        }
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+
+        navToggle.addEventListener("click", function () {
+          var open = nav.classList.toggle("is-open");
+          navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+        navLinks.addEventListener("click", function (e) {
+          if (e.target.tagName === "A") {
+            nav.classList.remove("is-open");
+            navToggle.setAttribute("aria-expanded", "false");
+          }
+        });
+
+        /* ---------- 滚动高亮 ---------- */
+        var sections = Array.prototype.slice.call(
+          document.querySelectorAll("section[id], header[id]"),
+        );
+        var linkMap = {};
+        Array.prototype.forEach.call(
+          document.querySelectorAll(".nav__links a"),
+          function (a) {
+            linkMap[a.getAttribute("href").slice(1)] = a;
+          },
+        );
+        var spy = function () {
+          var y = (window.scrollY || 0) + 120;
+          var current = "top";
+          sections.forEach(function (s) {
+            if (s.offsetTop <= y) current = s.id;
+          });
+          Object.keys(linkMap).forEach(function (id) {
+            linkMap[id].classList.toggle("is-active", id === current);
+          });
+        };
+        window.addEventListener("scroll", spy, { passive: true });
+        spy();
+
+        /* ---------- Reveal on scroll ---------- */
+        var revealEls = Array.prototype.slice.call(
+          document.querySelectorAll(".reveal"),
+        );
+        if ("IntersectionObserver" in window && !reduceMotion) {
+          var io = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (en) {
+                if (en.isIntersecting) {
+                  en.target.classList.add("is-in");
+                  io.unobserve(en.target);
+                }
+              });
+            },
+            { threshold: 0.12 },
+          );
+          revealEls.forEach(function (el) {
+            io.observe(el);
+          });
+        } else {
+          revealEls.forEach(function (el) {
+            el.classList.add("is-in");
+          });
+        }
+
+        /* ---------- 数字滚动 ---------- */
+        function animateNumber(el, to, prefix) {
+          if (reduceMotion) {
+            el.textContent = prefix + to;
+            return;
+          }
+          var from = 0;
+          var dur = 450;
+          var start = null;
+          function step(ts) {
+            if (!start) start = ts;
+            var t = Math.min((ts - start) / dur, 1);
+            var eased = 1 - Math.pow(1 - t, 3);
+            var val = Math.round(from + (to - from) * eased);
+            el.textContent = prefix + val;
+            if (t < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+        }
+
+        /* ---------- 收益试算器 ---------- */
+        var price = document.getElementById("calcPrice");
+        var priceOut = document.getElementById("calcPriceOut");
+        var result = document.getElementById("calcResult");
+        var note = document.getElementById("calcNote");
+        var rateBtns = Array.prototype.slice.call(
+          document.querySelectorAll(".calc__rate"),
+        );
+        var curRate = 0.2;
+        var curPrice = 200;
+
+        function fmt(n) {
+          return "¥" + n.toLocaleString("zh-CN");
+        }
+        function recalc() {
+          var one = Math.round(curPrice * curRate);
+          animateNumber(result, one, "¥");
+          var monthly = Math.round(one * 3 * 30);
+          note.textContent =
+            "示例估算：假设每天 3 单，月佣金约 " +
+            fmt(monthly) +
+            "。实际收益以成交与佣金政策为准。";
+        }
+        price.addEventListener("input", function () {
+          curPrice = parseInt(price.value, 10);
+          priceOut.textContent = fmt(curPrice);
+          recalc();
+        });
+        rateBtns.forEach(function (b) {
+          b.addEventListener("click", function () {
+            rateBtns.forEach(function (x) {
+              x.classList.remove("is-active");
+            });
+            b.classList.add("is-active");
+            curRate = parseInt(b.dataset.rate, 10) / 100;
+            recalc();
+          });
+        });
+        recalc();
+
+        /* ---------- 店铺筛选 ---------- */
+        var filters = Array.prototype.slice.call(
+          document.querySelectorAll(".filter"),
+        );
+        var cards = Array.prototype.slice.call(
+          document.querySelectorAll(".store-card"),
+        );
+        filters.forEach(function (f) {
+          f.addEventListener("click", function () {
+            filters.forEach(function (x) {
+              x.classList.remove("is-active");
+            });
+            f.classList.add("is-active");
+            var key = f.dataset.filter;
+            cards.forEach(function (card) {
+              var show = key === "all" || card.dataset.cat === key;
+              if (show) {
+                card.hidden = false;
+                card.classList.remove("is-hiding");
+              } else {
+                card.classList.add("is-hiding");
+                setTimeout(function () {
+                  if (card.classList.contains("is-hiding")) {
+                    card.hidden = true;
+                  }
+                }, 200);
+              }
+            });
+          });
+        });
+
+        /* ---------- 加入分销按钮 ---------- */
+        cards.forEach(function (card) {
+          var btn = card.querySelector("[data-join]");
+          if (!btn) return;
+          btn.addEventListener("click", function () {
+            btn.disabled = true;
+            btn.classList.remove("btn--primary");
+            btn.classList.add("btn--joined");
+            btn.innerHTML =
+              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#check-icon" /></svg> 已加入分销';
+          });
+        });
+
+        /* ---------- 卡片 3D 倾斜 ---------- */
+        if (!reduceMotion && window.matchMedia("(hover: hover)").matches) {
+          cards.forEach(function (card) {
+            card.addEventListener("mousemove", function (e) {
+              var r = card.getBoundingClientRect();
+              var x = (e.clientX - r.left) / r.width - 0.5;
+              var y = (e.clientY - r.top) / r.height - 0.5;
+              card.style.transform =
+                "perspective(800px) rotateY(" +
+                (x * 6).toFixed(2) +
+                "deg) rotateX(" +
+                (y * -6).toFixed(2) +
+                "deg) translateY(-4px)";
+            });
+            card.addEventListener("mouseleave", function () {
+              card.style.transform = "";
+            });
+          });
+        }
+
+        /* ---------- 流程演示 ---------- */
+        var steps = 4;
+        var curStep = 0;
+        var playing = true;
+        var timer = null;
+        var bar = document.getElementById("demoBar");
+        var time = document.getElementById("demoTime");
+        var playBtn = document.getElementById("demoPlay");
+        var playIcon = playBtn.querySelector("svg");
+        var items = Array.prototype.slice.call(
+          document.querySelectorAll(".demo__item"),
+        );
+        var bubbles = Array.prototype.slice.call(
+          document.querySelectorAll(".demo__bubble"),
+        );
+
+        function setStep(i) {
+          curStep = i;
+          items.forEach(function (it, idx) {
+            it.classList.toggle("is-active", idx === i);
+          });
+          bubbles.forEach(function (b) {
+            b.classList.toggle("is-on", parseInt(b.dataset.b, 10) === i + 1);
+          });
+          bar.style.width = ((i + 1) / steps) * 100 + "%";
+          time.textContent = "0" + (i + 1) + " / 0" + steps;
+        }
+        function nextStep() {
+          setStep((curStep + 1) % steps);
+        }
+        function startTimer() {
+          stopTimer();
+          if (playing) {
+            timer = setInterval(nextStep, 2200);
+          }
+        }
+        function stopTimer() {
+          if (timer) {
+            clearInterval(timer);
+            timer = null;
+          }
+        }
+        function renderPlay() {
+          playIcon.innerHTML = playing
+            ? '<use href="#pause-icon" />'
+            : '<use href="#play-icon" />';
+          playBtn.setAttribute("aria-label", playing ? "暂停" : "播放");
+        }
+        playBtn.addEventListener("click", function () {
+          playing = !playing;
+          renderPlay();
+          startTimer();
+        });
+        items.forEach(function (it) {
+          it.addEventListener("click", function () {
+            setStep(parseInt(it.dataset.step, 10) - 1);
+            if (!reduceMotion) startTimer();
+          });
+        });
+        setStep(0);
+        if (!reduceMotion) startTimer();
+
+        /* ---------- 复制话术 ---------- */
+        var copyBtn = document.getElementById("copyBtn");
+        var copyLabel = copyBtn.querySelector("span");
+        var copyIcon = copyBtn.querySelector(".copy-ico");
+        copyBtn.addEventListener("click", function () {
+          var text = document.getElementById("seller-script").textContent;
+          function done() {
+            copyBtn.classList.add("is-done");
+            copyLabel.textContent = "已复制";
+            copyIcon.innerHTML = '<use href="#check-icon" />';
+            setTimeout(function () {
+              copyBtn.classList.remove("is-done");
+              copyLabel.textContent = "复制话术";
+              copyIcon.innerHTML = '<use href="#copy-icon" />';
+            }, 2000);
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done, done);
+          } else {
+            var ta = document.createElement("textarea");
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            try {
+              document.execCommand("copy");
+            } catch (e) {}
+            document.body.removeChild(ta);
+            done();
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
