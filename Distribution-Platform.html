@@ -988,7 +988,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
       }
       .border-gray-800 {
         --tw-border-opacity: 1;
-        border-color: rgb(31 41 55 / var(--tw-border-opacity, 1));
+        border-color: rgb(107 107 107 / 20%);
       }
       .border-indigo-200 {
         --tw-border-opacity: 1;
@@ -1079,7 +1079,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
       }
       .bg-gray-900 {
         --tw-bg-opacity: 1;
-        background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
+        background-color: rgb(8 9 61 / 83%);
       }
       .bg-indigo-50 {
         --tw-bg-opacity: 1;
@@ -1150,10 +1150,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         background-color: rgb(255 255 255 / 0.95);
       }
       .guarantee {
-        color: #3c3b4b;
+        color: #1e1c43;
       }
       .guarantee .bg-white\/10 {
-        background-color: rgb(255 255 255 / 40%);
+        background-color: rgb(241 241 241 / 80%);
       }
       .bg-\[\#753bff\]\/70 {
         background-color: rgb(117 59 255 / 0.7);
@@ -1184,7 +1184,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
       }
       .from-gray-900 {
-        background: linear-gradient(9deg, #436cdfd1, #9553e9);
+        background: linear-gradient(9deg, #0c00c5cf, #9553e9);
       }
       .from-violet-400 {
         --tw-gradient-from: #a78bfa var(--tw-gradient-from-position);
@@ -1434,7 +1434,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
       }
       .text-gray-400 {
         --tw-text-opacity: 1;
-        color: #bab7c7;
+        color: #d3d3d3;
       }
       .text-gray-50 {
         --tw-text-opacity: 1;
@@ -1672,6 +1672,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
       }
       .duration-500 {
         transition-duration: 500ms;
+      }
+      .store-btn {
+        background: #00cf2e;
       }
       @keyframes fadeInUp {
         from {
@@ -1931,6 +1934,332 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         --tw-text-opacity: 1;
         color: rgb(255 255 255 / var(--tw-text-opacity, 1));
       }
+
+      /* ============================================================
+         步骤条模块 Stepbar
+         结构 .stepbar
+                └ .stepbar__track           桌面轨道（图标+文字，横向）
+                   ├ .stepbar__step         单个步骤按钮（可点击）
+                   │   ├ .stepbar__icon     图标圆形 56px
+                   │   │   ├ .stepbar__pulse   脉冲光环（仅当前态显示）
+                   │   │   ├ svg                图标
+                   │   │   └ .stepbar__badge    序号徽章
+                   │   └ .stepbar__label     步骤名
+                   └ .stepbar__line          连接线
+                └ .stepbar__track--compact  移动端轨道（仅图标，40px）
+         状态 .is-passed / .is-current / .is-upcoming （挂在 .stepbar__step 上）
+              .is-done                                （挂在 .stepbar__line 上）
+         主题 .stepbar__step--1 ~ --4  仅覆盖 CSS 变量即可换整套配色
+         ============================================================ */
+
+      /* ---------- 容器 ---------- */
+      .stepbar {
+        margin-top: 3.5rem; /* 原 mt-14 */
+        border-radius: 1.5rem;
+        border: 1px solid #f3f4f6;
+        background: #fff;
+        padding: 2rem;
+        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      }
+
+      /* ---------- 轨道 ---------- */
+      .stepbar__track {
+        display: none;
+      }
+      .stepbar__track--compact {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.25rem;
+        padding: 0 0.25rem 0.5rem;
+        overflow-x: auto;
+      }
+
+      /* ---------- 单个步骤（公共） ---------- */
+      .stepbar__step {
+        /* 主题变量：默认值（紫） */
+        --sb-solid: #8b5cf6; /* 实色，当前态填充 */
+        --sb-soft: #ede9fe; /* 淡色，已完成态填充 */
+        --sb-icon: #8b5cf6; /* 已完成态图标色 */
+        --sb-ring: rgba(139, 92, 246, 0.4); /* 光环色 */
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 120px;
+        padding: 0;
+        border: 0;
+        background: none;
+        cursor: pointer;
+        font: inherit;
+      }
+
+      /* ---------- 主题：按步骤（模块特有，只改变量） ---------- */
+      .stepbar__step--1 {
+        --sb-solid: #8b5cf6;
+        --sb-soft: #ede9fe;
+        --sb-icon: #8b5cf6;
+        --sb-ring: rgba(139, 92, 246, 0.4);
+      }
+      .stepbar__step--2 {
+        --sb-solid: #7c3aed;
+        --sb-soft: #8b5cf6;
+        --sb-icon: #ffffff;
+        --sb-ring: rgba(139, 92, 246, 0.4);
+      }
+      .stepbar__step--3 {
+        --sb-solid: #5b8def;
+        --sb-soft: #5b8def;
+        --sb-icon: #ffffff;
+        --sb-ring: rgba(91, 141, 239, 0.4);
+      }
+      .stepbar__step--4 {
+        --sb-solid: #d946ef;
+        --sb-soft: #d946ef;
+        --sb-icon: #ffffff;
+        --sb-ring: rgba(217, 70, 239, 0.4);
+      }
+
+      /* ---------- 图标圆形 ---------- */
+      .stepbar__icon {
+        position: relative;
+        display: flex;
+        height: 3.5rem;
+        width: 3.5rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        border: 2px solid transparent;
+        background: #fff;
+        color: #d1d5db;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease,
+          background-color 0.2s ease,
+          border-color 0.2s ease,
+          color 0.2s ease;
+      }
+      .stepbar__icon > svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ---------- 序号徽章 ---------- */
+      .stepbar__badge {
+        position: absolute;
+        top: -0.5rem;
+        right: -0.5rem;
+        z-index: 2;
+        display: flex;
+        height: 1.5rem;
+        width: 1.5rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #fff;
+        background: #9ca3af;
+        box-shadow: 0 0 0 2px #fff;
+        transition: background-color 0.2s ease;
+      }
+
+      /* ---------- 步骤名 ---------- */
+      .stepbar__label {
+        margin-top: 0.75rem;
+        max-width: 120px;
+        text-align: center;
+        font-size: 0.875rem;
+        font-weight: 500;
+        line-height: 1.25;
+        color: #9ca3af;
+        transition: color 0.2s ease;
+      }
+
+      /* ---------- 连接线 ---------- */
+      .stepbar__line {
+        flex: 1 1 0%;
+        height: 0.25rem;
+        /* 26px = 图标 56/2 - 线高 4/2，与图标垂直居中 */
+        margin: 1.625rem 0.5rem 0;
+        border-radius: 9999px;
+        background: #e5e7eb;
+        transition: background-color 0.3s ease;
+      }
+      .stepbar__line.is-done {
+        background: #c4b5fd;
+      }
+
+      /* ---------- 脉冲光环（仅当前态） ---------- */
+      .stepbar__pulse {
+        position: absolute;
+        inset: 0;
+        display: none;
+        border-radius: 9999px;
+        animation: stepbar-pulse 2s infinite;
+      }
+      @keyframes stepbar-pulse {
+        0% {
+          box-shadow: 0 0 0 0 var(--sb-ring);
+        }
+        70% {
+          box-shadow: 0 0 0 12px rgba(0, 0, 0, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+        }
+      }
+
+      /* ============================================================
+         三态样式（可复用，颜色全部走变量）
+         ============================================================ */
+
+      /* 已完成 */
+      .stepbar__step.is-passed .stepbar__icon {
+        background: var(--sb-soft);
+        border-color: var(--sb-soft);
+        color: var(--sb-icon);
+      }
+      .stepbar__step.is-passed .stepbar__badge {
+        background: var(--sb-solid);
+      }
+      .stepbar__step.is-passed .stepbar__label {
+        color: #6b7280;
+      }
+      .stepbar__step.is-passed:hover .stepbar__icon {
+        transform: scale(1.05);
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      }
+      .stepbar__step.is-passed:hover .stepbar__label {
+        color: #374151;
+      }
+
+      /* 当前 */
+      .stepbar__step.is-current .stepbar__icon {
+        background: var(--sb-solid);
+        border-color: var(--sb-solid);
+        color: #fff;
+        transform: scale(1.1);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+      }
+      .stepbar__step.is-current .stepbar__badge {
+        background: var(--sb-solid);
+      }
+      .stepbar__step.is-current .stepbar__pulse {
+        display: block;
+      }
+      .stepbar__step.is-current .stepbar__label {
+        color: #666;
+        font-weight: 600;
+      }
+      .stepbar__step.is-current:hover .stepbar__icon {
+        transform: scale(1.15);
+      }
+
+      /* 未开始 */
+      .stepbar__step.is-upcoming .stepbar__icon {
+        background: #fff;
+        border-color: #e5e7eb;
+        color: #d1d5db;
+      }
+      .stepbar__step.is-upcoming .stepbar__badge {
+        background: #9ca3af;
+      }
+      .stepbar__step.is-upcoming .stepbar__label {
+        color: #9ca3af;
+      }
+      .stepbar__step.is-upcoming:hover .stepbar__icon {
+        border-color: #8b5cf6;
+        transform: scale(1.2);
+        color: #8b5cf6;
+      }
+      .stepbar__step.is-upcoming:hover .stepbar__label {
+        color: #333;
+      }
+
+      /* ============================================================
+         移动端紧凑轨道（覆盖尺寸，隐藏步骤名）
+         ============================================================ */
+      .stepbar__track--compact .stepbar__step {
+        width: auto;
+        flex-shrink: 0;
+      }
+      .stepbar__track--compact .stepbar__icon {
+        height: 2.5rem;
+        width: 2.5rem;
+      }
+      .stepbar__track--compact .stepbar__icon > svg {
+        width: 1rem;
+        height: 1rem;
+      }
+      .stepbar__track--compact .stepbar__badge {
+        top: -0.25rem;
+        right: -0.25rem;
+        height: 1.25rem;
+        width: 1.25rem;
+        font-size: 10px;
+      }
+      .stepbar__track--compact .stepbar__label {
+        display: none;
+      }
+      .stepbar__track--compact .stepbar__line {
+        flex: 0 0 auto;
+        width: 2rem;
+        margin: 0;
+      }
+      /* 移动端当前态用外发光代替放大，避免挤压 */
+      .stepbar__track--compact .stepbar__step.is-current .stepbar__icon {
+        transform: none;
+        box-shadow: 0 0 0 4px var(--sb-ring);
+      }
+      .stepbar__track--compact .stepbar__step.is-current:hover .stepbar__icon {
+        transform: none;
+      }
+
+      /* 桌面端显示完整轨道，隐藏紧凑轨道 */
+      @media (min-width: 768px) {
+        .stepbar {
+          padding: 2.5rem;
+        }
+        .stepbar__track {
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          padding-left: 0.5rem;
+          padding-right: 0.5rem;
+        }
+        .stepbar__track--compact {
+          display: none;
+        }
+      }
+
+      /* ===== Hero CTA 按钮动效 ===== */
+      .cta-pulse {
+        position: relative;
+        isolation: isolate;
+      }
+      .cta-pulse::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border-radius: inherit;
+        box-shadow: 0 0 0 0 rgba(117, 59, 255, 0.5);
+        animation: cta-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+        pointer-events: none;
+      }
+      @keyframes cta-ping {
+        0% {
+          box-shadow: 0 0 0 0 rgba(117, 59, 255, 0.5);
+        }
+        70%,
+        100% {
+          box-shadow: 0 0 0 18px rgba(117, 59, 255, 0);
+        }
+      }
+
       @media (min-width: 640px) {
         .sm\:grid-cols-2 {
           grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2050,33 +2379,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
             <a
               href="https://zp1v56uxy8rdx5ypatb0ockcb9tr6a-oci3--5173--017acfb7.local-credentialless.webcontainer-api.io/#"
               class="flex items-center gap-2"
-              ><div
-                class="flex h-9 w-9 items-center justify-center rounded-lg bg-[#753bff] shadow-sm"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-link h-5 w-5 text-white"
-                >
-                  <path
-                    d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
-                  ></path>
-                  <path
-                    d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
-                  ></path>
-                </svg>
-              </div>
-              <span class="text-lg font-bold transition-colors text-gray-900"
-                >FlyLink</span
-              ></a
             >
+              <img
+                src="https://da-test.flylinking.com/_nuxt/Flylinking-logo.fjmDM9jT.svg"
+                alt="flylink"
+              />
+            </a>
             <div class="hidden items-center gap-1 md:flex">
               <a
                 href="https://zp1v56uxy8rdx5ypatb0ockcb9tr6a-oci3--5173--017acfb7.local-credentialless.webcontainer-api.io/#steps"
@@ -2163,7 +2471,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                 >
                   <a
                     href="https://zp1v56uxy8rdx5ypatb0ockcb9tr6a-oci3--5173--017acfb7.local-credentialless.webcontainer-api.io/#stores"
-                    class="group flex items-center gap-2 rounded-xl bg-white px-7 py-3.5 font-semibold text-[#753bff] shadow-lg transition-all hover:shadow-xl hover:scale-105 active:scale-95"
+                    class="cta-pulse group relative flex items-center gap-2 rounded-xl bg-white px-7 py-3.5 font-semibold text-[#753bff] shadow-lg transition-all hover:shadow-xl hover:scale-105 active:scale-95"
                     >立即加入分销<svg
                       class="h-4 w-4 transition-transform group-hover:translate-x-1"
                       viewBox="0 0 24 24"
@@ -2174,8 +2482,15 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                       <path d="M5 12h14M13 5l7 7-7 7"></path></svg></a
                   ><a
                     href="https://zp1v56uxy8rdx5ypatb0ockcb9tr6a-oci3--5173--017acfb7.local-credentialless.webcontainer-api.io/#steps"
-                    class="flex items-center gap-2 rounded-xl border-2 border-white/30 px-7 py-3.5 font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/10 active:scale-95"
-                    >查看分销流程</a
+                    class="group flex items-center gap-2 rounded-xl border-2 border-white/30 px-7 py-3.5 font-semibold text-white backdrop-blur-sm transition-all hover:scale-105 hover:bg-white/10 active:scale-95"
+                    >查看分销流程<svg
+                      class="h-4 w-4 transition-transform group-hover:translate-x-1"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M5 12h14M13 5l7 7-7 7"></path></svg></a
                   >
                 </div>
               </div>
@@ -2278,18 +2593,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                 </div>
               </div>
             </div>
-            <svg
-              class="block w-full text-gray-50"
-              viewBox="0 0 1440 80"
-              preserveAspectRatio="none"
-            >
-              <path
-                fill="currentColor"
-                d="M0,32 C320,80 720,0 1440,40 L1440,80 L0,80 Z"
-              ></path>
-            </svg>
           </section>
-          <section id="steps" class="bg-gray-50">
+          <section id="steps" class="bg-gray-50 py-20">
             <div class="mx-auto max-w-6xl px-4">
               <div class="text-center">
                 <span
@@ -2303,301 +2608,439 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                   从加入到佣金到账，流程简单透明 — 点击每一步查看详细操作指引
                 </p>
               </div>
-              <div class="mt-14">
-                <div class="hidden md:flex items-center justify-between">
-                  <div class="flex flex-1 items-center">
-                    <button
-                      class="group flex flex-col items-center cursor-pointer"
-                    >
-                      <div
-                        class="relative flex h-14 w-14 items-center justify-center rounded-2xl border-2 transition-all bg-violet-50 border-violet-200 text-violet-600 scale-110 shadow-lg"
-                      >
-                        <span
-                          class="absolute inset-0 rounded-2xl animate-pulse-ring ring-violet-500 ring-2"
-                        ></span
-                        ><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-user-plus h-6 w-6"
-                        >
-                          <path
-                            d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"
-                          ></path>
-                          <circle cx="9" cy="7" r="4"></circle>
-                          <line x1="19" x2="19" y1="8" y2="14"></line>
-                          <line x1="22" x2="16" y1="11" y2="11"></line></svg
-                        ><span
-                          class="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold text-white bg-violet-500"
-                          >1</span
-                        >
-                      </div>
-                      <span
-                        class="mt-3 max-w-[120px] text-center text-sm font-medium leading-tight transition-colors text-gray-900"
-                        >加入店铺成为分销员</span
-                      >
-                    </button>
-                    <div
-                      class="mx-2 h-0.5 flex-1 rounded-full bg-gradient-to-r from-gray-200 to-gray-200"
-                    >
-                      <div
-                        class="h-full rounded-full transition-all duration-500 w-0"
-                      ></div>
-                    </div>
-                  </div>
-                  <div class="flex flex-1 items-center">
-                    <button
-                      class="group flex flex-col items-center cursor-pointer"
-                    >
-                      <div
-                        class="relative flex h-14 w-14 items-center justify-center rounded-2xl border-2 transition-all bg-white border-gray-200 text-gray-300 group-hover:border-gray-300"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-message-circle h-6 w-6"
-                        >
-                          <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg
-                        ><span
-                          class="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold text-white bg-purple-500"
-                          >2</span
-                        >
-                      </div>
-                      <span
-                        class="mt-3 max-w-[120px] text-center text-sm font-medium leading-tight transition-colors text-gray-500 group-hover:text-gray-700"
-                        >联系卖家沟通商品信息</span
-                      >
-                    </button>
-                    <div
-                      class="mx-2 h-0.5 flex-1 rounded-full bg-gradient-to-r from-gray-200 to-gray-200"
-                    >
-                      <div
-                        class="h-full rounded-full transition-all duration-500 w-0"
-                      ></div>
-                    </div>
-                  </div>
-                  <div class="flex flex-1 items-center">
-                    <button
-                      class="group flex flex-col items-center cursor-pointer"
-                    >
-                      <div
-                        class="relative flex h-14 w-14 items-center justify-center rounded-2xl border-2 transition-all bg-white border-gray-200 text-gray-300 group-hover:border-gray-300"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-share2 h-6 w-6"
-                        >
-                          <circle cx="18" cy="5" r="3"></circle>
-                          <circle cx="6" cy="12" r="3"></circle>
-                          <circle cx="18" cy="19" r="3"></circle>
-                          <line
-                            x1="8.59"
-                            x2="15.42"
-                            y1="13.51"
-                            y2="17.49"
-                          ></line>
-                          <line
-                            x1="15.41"
-                            x2="8.59"
-                            y1="6.51"
-                            y2="10.49"
-                          ></line></svg
-                        ><span
-                          class="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold text-white bg-indigo-500"
-                          >3</span
-                        >
-                      </div>
-                      <span
-                        class="mt-3 max-w-[120px] text-center text-sm font-medium leading-tight transition-colors text-gray-500 group-hover:text-gray-700"
-                        >获取商品链接并分享给买家</span
-                      >
-                    </button>
-                    <div
-                      class="mx-2 h-0.5 flex-1 rounded-full bg-gradient-to-r from-gray-200 to-gray-200"
-                    >
-                      <div
-                        class="h-full rounded-full transition-all duration-500 w-0"
-                      ></div>
-                    </div>
-                  </div>
-                  <div class="flex flex-1 items-center">
-                    <button
-                      class="group flex flex-col items-center cursor-pointer"
-                    >
-                      <div
-                        class="relative flex h-14 w-14 items-center justify-center rounded-2xl border-2 transition-all bg-white border-gray-200 text-gray-300 group-hover:border-gray-300"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-wallet h-6 w-6"
-                        >
-                          <path
-                            d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"
-                          ></path>
-                          <path
-                            d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"
-                          ></path></svg
-                        ><span
-                          class="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold text-white bg-fuchsia-500"
-                          >4</span
-                        >
-                      </div>
-                      <span
-                        class="mt-3 max-w-[120px] text-center text-sm font-medium leading-tight transition-colors text-gray-500 group-hover:text-gray-700"
-                        >等待买家付款，佣金自动入账</span
-                      >
-                    </button>
-                  </div>
-                </div>
-                <div class="flex gap-2 overflow-x-auto pb-2 md:hidden">
+              <div class="stepbar">
+                <div class="stepbar__track">
+                  <!-- 步骤 1 -->
                   <button
-                    class="flex flex-shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all bg-violet-50 text-violet-600 border-violet-200 border"
+                    type="button"
+                    data-step-btn="1"
+                    class="stepbar__step stepbar__step--1"
+                    aria-label="加入店铺成为分销员"
                   >
-                    <span
-                      class="flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold text-white bg-violet-500"
-                      >1</span
-                    >加入店铺成为分销员</button
-                  ><button
-                    class="flex flex-shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all bg-white text-gray-500 border border-gray-200"
+                    <span class="stepbar__icon">
+                      <span class="stepbar__pulse"></span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-user-plus"
+                      >
+                        <path
+                          d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"
+                        ></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <line x1="19" x2="19" y1="8" y2="14"></line>
+                        <line x1="22" x2="16" y1="11" y2="11"></line>
+                      </svg>
+                      <span class="stepbar__badge">1</span>
+                    </span>
+                    <span class="stepbar__label">加入店铺成为分销员</span>
+                  </button>
+                  <div class="stepbar__line"></div>
+
+                  <!-- 步骤 2 -->
+                  <button
+                    type="button"
+                    data-step-btn="2"
+                    class="stepbar__step stepbar__step--2"
+                    aria-label="联系卖家沟通商品信息"
                   >
-                    <span
-                      class="flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold text-white bg-purple-500"
-                      >2</span
-                    >联系卖家沟通商品信息</button
-                  ><button
-                    class="flex flex-shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all bg-white text-gray-500 border border-gray-200"
+                    <span class="stepbar__icon">
+                      <span class="stepbar__pulse"></span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-message-circle"
+                      >
+                        <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
+                      </svg>
+                      <span class="stepbar__badge">2</span>
+                    </span>
+                    <span class="stepbar__label">联系卖家沟通商品信息</span>
+                  </button>
+                  <div class="stepbar__line"></div>
+
+                  <!-- 步骤 3（默认当前） -->
+                  <button
+                    type="button"
+                    data-step-btn="3"
+                    class="stepbar__step stepbar__step--3 is-current"
+                    aria-label="获取商品链接并分享给买家"
                   >
-                    <span
-                      class="flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold text-white bg-indigo-500"
-                      >3</span
-                    >获取商品链接并分享给买家</button
-                  ><button
-                    class="flex flex-shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all bg-white text-gray-500 border border-gray-200"
+                    <span class="stepbar__icon">
+                      <span class="stepbar__pulse"></span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-share2"
+                      >
+                        <circle cx="18" cy="5" r="3"></circle>
+                        <circle cx="6" cy="12" r="3"></circle>
+                        <circle cx="18" cy="19" r="3"></circle>
+                        <line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line>
+                        <line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line>
+                      </svg>
+                      <span class="stepbar__badge">3</span>
+                    </span>
+                    <span class="stepbar__label">获取商品链接并分享给买家</span>
+                  </button>
+                  <div class="stepbar__line"></div>
+
+                  <!-- 步骤 4 -->
+                  <button
+                    type="button"
+                    data-step-btn="4"
+                    class="stepbar__step stepbar__step--4"
+                    aria-label="等待买家付款，佣金自动入账"
                   >
-                    <span
-                      class="flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold text-white bg-fuchsia-500"
-                      >4</span
-                    >等待买家付款，佣金自动入账
+                    <span class="stepbar__icon">
+                      <span class="stepbar__pulse"></span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-wallet"
+                      >
+                        <path
+                          d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"
+                        ></path>
+                        <path
+                          d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"
+                        ></path>
+                      </svg>
+                      <span class="stepbar__badge">4</span>
+                    </span>
+                    <span class="stepbar__label"
+                      >等待买家付款，佣金自动入账</span
+                    >
+                  </button>
+                </div>
+                <!-- 移动端步骤条（紧凑轨道，仅图标） -->
+                <div class="stepbar__track--compact">
+                  <button
+                    type="button"
+                    data-step-btn="1"
+                    class="stepbar__step stepbar__step--1"
+                    aria-label="加入店铺成为分销员"
+                  >
+                    <span class="stepbar__icon">
+                      <span class="stepbar__pulse"></span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-user-plus"
+                      >
+                        <path
+                          d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"
+                        ></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <line x1="19" x2="19" y1="8" y2="14"></line>
+                        <line x1="22" x2="16" y1="11" y2="11"></line>
+                      </svg>
+                      <span class="stepbar__badge">1</span>
+                    </span>
+                    <span class="stepbar__label">加入店铺成为分销员</span>
+                  </button>
+                  <div class="stepbar__line"></div>
+
+                  <button
+                    type="button"
+                    data-step-btn="2"
+                    class="stepbar__step stepbar__step--2"
+                    aria-label="联系卖家沟通商品信息"
+                  >
+                    <span class="stepbar__icon">
+                      <span class="stepbar__pulse"></span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-message-circle"
+                      >
+                        <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
+                      </svg>
+                      <span class="stepbar__badge">2</span>
+                    </span>
+                    <span class="stepbar__label">联系卖家沟通商品信息</span>
+                  </button>
+                  <div class="stepbar__line"></div>
+
+                  <button
+                    type="button"
+                    data-step-btn="3"
+                    class="stepbar__step stepbar__step--3 is-current"
+                    aria-label="获取商品链接并分享给买家"
+                  >
+                    <span class="stepbar__icon">
+                      <span class="stepbar__pulse"></span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-share2"
+                      >
+                        <circle cx="18" cy="5" r="3"></circle>
+                        <circle cx="6" cy="12" r="3"></circle>
+                        <circle cx="18" cy="19" r="3"></circle>
+                        <line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line>
+                        <line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line>
+                      </svg>
+                      <span class="stepbar__badge">3</span>
+                    </span>
+                    <span class="stepbar__label">获取商品链接并分享给买家</span>
+                  </button>
+                  <div class="stepbar__line"></div>
+
+                  <button
+                    type="button"
+                    data-step-btn="4"
+                    class="stepbar__step stepbar__step--4"
+                    aria-label="等待买家付款，佣金自动入账"
+                  >
+                    <span class="stepbar__icon">
+                      <span class="stepbar__pulse"></span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-wallet"
+                      >
+                        <path
+                          d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"
+                        ></path>
+                        <path
+                          d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"
+                        ></path>
+                      </svg>
+                      <span class="stepbar__badge">4</span>
+                    </span>
+                    <span class="stepbar__label"
+                      >等待买家付款，佣金自动入账</span
+                    >
                   </button>
                 </div>
                 <div
-                  class="animate-fadeInUp mt-10 overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-sm"
+                  id="step-content"
+                  class="mt-10 overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-sm"
                 >
-                  <div class="grid md:grid-cols-2">
-                    <div class="p-8 md:p-10 bg-violet-50">
-                      <div class="flex items-center gap-3">
-                        <div
-                          class="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-violet-600 shadow-sm"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            class="lucide lucide-user-plus h-6 w-6"
+                  <!-- 步骤 1 内容 -->
+                  <div
+                    data-step-panel="1"
+                    class="step-panel hidden animate-fadeInUp"
+                  >
+                    <div class="grid md:grid-cols-2">
+                      <div class="p-8 md:p-10 bg-violet-50">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-violet-600 shadow-sm"
                           >
-                            <path
-                              d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"
-                            ></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <line x1="19" x2="19" y1="8" y2="14"></line>
-                            <line x1="22" x2="16" y1="11" y2="11"></line>
-                          </svg>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="lucide lucide-user-plus h-6 w-6"
+                            >
+                              <path
+                                d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"
+                              ></path>
+                              <circle cx="9" cy="7" r="4"></circle>
+                              <line x1="19" x2="19" y1="8" y2="14"></line>
+                              <line x1="22" x2="16" y1="11" y2="11"></line>
+                            </svg>
+                          </div>
+                          <div>
+                            <span class="text-sm font-medium text-violet-600"
+                              >第 1 步</span
+                            >
+                            <h3 class="text-xl font-bold text-gray-900">
+                              加入店铺成为分销员
+                            </h3>
+                          </div>
                         </div>
-                        <div>
-                          <span class="text-sm font-medium text-violet-600"
-                            >第 1 步</span
+                        <p class="mt-5 text-gray-700 leading-relaxed">
+                          浏览下方店铺列表，选择佣金比例高、品类适合你客群的店铺，点击加入即可。加入后你将获得该店铺的分销资格。
+                        </p>
+                      </div>
+                      <div class="p-8 md:p-10">
+                        <h4
+                          class="text-sm font-semibold uppercase tracking-wider text-gray-400"
+                        >
+                          操作要点
+                        </h4>
+                        <ul class="mt-4 space-y-3">
+                          <li
+                            class="flex items-start gap-3 animate-slideInLeft"
+                            style="animation-delay: 0s"
                           >
-                          <h3 class="text-xl font-bold text-gray-900">
-                            加入店铺成为分销员
-                          </h3>
+                            <span
+                              class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white bg-violet-500"
+                              >1</span
+                            ><span class="text-gray-700"
+                              >优先选择佣金比例高（15%以上）的店铺</span
+                            >
+                          </li>
+                          <li
+                            class="flex items-start gap-3 animate-slideInLeft"
+                            style="animation-delay: 0.1s"
+                          >
+                            <span
+                              class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white bg-violet-500"
+                              >2</span
+                            ><span class="text-gray-700"
+                              >选择你熟悉的品类，推广更自然</span
+                            >
+                          </li>
+                          <li
+                            class="flex items-start gap-3 animate-slideInLeft"
+                            style="animation-delay: 0.2s"
+                          >
+                            <span
+                              class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white bg-violet-500"
+                              >3</span
+                            ><span class="text-gray-700"
+                              >可以同时加入多个店铺</span
+                            >
+                          </li>
+                        </ul>
+                        <div
+                          class="mt-8 flex items-center justify-between border-t border-gray-100 pt-6"
+                        >
+                          <button
+                            type="button"
+                            data-prev-btn
+                            disabled
+                            class="step-nav flex items-center gap-1 text-sm font-medium text-gray-400 transition-colors enabled:text-gray-600 enabled:hover:text-gray-900 disabled:opacity-40 disabled:cursor-not-allowed"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="lucide lucide-chevron-right h-4 w-4 rotate-180"
+                            >
+                              <path d="m9 18 6-6-6-6"></path>
+                            </svg>
+                            上一步
+                          </button>
+                          <span
+                            data-step-indicator
+                            class="text-sm text-gray-400"
+                            >1 / 4</span
+                          >
+                          <button
+                            type="button"
+                            data-next-btn
+                            class="step-nav flex items-center gap-1 text-sm font-medium text-[#753bff] transition-colors hover:text-[#5a2fd9] disabled:opacity-40 disabled:cursor-not-allowed"
+                          >
+                            下一步
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="lucide lucide-chevron-right h-4 w-4"
+                            >
+                              <path d="m9 18 6-6-6-6"></path>
+                            </svg>
+                          </button>
                         </div>
                       </div>
-                      <p class="mt-5 text-gray-700 leading-relaxed">
-                        浏览下方店铺列表，选择佣金比例高、品类适合你客群的店铺，点击加入即可。加入后你将获得该店铺的分销资格。
-                      </p>
                     </div>
-                    <div class="p-8 md:p-10">
-                      <h4
-                        class="text-sm font-semibold uppercase tracking-wider text-gray-400"
-                      >
-                        操作要点
-                      </h4>
-                      <ul class="mt-4 space-y-3">
-                        <li
-                          class="flex items-start gap-3 animate-slideInLeft"
-                          style="animation-delay: 0s"
-                        >
-                          <span
-                            class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white bg-violet-500"
-                            >1</span
-                          ><span class="text-gray-700"
-                            >优先选择佣金比例高（15%以上）的店铺</span
+                  </div>
+
+                  <!-- 步骤 2 内容 -->
+                  <div
+                    data-step-panel="2"
+                    class="step-panel hidden animate-fadeInUp"
+                  >
+                    <div class="grid md:grid-cols-2">
+                      <div class="p-8 md:p-10 bg-purple-50">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-purple-600 shadow-sm"
                           >
-                        </li>
-                        <li
-                          class="flex items-start gap-3 animate-slideInLeft"
-                          style="animation-delay: 0.1s"
-                        >
-                          <span
-                            class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white bg-violet-500"
-                            >2</span
-                          ><span class="text-gray-700"
-                            >选择你熟悉的品类，推广更自然</span
-                          >
-                        </li>
-                        <li
-                          class="flex items-start gap-3 animate-slideInLeft"
-                          style="animation-delay: 0.2s"
-                        >
-                          <span
-                            class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white bg-violet-500"
-                            >3</span
-                          ><span class="text-gray-700"
-                            >可以同时加入多个店铺</span
-                          >
-                        </li>
-                      </ul>
-                      <div
-                        class="mt-8 flex items-center justify-between border-t border-gray-100 pt-6"
-                      >
-                        <button
-                          disabled=""
-                          class="flex items-center gap-1 text-sm font-medium text-gray-400 transition-colors enabled:text-gray-600 enabled:hover:text-gray-900 disabled:opacity-40"
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="lucide lucide-message-circle h-6 w-6"
+                            >
+                              <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
+                            </svg>
+                          </div>
+                          <div>
+                            <span class="text-sm font-medium text-purple-600"
+                              >第 2 步</span
+                            >
+                            <h3 class="text-xl font-bold text-gray-900">
+                              联系卖家沟通商品信息
+                            </h3>
+                          </div>
+                        </div>
+                        <p class="mt-5 text-gray-700 leading-relaxed">
+                          加入店铺后，进入店铺页面找到「联系」按钮，通过WhatsApp与卖家直接沟通。请以买家或合作者身份自然交流，确认主推款、库存情况和可用的推广素材。
+                        </p>
+                        <a
+                          href="#"
+                          onclick="return false;"
+                          class="mt-7 inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold text-white shadow-sm transition-all active:scale-95 store-btn mt-5"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -2609,15 +3052,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                             stroke-width="2"
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            class="lucide lucide-chevron-right h-4 w-4 rotate-180"
+                            class="lucide lucide-message-circle h-4 w-4"
                           >
-                            <path d="m9 18 6-6-6-6"></path></svg
-                          >上一步</button
-                        ><span class="text-sm text-gray-400">1 / 4</span
-                        ><button
-                          class="flex items-center gap-1 text-sm font-medium text-[#753bff] transition-colors hover:text-[#5a2fd9] disabled:opacity-40"
-                        >
-                          下一步<svg
+                            <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
+                          </svg>
+                          前往店铺页面联系卖家
+                          <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
                             height="24"
@@ -2627,11 +3067,465 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                             stroke-width="2"
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            class="lucide lucide-chevron-right h-4 w-4"
+                            class="lucide lucide-external-link h-4 w-4"
                           >
-                            <path d="m9 18 6-6-6-6"></path>
+                            <path d="M15 3h6v6"></path>
+                            <path d="M10 14 21 3"></path>
+                            <path
+                              d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                            ></path>
                           </svg>
+                        </a>
+                        <button
+                          type="button"
+                          class="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl border-2 border-dashed border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:border-purple-300 hover:bg-purple-50/40"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="lucide lucide-copy h-4 w-4"
+                          >
+                            <rect
+                              width="14"
+                              height="14"
+                              x="8"
+                              y="8"
+                              rx="2"
+                              ry="2"
+                            ></rect>
+                            <path
+                              d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+                            ></path>
+                          </svg>
+                          一键复制联系卖家话术
                         </button>
+                        <p class="mt-4 text-xs text-gray-400">
+                          提示：沟通时请勿提及平台名称，以自然身份交流即可
+                        </p>
+                      </div>
+                      <div class="p-8 md:p-10">
+                        <h4
+                          class="text-sm font-semibold uppercase tracking-wider text-gray-400"
+                        >
+                          操作要点
+                        </h4>
+                        <ul class="mt-4 space-y-3">
+                          <li
+                            class="flex items-start gap-3 animate-slideInLeft"
+                            style="animation-delay: 0s"
+                          >
+                            <span
+                              class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white bg-purple-500"
+                              >1</span
+                            ><span class="text-gray-700"
+                              >在店铺页面点击「联系」按钮即可发起
+                              WhatsApp对话</span
+                            >
+                          </li>
+                          <li
+                            class="flex items-start gap-3 animate-slideInLeft"
+                            style="animation-delay: 0.1s"
+                          >
+                            <span
+                              class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white bg-purple-500"
+                              >2</span
+                            ><span class="text-gray-700"
+                              >沟通时请勿提及我们的平台名称，自然交流即可</span
+                            >
+                          </li>
+                          <li
+                            class="flex items-start gap-3 animate-slideInLeft"
+                            style="animation-delay: 0.2s"
+                          >
+                            <span
+                              class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white bg-purple-500"
+                              >3</span
+                            ><span class="text-gray-700"
+                              >主动询问主推商品、库存和佣金政策</span
+                            >
+                          </li>
+                          <li
+                            class="flex items-start gap-3 animate-slideInLeft"
+                            style="animation-delay: 0.3s"
+                          >
+                            <span
+                              class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white bg-purple-500"
+                              >4</span
+                            ><span class="text-gray-700"
+                              >请卖家提供商品图片和推广素材</span
+                            >
+                          </li>
+                        </ul>
+                        <div
+                          class="mt-8 flex items-center justify-between border-t border-gray-100 pt-6"
+                        >
+                          <button
+                            type="button"
+                            data-prev-btn
+                            class="step-nav flex items-center gap-1 text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 disabled:opacity-40 disabled:cursor-not-allowed"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="lucide lucide-chevron-right h-4 w-4 rotate-180"
+                            >
+                              <path d="m9 18 6-6-6-6"></path>
+                            </svg>
+                            上一步
+                          </button>
+                          <span
+                            data-step-indicator
+                            class="text-sm text-gray-400"
+                            >2 / 4</span
+                          >
+                          <button
+                            type="button"
+                            data-next-btn
+                            class="step-nav flex items-center gap-1 text-sm font-medium text-[#753bff] transition-colors hover:text-[#5a2fd9] disabled:opacity-40 disabled:cursor-not-allowed"
+                          >
+                            下一步
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="lucide lucide-chevron-right h-4 w-4"
+                            >
+                              <path d="m9 18 6-6-6-6"></path>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 步骤 3 内容 -->
+                  <div
+                    data-step-panel="3"
+                    class="step-panel hidden animate-fadeInUp"
+                  >
+                    <div class="grid md:grid-cols-2">
+                      <div class="p-8 md:p-10 bg-indigo-50">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-indigo-600 shadow-sm"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="lucide lucide-share2 h-6 w-6"
+                            >
+                              <circle cx="18" cy="5" r="3"></circle>
+                              <circle cx="6" cy="12" r="3"></circle>
+                              <circle cx="18" cy="19" r="3"></circle>
+                              <line
+                                x1="8.59"
+                                x2="15.42"
+                                y1="13.51"
+                                y2="17.49"
+                              ></line>
+                              <line
+                                x1="15.41"
+                                x2="8.59"
+                                y1="6.51"
+                                y2="10.49"
+                              ></line>
+                            </svg>
+                          </div>
+                          <div>
+                            <span class="text-sm font-medium text-indigo-600"
+                              >第 3 步</span
+                            >
+                            <h3 class="text-xl font-bold text-gray-900">
+                              获取商品链接并分享给买家
+                            </h3>
+                          </div>
+                        </div>
+                        <p class="mt-5 text-gray-700 leading-relaxed">
+                          与卖家确认商品后，前往店铺首页或具体产品页面，复制包含你分销标识的专属推广链接。将链接分享到朋友圈、微信群或私聊推荐给有需要的朋友。
+                        </p>
+                      </div>
+                      <div class="p-8 md:p-10">
+                        <h4
+                          class="text-sm font-semibold uppercase tracking-wider text-gray-400"
+                        >
+                          操作要点
+                        </h4>
+                        <ul class="mt-4 space-y-3">
+                          <li
+                            class="flex items-start gap-3 animate-slideInLeft"
+                            style="animation-delay: 0s"
+                          >
+                            <span
+                              class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white bg-indigo-500"
+                              >1</span
+                            ><span class="text-gray-700"
+                              >在店铺首页或产品详情页点击「获取推广链接」</span
+                            >
+                          </li>
+                          <li
+                            class="flex items-start gap-3 animate-slideInLeft"
+                            style="animation-delay: 0.1s"
+                          >
+                            <span
+                              class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white bg-indigo-500"
+                              >2</span
+                            ><span class="text-gray-700"
+                              >复制带有你分销标识的专属链接</span
+                            >
+                          </li>
+                          <li
+                            class="flex items-start gap-3 animate-slideInLeft"
+                            style="animation-delay: 0.2s"
+                          >
+                            <span
+                              class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white bg-indigo-500"
+                              >3</span
+                            ><span class="text-gray-700"
+                              >分享到朋友圈、社群或私聊推荐</span
+                            >
+                          </li>
+                          <li
+                            class="flex items-start gap-3 animate-slideInLeft"
+                            style="animation-delay: 0.3s"
+                          >
+                            <span
+                              class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white bg-indigo-500"
+                              >4</span
+                            ><span class="text-gray-700"
+                              >配合真实体验文案效果更好</span
+                            >
+                          </li>
+                        </ul>
+                        <div
+                          class="mt-8 flex items-center justify-between border-t border-gray-100 pt-6"
+                        >
+                          <button
+                            type="button"
+                            data-prev-btn
+                            class="step-nav flex items-center gap-1 text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 disabled:opacity-40 disabled:cursor-not-allowed"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="lucide lucide-chevron-right h-4 w-4 rotate-180"
+                            >
+                              <path d="m9 18 6-6-6-6"></path>
+                            </svg>
+                            上一步
+                          </button>
+                          <span
+                            data-step-indicator
+                            class="text-sm text-gray-400"
+                            >3 / 4</span
+                          >
+                          <button
+                            type="button"
+                            data-next-btn
+                            class="step-nav flex items-center gap-1 text-sm font-medium text-[#753bff] transition-colors hover:text-[#5a2fd9] disabled:opacity-40 disabled:cursor-not-allowed"
+                          >
+                            下一步
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="lucide lucide-chevron-right h-4 w-4"
+                            >
+                              <path d="m9 18 6-6-6-6"></path>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 步骤 4 内容 -->
+                  <div
+                    data-step-panel="4"
+                    class="step-panel hidden animate-fadeInUp"
+                  >
+                    <div class="grid md:grid-cols-2">
+                      <div class="p-8 md:p-10 bg-fuchsia-50">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-fuchsia-600 shadow-sm"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="lucide lucide-wallet h-6 w-6"
+                            >
+                              <path
+                                d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"
+                              ></path>
+                              <path
+                                d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"
+                              ></path>
+                            </svg>
+                          </div>
+                          <div>
+                            <span class="text-sm font-medium text-fuchsia-600"
+                              >第 4 步</span
+                            >
+                            <h3 class="text-xl font-bold text-gray-900">
+                              等待买家付款，佣金自动入账
+                            </h3>
+                          </div>
+                        </div>
+                        <p class="mt-5 text-gray-700 leading-relaxed">
+                          当买家通过你的推广链接完成下单并付款后，系统会自动记录佣金。佣金按T+1周期结算到你的账户，无需手动申请，安全可靠。
+                        </p>
+                      </div>
+                      <div class="p-8 md:p-10">
+                        <h4
+                          class="text-sm font-semibold uppercase tracking-wider text-gray-400"
+                        >
+                          操作要点
+                        </h4>
+                        <ul class="mt-4 space-y-3">
+                          <li
+                            class="flex items-start gap-3 animate-slideInLeft"
+                            style="animation-delay: 0s"
+                          >
+                            <span
+                              class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white bg-fuchsia-500"
+                              >1</span
+                            ><span class="text-gray-700"
+                              >佣金在买家确认付款后自动记录</span
+                            >
+                          </li>
+                          <li
+                            class="flex items-start gap-3 animate-slideInLeft"
+                            style="animation-delay: 0.1s"
+                          >
+                            <span
+                              class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white bg-fuchsia-500"
+                              >2</span
+                            ><span class="text-gray-700"
+                              >T+1结算到账，无需手动提现申请</span
+                            >
+                          </li>
+                          <li
+                            class="flex items-start gap-3 animate-slideInLeft"
+                            style="animation-delay: 0.2s"
+                          >
+                            <span
+                              class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white bg-fuchsia-500"
+                              >3</span
+                            ><span class="text-gray-700"
+                              >可在分销工作台查看佣金明细</span
+                            >
+                          </li>
+                          <li
+                            class="flex items-start gap-3 animate-slideInLeft"
+                            style="animation-delay: 0.3s"
+                          >
+                            <span
+                              class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white bg-fuchsia-500"
+                              >4</span
+                            ><span class="text-gray-700"
+                              >平台担保交易，资金安全有保障</span
+                            >
+                          </li>
+                        </ul>
+                        <div
+                          class="mt-8 flex items-center justify-between border-t border-gray-100 pt-6"
+                        >
+                          <button
+                            type="button"
+                            data-prev-btn
+                            class="step-nav flex items-center gap-1 text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 disabled:opacity-40 disabled:cursor-not-allowed"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="lucide lucide-chevron-right h-4 w-4 rotate-180"
+                            >
+                              <path d="m9 18 6-6-6-6"></path>
+                            </svg>
+                            上一步
+                          </button>
+                          <span
+                            data-step-indicator
+                            class="text-sm text-gray-400"
+                            >4 / 4</span
+                          >
+                          <button
+                            type="button"
+                            data-next-btn
+                            disabled
+                            class="step-nav flex items-center gap-1 text-sm font-medium text-[#753bff] transition-colors hover:text-[#5a2fd9] disabled:opacity-40 disabled:cursor-not-allowed"
+                          >
+                            下一步
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="lucide lucide-chevron-right h-4 w-4"
+                            >
+                              <path d="m9 18 6-6-6-6"></path>
+                            </svg>
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -3987,30 +4881,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
               class="flex flex-col items-center justify-between gap-6 md:flex-row"
             >
               <div class="flex items-center gap-2">
-                <div
-                  class="flex h-9 w-9 items-center justify-center rounded-lg bg-[#753bff]"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-link h-5 w-5 text-white"
-                  >
-                    <path
-                      d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
-                    ></path>
-                    <path
-                      d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
-                    ></path>
-                  </svg>
-                </div>
-                <span class="text-lg font-bold text-white">FlyLink</span>
+                <img
+                  src="https://da-test.flylinking.com/_nuxt/Flylinking-logo.fjmDM9jT.svg"
+                  alt="flylink"
+                />
               </div>
               <p class="text-center text-sm text-gray-400 md:text-right">
                 分销平台 · 佣金自动结算，安全可靠<br />加入店铺后请第一时间联系卖家获取商品推广链接
@@ -4026,6 +4900,116 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
       </div>
     </div>
     <script type="module" src="./Distribution-Platform_files/main.tsx"></script>
+
+    <script>
+      // 步骤条交互逻辑
+      (function () {
+        var TOTAL = 4;
+        // 默认显示第 3 步（符合新设计图的视觉状态：1、2 已完成；3 当前；4 未开始）
+        var currentStep = 3;
+
+        function getBar() {
+          return document.querySelector(".stepbar");
+        }
+
+        // 只切换状态 class，全部视觉表现交给 stepbar 模块的 CSS
+        function renderBar() {
+          var bar = getBar();
+          if (!bar) return;
+
+          // 步骤：三态 → .is-passed / .is-current / .is-upcoming
+          bar.querySelectorAll("[data-step-btn]").forEach(function (btn) {
+            var step = parseInt(btn.getAttribute("data-step-btn"), 10);
+            var state =
+              step === currentStep
+                ? "current"
+                : step < currentStep
+                  ? "passed"
+                  : "upcoming";
+            btn.classList.remove("is-passed", "is-current", "is-upcoming");
+            btn.classList.add("is-" + state);
+          });
+
+          // 连接线：idx 0/1/2 对应 1→2 / 2→3 / 3→4，起点已完成则该段高亮
+          bar.querySelectorAll(".stepbar__line").forEach(function (line, idx) {
+            line.classList.toggle("is-done", idx + 1 < currentStep);
+          });
+        }
+
+        // 切换内容面板
+        function renderContent() {
+          var panels = document.querySelectorAll("[data-step-panel]");
+          panels.forEach(function (p) {
+            var s = parseInt(p.getAttribute("data-step-panel"), 10);
+            if (s === currentStep) {
+              p.classList.remove("hidden");
+              p.classList.remove("animate-fadeInUp");
+              void p.offsetWidth; // reflow
+              p.classList.add("animate-fadeInUp");
+            } else {
+              p.classList.add("hidden");
+            }
+            var indicator = p.querySelector("[data-step-indicator]");
+            if (indicator) indicator.textContent = currentStep + " / " + TOTAL;
+            var prev = p.querySelector("[data-prev-btn]");
+            var next = p.querySelector("[data-next-btn]");
+            if (prev) prev.disabled = currentStep <= 1;
+            if (next) next.disabled = currentStep >= TOTAL;
+          });
+        }
+
+        function show(step) {
+          if (step < 1 || step > TOTAL) return;
+          currentStep = step;
+          renderBar();
+          renderContent();
+          // 平滑滚动到内容区
+          var content = document.getElementById("step-content");
+          if (content) {
+            var rect = content.getBoundingClientRect();
+            var offset = window.pageYOffset + rect.top - 260;
+            if (typeof offset === "number" && isFinite(offset)) {
+              window.scrollTo({ top: offset, behavior: "smooth" });
+            }
+          }
+        }
+
+        function init() {
+          var bar = getBar();
+          if (!bar) return;
+
+          // 绑定步骤按钮点击
+          bar.querySelectorAll("[data-step-btn]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              show(parseInt(btn.getAttribute("data-step-btn"), 10));
+            });
+          });
+
+          // 绑定每个面板内的上一步/下一步
+          document.querySelectorAll("[data-step-panel]").forEach(function (p) {
+            var prev = p.querySelector("[data-prev-btn]");
+            var next = p.querySelector("[data-next-btn]");
+            if (prev)
+              prev.addEventListener("click", function () {
+                if (currentStep > 1) show(currentStep - 1);
+              });
+            if (next)
+              next.addEventListener("click", function () {
+                if (currentStep < TOTAL) show(currentStep + 1);
+              });
+          });
+
+          renderBar();
+          renderContent();
+        }
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", init);
+        } else {
+          init();
+        }
+      })();
+    </script>
 
     <style>
       @font-face {
