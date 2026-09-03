@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FlyLink — Distributor Recruitment Platform</title>
+<meta name="description" content="Join FlyLink and earn commissions by distributing products you love. Training camp, partner stores, and auto-settled commissions." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          primary: { 50:'#eef6ff',100:'#d9eaff',200:'#bcd9ff',300:'#8ec1ff',400:'#599dff',500:'#3377ff',600:'#1a55f5',700:'#1340db',800:'#1635b0',900:'#18328c',950:'#112050' },
+          accent:  { 50:'#fff8ed',100:'#ffefd4',200:'#ffdba8',300:'#ffbf70',400:'#ff9836',500:'#ff7d10',600:'#f06106',700:'#c74806',800:'#9e390c',900:'#7e310f',950:'#451603' },
+          success: { 50:'#f0fdf4',100:'#dcfce7',200:'#bbf7d0',300:'#86efac',400:'#4ade80',500:'#22c55e',600:'#16a34a',700:'#15803d',800:'#166534',900:'#14532d',950:'#052e16' },
+          warning: { 50:'#fffbeb',100:'#fef3c7',200:'#fde68a',300:'#fcd34d',400:'#fbbf24',500:'#f59e0b',600:'#d97706',700:'#b45309',800:'#92400e',900:'#78350f',950:'#451a03' },
+          error:   { 50:'#fef2f2',100:'#fee2e2',200:'#fecaca',300:'#fca5a5',400:'#f87171',500:'#ef4444',600:'#dc2626',700:'#b91c1c',800:'#991b1b',900:'#7f1d1d',950:'#450a0a' },
+          ink:     { 50:'#f8fafc',100:'#f1f5f9',200:'#e2e8f0',300:'#cbd5e1',400:'#94a3b8',500:'#64748b',600:'#475569',700:'#334155',800:'#1e293b',900:'#0f172a',950:'#020617' },
+        },
+        fontFamily: {
+          sans: ['Inter','system-ui','-apple-system','sans-serif'],
+          display: ['Poppins','Inter','system-ui','sans-serif'],
+        },
+        animation: {
+          'fade-in-up':'fadeInUp .6s ease-out forwards',
+          'fade-in':'fadeIn .5s ease-out forwards',
+          'float':'float 6s ease-in-out infinite',
+          'pulse-ring':'pulseRing 2s cubic-bezier(.4,0,.6,1) infinite',
+          'shimmer':'shimmer 2.5s linear infinite',
+          'bounce-soft':'bounceSoft 2s ease-in-out infinite',
+        },
+        keyframes: {
+          fadeInUp: { '0%':{opacity:'0',transform:'translateY(30px)'}, '100%':{opacity:'1',transform:'translateY(0)'} },
+          fadeIn: { '0%':{opacity:'0'}, '100%':{opacity:'1'} },
+          float: { '0%,100%':{transform:'translateY(6px)'}, '50%':{transform:'translateY(-12px)'} },
+          pulseRing: { '0%':{transform:'scale(.95)',opacity:'.7'}, '70%':{transform:'scale(1.3)',opacity:'0'}, '100%':{transform:'scale(.95)',opacity:'0'} },
+          shimmer: { '0%':{backgroundPosition:'-1000px 0'}, '100%':{backgroundPosition:'1000px 0'} },
+          bounceSoft: { '0%,100%':{transform:'translateY(0)'}, '50%':{transform:'translateY(-12px)'} },
+        },
+        backgroundImage: {
+          'grid-pattern': "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm1 1h38v38H1V1z' fill='%23ffffff' fill-opacity='0.03'/%3E%3C/svg%3E\")",
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  .reveal { opacity:0; transform:translateY(30px); transition:opacity .6s ease-out, transform .6s ease-out; }
+  .reveal.is-visible { opacity:1; transform:translateY(0); }
+  .gradient-text { background:linear-gradient(135deg,#3377ff 0%,#1a55f5 50%,#6366f1 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  .gradient-text-warm { background:linear-gradient(135deg,#ff9836 0%,#ff7d10 50%,#f06106 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  .glass-card { background:rgba(255,255,255,.7); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,.6); }
+  ::-webkit-scrollbar { width:8px; }
+  ::-webkit-scrollbar-track { background:#f1f5f9; }
+  ::-webkit-scrollbar-thumb { background:#cbd5e1; border-radius:4px; }
+  ::-webkit-scrollbar-thumb:hover { background:#94a3b8; }
+  /* icon spans fill with injected svg */
+  [data-icon] svg { width:100%; height:100%; display:block; }
+  .toast { position:fixed; left:50%; bottom:28px; transform:translate(-50%,20px); background:rgba(15,23,42,.95); color:#fff; padding:12px 22px; border-radius:12px; font-size:14px; font-weight:600; opacity:0; pointer-events:none; transition:opacity .3s, transform .3s; z-index:90; box-shadow:0 16px 40px -10px rgba(0,0,0,.5); }
+  .toast.show { opacity:1; transform:translate(-50%,0); }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    .reveal { opacity:1 !important; transform:none !important; }
+  }
+</style>
+</head>
+<body class="bg-ink-50 font-sans text-ink-900">
+
+<!-- ============ HERO ============ -->
+<header class="relative overflow-hidden bg-ink-950 text-white">
+  <div class="absolute inset-0 bg-gradient-to-br from-primary-950 via-ink-950 to-primary-900"></div>
+  <div class="absolute inset-0 bg-grid-pattern opacity-40"></div>
+  <div class="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-primary-500/20 blur-3xl animate-float"></div>
+  <div class="absolute top-1/3 -right-32 h-80 w-80 rounded-full bg-accent-500/15 blur-3xl animate-float" style="animation-delay:2s"></div>
+  <div class="absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-primary-400/10 blur-3xl animate-float" style="animation-delay:4s"></div>
+
+  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 items-center min-h-[60vh] py-20">
+      <!-- Left: content -->
+      <div class="animate-fade-in-up">
+        <div class="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/15 px-4 py-1.5 text-sm font-medium text-primary-200 backdrop-blur-sm mb-6">
+          <span data-icon="sparkles" class="h-4 w-4 text-accent-400"></span>
+          New Distributor Training Camp is Live
+        </div>
+
+        <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight">
+          FlyLink
+          <br />
+          <span class="gradient-text">Distributor</span>
+          <br />
+          Platform
+        </h1>
+
+        <p class="mt-6 text-lg text-ink-300 max-w-xl leading-relaxed">
+          Join us and embark on your journey of making money through distribution.
+          We guide you every step of the way — from your first click to your first
+          commission.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="#training" class="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-primary-500 to-primary-600 px-7 py-3.5 font-semibold text-white shadow-lg shadow-primary-500/30 transition-all hover:shadow-xl hover:shadow-primary-500/40 hover:-translate-y-0.5">
+            <span data-icon="play-circle" class="h-5 w-5"></span>
+            Start Training Camp
+            <span data-icon="arrow-right" class="h-4 w-4 transition-transform group-hover:translate-x-1"></span>
+          </a>
+          <a href="#stores" class="inline-flex items-center gap-2 rounded-xl bg-white/10 border border-white/20 px-7 py-3.5 font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/15 hover:-translate-y-0.5">
+            Browse Stores
+          </a>
+        </div>
+
+        <div class="mt-12 flex flex-wrap gap-x-6 gap-y-3">
+          <div class="flex items-center gap-2 text-sm text-ink-300"><span data-icon="check" class="h-4 w-4 text-success-400"></span>不用囤货</div>
+          <div class="flex items-center gap-2 text-sm text-ink-300"><span data-icon="check" class="h-4 w-4 text-success-400"></span>不用垫资</div>
+          <div class="flex items-center gap-2 text-sm text-ink-300"><span data-icon="check" class="h-4 w-4 text-success-400"></span>按成交拿佣金</div>
+          <div class="flex items-center gap-2 text-sm text-ink-300"><span data-icon="check" class="h-4 w-4 text-success-400"></span>平台安全可靠</div>
+        </div>
+      </div>
+
+      <!-- Right: visual -->
+      <div class="relative hidden lg:block">
+        <div class="relative animate-fade-in-up" style="animation-delay:.3s">
+          <div class="relative rounded-3xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/15 p-8 shadow-2xl">
+            <div class="flex items-center justify-between mb-7">
+              <div class="flex items-center gap-3">
+                <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center">
+                  <span data-icon="rocket" class="h-5 w-5 text-white"></span>
+                </div>
+                <div>
+                  <div class="text-sm font-semibold">新手开单路线</div>
+                  <div class="text-xs text-ink-400">跟着做，就知道下一步</div>
+                </div>
+              </div>
+              <div class="rounded-full bg-primary-500/20 px-3 py-1 text-xs font-semibold text-primary-200">4 步上手</div>
+            </div>
+
+            <div class="mb-6">
+              <div class="text-2xl font-bold font-display">从选店到收款</div>
+              <p class="mt-2 text-sm text-ink-300 leading-relaxed">
+                不需要猜测，也不用自己摸索。按顺序完成四件事，开始你的第一笔分销订单。
+              </p>
+            </div>
+
+            <div class="space-y-3" id="heroBenefits"></div>
+          </div>
+
+          <div class="absolute -top-6 -right-6 rounded-2xl bg-gradient-to-br from-accent-400 to-accent-600 p-4 shadow-xl animate-bounce-soft">
+            <div class="text-2xl font-bold font-display text-white">30%</div>
+            <div class="text-xs text-accent-100">佣金上限</div>
+          </div>
+
+          <div class="absolute -bottom-6 -left-6 rounded-2xl bg-white p-4 shadow-xl animate-float" style="animation-delay:1s">
+            <div class="flex items-center gap-3">
+              <div class="relative">
+                <div class="h-10 w-10 rounded-full bg-primary-500 flex items-center justify-center">
+                  <span data-icon="sparkles" class="h-5 w-5 text-white"></span>
+                </div>
+                <div class="absolute inset-0 rounded-full bg-primary-500 animate-pulse-ring"></div>
+              </div>
+              <div>
+                <div class="text-sm font-bold text-ink-800">不知道下一步？</div>
+                <div class="text-xs text-ink-500">跟着路线卡做就行</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- wave divider -->
+    <div class="absolute bottom-0 left-0 right-0">
+      <svg viewBox="0 0 1440 80" class="w-full h-auto" preserveAspectRatio="none">
+        <path d="M0,40 C360,80 720,0 1440,40 L1440,80 L0,80 Z" fill="#f8fafc"></path>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="py-20 bg-ink-50" id="how-it-works">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center reveal">
+      <span class="inline-block rounded-full bg-primary-100 text-primary-700 px-4 py-1.5 text-sm font-semibold">开单四步曲</span>
+      <h2 class="mt-4 font-display text-4xl sm:text-5xl font-bold text-ink-900">从加入店铺到 <span class="gradient-text">坐等收款</span></h2>
+      <p class="mt-4 text-lg text-ink-500 max-w-2xl mx-auto">不用猜下一步做什么。按顺序完成这四件事，你的第一笔分销佣金就到手了。</p>
+    </div>
+
+    <div class="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-6" id="howSteps"></div>
+  </div>
+</section>
+
+<!-- ============ TRAINING CAMP ============ -->
+<section class="py-20 bg-white" id="training">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center reveal">
+      <div class="inline-flex items-center gap-2 rounded-full bg-accent-100 text-accent-700 px-4 py-1.5 text-sm font-semibold">
+        <span data-icon="trophy" class="h-4 w-4"></span> Newbie Training Camp
+      </div>
+      <h2 class="mt-4 font-display text-4xl sm:text-5xl font-bold text-ink-900">From Zero to <span class="gradient-text-warm">First Sale</span></h2>
+      <p class="mt-4 text-lg text-ink-500 max-w-2xl mx-auto">Never feel lost again. Follow this step-by-step camp and check off each milestone as you go.</p>
+    </div>
+
+    <div class="mt-10 max-w-3xl mx-auto">
+      <div class="flex items-center justify-between mb-3">
+        <span class="text-sm font-semibold text-ink-700">Your Progress: <span id="progCount">0</span> / 6 steps</span>
+        <span class="text-sm font-bold text-accent-600" id="progPct">0%</span>
+      </div>
+      <div class="relative h-4 rounded-full bg-ink-100 overflow-hidden">
+        <div id="progBar" class="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-accent-400 via-accent-500 to-success-500 transition-all duration-700 ease-out" style="width:0%">
+          <div class="h-full w-full bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer" style="background-size:1000px 100%"></div>
+        </div>
+        <div id="progMarkers"></div>
+      </div>
+      <div id="completionMsg" class="hidden mt-4 flex items-center justify-center gap-2 rounded-xl bg-success-50 border border-success-200 px-4 py-3 text-success-700 font-medium animate-fade-in-up">
+        <span data-icon="trophy" class="h-5 w-5"></span> Congratulations! You've completed the training camp. You're ready to start earning!
+      </div>
+    </div>
+
+    <div class="mt-14 grid lg:grid-cols-12 gap-6">
+      <div class="lg:col-span-5">
+        <div class="space-y-3" id="trainingList"></div>
+      </div>
+      <div class="lg:col-span-7">
+        <div id="trainingDetail" class="rounded-3xl bg-gradient-to-br from-ink-50 to-primary-50/30 border border-ink-100 p-8 sticky top-6"></div>
+      </div>
+    </div>
+
+    <div class="mt-12 text-center">
+      <div class="inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-primary-50 to-accent-50 border border-primary-100 px-6 py-4">
+        <span data-icon="rocket" class="h-6 w-6 text-primary-500"></span>
+        <span class="text-sm text-ink-700">
+          <span class="font-bold">Pro Tip:</span> Complete all 6 steps to unlock your
+          <span class="font-bold text-accent-600"> Fast Start Badge</span> — merchants love working with certified distributors!
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT GUIDE ============ -->
+<section class="py-20 bg-ink-50" id="contact-guide">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center reveal">
+      <div class="inline-flex items-center gap-2 rounded-full bg-success-100 text-success-700 px-4 py-1.5 text-sm font-semibold">
+        <span data-icon="message-circle-question" class="h-4 w-4"></span> Communication Made Easy
+      </div>
+      <h2 class="mt-4 font-display text-4xl sm:text-5xl font-bold text-ink-900">How to <span class="gradient-text">Contact Merchants</span></h2>
+      <p class="mt-4 text-lg text-ink-500 max-w-2xl mx-auto">Not sure how to reach a store admin? Here are three direct ways to start a conversation.</p>
+    </div>
+
+    <div class="mt-14 grid md:grid-cols-3 gap-6" id="contactMethods"></div>
+
+    <div class="mt-10 rounded-2xl bg-gradient-to-r from-primary-600 to-primary-700 p-6 sm:p-8 text-white">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <div class="flex-shrink-0 h-12 w-12 rounded-xl bg-white/15 flex items-center justify-center backdrop-blur-sm">
+          <span data-icon="zap" class="h-6 w-6 text-accent-300"></span>
+        </div>
+        <div class="flex-1">
+          <h3 class="font-display text-lg font-bold mb-1">First Message Template</h3>
+          <p class="text-sm text-primary-100 leading-relaxed">
+            "Hi! I'm a FlyLink distributor with [X] followers on [platform]. I love
+            your products and would like to promote them. Could you share product
+            images, key selling points, and any discount codes for my audience?"
+          </p>
+        </div>
+        <button id="copyTemplate" class="flex-shrink-0 inline-flex items-center gap-1.5 rounded-xl bg-white/15 backdrop-blur-sm px-5 py-2.5 font-semibold text-sm text-white border border-white/20 hover:bg-white/25 transition-all">
+          Copy Template <span data-icon="chevron-right" class="h-4 w-4"></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mt-14 max-w-3xl mx-auto">
+      <div class="flex items-center gap-2 justify-center mb-6">
+        <span data-icon="help-circle" class="h-5 w-5 text-ink-400"></span>
+        <h3 class="font-display text-xl font-bold text-ink-800">Frequently Asked Questions</h3>
+      </div>
+      <div class="space-y-3" id="faqList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STORE LIST ============ -->
+<section class="py-20 bg-white" id="stores">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center reveal">
+      <div class="inline-flex items-center gap-2 rounded-full bg-primary-100 text-primary-700 px-4 py-1.5 text-sm font-semibold">
+        <span data-icon="shopping-bag" class="h-4 w-4"></span> Partner Stores
+      </div>
+      <h2 class="mt-4 font-display text-4xl sm:text-5xl font-bold text-ink-900">Stores That Can Join <span class="gradient-text">Distribution</span></h2>
+      <p class="mt-4 text-lg text-ink-500 max-w-2xl mx-auto">Browse our partner stores, pick the ones that match your audience, and start promoting.</p>
+    </div>
+
+    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6" id="storeGrid"></div>
+
+    <div class="mt-10 text-center">
+      <button class="inline-flex items-center gap-2 rounded-xl bg-ink-900 text-white px-6 py-3 font-semibold text-sm transition-all hover:bg-ink-800 hover:-translate-y-0.5 shadow-lg">
+        View All Stores <span data-icon="arrow-right" class="h-4 w-4"></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="relative bg-ink-950 text-ink-300 overflow-hidden">
+  <div class="absolute -top-32 -left-32 h-64 w-64 rounded-full bg-primary-500/10 blur-3xl"></div>
+  <div class="absolute -bottom-32 -right-32 h-64 w-64 rounded-full bg-accent-500/10 blur-3xl"></div>
+  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid md:grid-cols-4 gap-8">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center">
+            <span data-icon="rocket" class="h-5 w-5 text-white"></span>
+          </div>
+          <span class="font-display text-xl font-bold text-white">FlyLink</span>
+        </div>
+        <p class="text-sm leading-relaxed text-ink-400 max-w-md">
+          A secure and convenient online trading platform designed for cross-border
+          online shopping. Join our distributor program and start earning commissions today.
+        </p>
+        <div class="mt-6 flex items-center gap-4">
+          <a href="#" class="h-9 w-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-all"><span data-icon="mail" class="h-4 w-4 text-ink-300"></span></a>
+          <a href="#" class="h-9 w-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-all"><span data-icon="phone" class="h-4 w-4 text-ink-300"></span></a>
+          <a href="#" class="h-9 w-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-all"><span data-icon="map-pin" class="h-4 w-4 text-ink-300"></span></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-semibold text-white text-sm mb-4">Platform</h4>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="#how-it-works" class="text-ink-400 hover:text-primary-300 transition-colors">How It Works</a></li>
+          <li><a href="#training" class="text-ink-400 hover:text-primary-300 transition-colors">Training Camp</a></li>
+          <li><a href="#contact-guide" class="text-ink-400 hover:text-primary-300 transition-colors">Contact Guide</a></li>
+          <li><a href="#stores" class="text-ink-400 hover:text-primary-300 transition-colors">Partner Stores</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-white text-sm mb-4">Legal</h4>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="/legal/privacy-policy" class="text-ink-400 hover:text-primary-300 transition-colors">Privacy Policy</a></li>
+          <li><a href="/legal/terms-of-usage" class="text-ink-400 hover:text-primary-300 transition-colors">Terms of Use</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-xs text-ink-500">© 2026 flylinking.com — All rights reserved.</p>
+      <a href="#" id="backTop" class="inline-flex items-center gap-1.5 text-xs text-ink-400 hover:text-white transition-colors">
+        Back to top <span data-icon="arrow-up" class="h-3.5 w-3.5"></span>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ================= ICONS ================= */
+const ICONS = {
+  'arrow-right':'<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>',
+  'check':'<polyline points="20 6 9 17 4 12"/>',
+  'store':'<path d="M3 9l1.6-5.2A1 1 0 0 1 5.56 3h12.88a1 1 0 0 1 .96.8L21 9"/><path d="M4 9v11a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9"/><path d="M9 21v-6h6v6"/><path d="M3 9h18"/>',
+  'link-2':'<path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><path d="M8 12h8"/>',
+  'message-circle':'<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>',
+  'play-circle':'<circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/>',
+  'rocket':'<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>',
+  'sparkles':'<path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.962 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/>',
+  'share-2':'<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>',
+  'wallet':'<path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-4"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/>',
+  'user-check':'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/>',
+  'search':'<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>',
+  'bar-chart-3':'<line x1="3" x2="3" y1="3" y2="21"/><line x1="3" x2="21" y1="21" y2="21"/><rect x="7" y="12" width="3" height="6" rx="1"/><rect x="12" y="8" width="3" height="10" rx="1"/><rect x="17" y="4" width="3" height="14" rx="1"/>',
+  'clock':'<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+  'chevron-right':'<polyline points="9 18 15 12 9 6"/>',
+  'trophy':'<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>',
+  'lightbulb':'<path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/>',
+  'messages-square':'<path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2z"/><path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1"/>',
+  'mail':'<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
+  'phone':'<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>',
+  'help-circle':'<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/>',
+  'message-circle-question':'<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/>',
+  'zap':'<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+  'star':'<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
+  'trending-up':'<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>',
+  'shopping-bag':'<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>',
+  'map-pin':'<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
+  'arrow-up':'<line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>',
+};
+function injectIcons(){
+  document.querySelectorAll('[data-icon]').forEach(el=>{
+    const name = el.getAttribute('data-icon');
+    if(ICONS[name]){
+      el.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+ICONS[name]+'</svg>';
+    }
+  });
+}
+
+/* ================= DATA ================= */
+const heroBenefits = [
+  { icon:'store', label:'先选一个适合你的店铺' },
+  { icon:'message-circle', label:'直接联系卖家拿商品资料' },
+  { icon:'link-2', label:'获取专属商品推广链接' },
+  { icon:'wallet', label:'成交后等待平台自动结算' },
+];
+const howSteps = [
+  { icon:'store', title:'加入店铺', description:'在下方店铺列表中挑选适合你受众的店铺，点击「Join Now」成为该店铺的分销员。', detail:'一个店铺对应一类商品，建议先从你熟悉的品类开始。', bg:'bg-primary-50', iconBg:'bg-primary-500', accent:'text-primary-600' },
+  { icon:'message-circle', title:'联系卖家', description:'加入店铺后，点击店铺/商品页上的「Contact」按钮，直接和卖家沟通商品卖点、图片和优惠码。', detail:'不知道说什么？我们准备了首条消息模板，见下方「如何联系商家」板块。', bg:'bg-accent-50', iconBg:'bg-accent-500', accent:'text-accent-600' },
+  { icon:'share-2', title:'分享商品链接', description:'复制专属推广链接「Get Affiliate Link」后，发到你的社交媒体、社群或私聊，引导买家点击购买。', detail:'配上卖家提供的商品图和卖点文案，转化率更高。', bg:'bg-violet-50', iconBg:'bg-violet-500', accent:'text-violet-600' },
+  { icon:'wallet', title:'坐等收款', description:'买家通过你的链接完成付款后，平台自动结算佣金，收益进入你的账户。', detail:'无需囤货、无需垫资，佣金按成交自动到账。', bg:'bg-success-50', iconBg:'bg-success-500', accent:'text-success-600' },
+];
+const trainingSteps = [
+  { id:1, title:'加入店铺', description:'浏览店铺列表，选择适合你的品类店铺，点击店铺的「Join Now」按钮，即可加入你喜欢的店铺进行分销', icon:'bar-chart-3', duration:'Ongoing', tips:['浏览店铺列表，选择适合你的品类店铺','点击店铺的「Join Now」按钮','完成加入分销流程'] },
+  { id:2, title:'Contact the Merchant', description:'Reach out to the store admin to get product details, images, and promo materials.', icon:'message-circle', duration:'15 min', tips:['Use the in-app chat to message the store','Ask for product images and selling points','Request exclusive discount codes for your audience'] },
+  { id:3, title:'Browse & Pick Products', description:'Explore stores and select products that match your audience interests.', icon:'search', duration:'10 min', tips:['Filter stores by commission rate','Check product ratings and reviews','Pick products your followers will love'] },
+  { id:4, title:'Share Your Link', description:'Get your exclusive promotional link and share it across your social channels.', icon:'share-2', duration:'10 min', tips:['Copy your unique affiliate link','Create engaging posts with product photos','Share on Instagram, TikTok, Facebook, and more'] },
+  { id:5, title:'Set Up Your Profile', description:'Complete your distributor profile to build trust with merchants and buyers.', icon:'user-check', duration:'5 min', tips:['Upload a clear profile photo','Write a short bio about your social channels','Link your social media accounts'] },
+  { id:6, title:'Get Paid', description:'The system auto-settles commissions and sends your earnings to your account.', icon:'wallet', duration:'Auto', tips:['Commissions auto-settle after buyer payment','Withdraw to your linked bank account','Track earnings history in your wallet'] },
+];
+const contactMethods = [
+  { id:'whatsapp', title:'WhatsApp / Social', description:'Connect with merchants on their social channels for quick back-and-forth.', icon:'phone', steps:['Check the store profile for WhatsApp or social links','Send a friendly intro message mentioning you are a FlyLink distributor','Ask for product catalogs, images, and any current promotions'], color:'success' },
+  { id:'email', title:'Email Support', description:'Send a detailed message with your questions and product requests.', icon:'mail', steps:['Find the store email on their profile page','Include your distributor ID and the products you are interested in','Expect a reply within 24–48 hours'], color:'accent' },
+  { id:'chat', title:'In-App Chat', description:'The fastest way to reach any store admin directly within the platform.', icon:'messages-square', steps:['Go to the store page you want to partner with','Click the "Contact Store" button on the store card','Type your message and hit send — the merchant gets notified instantly'], color:'primary' },
+];
+const colorMap = {
+  primary:{ bg:'bg-primary-50', text:'text-primary-700', border:'border-primary-200', iconBg:'bg-primary-500' },
+  accent:{ bg:'bg-accent-50', text:'text-accent-700', border:'border-accent-200', iconBg:'bg-accent-500' },
+  success:{ bg:'bg-success-50', text:'text-success-700', border:'border-success-200', iconBg:'bg-success-500' },
+};
+const faqs = [
+  { q:'How do I know which store to contact?', a:'Browse the store list below, check the commission rate and product category, then contact any store that aligns with your audience. Higher commission rates mean more earnings per sale.' },
+  { q:'What should I say to a merchant?', a:'Introduce yourself as a FlyLink distributor, mention your social media channels and follower count, and ask for product images, selling points, and any exclusive discount codes you can offer your audience.' },
+  { q:'How long until a merchant responds?', a:"In-app chat is usually answered within a few hours. Email responses typically take 24–48 hours. If you don't hear back, try a different contact method or reach out to another store." },
+  { q:'Can I work with multiple stores?', a:'Absolutely! You can partner with as many stores as you like. Each store has its own commission rate and product catalog, so diversifying helps you maximize your earnings.' },
+];
+const stores = [
+  { id:'1IRYJ0JH0J', name:'Hairstylist & Wig Seller', category:'Beauty & Hair', commission:'5.00%', description:'Premium wigs and hair styling products for all your beauty needs', gradient:'from-pink-500 to-rose-500', rating:'4.8', products:'248' },
+  { id:'3WJX9JRPA6', name:'Tech Gadgets Pro', category:'Electronics', commission:'100.00%', description:'Latest tech gadgets and electronic accessories at competitive prices', gradient:'from-blue-500 to-cyan-500', rating:'4.9', products:'312' },
+  { id:'N3BAGKSIMW', name:'Fashion Forward', category:'Apparel', commission:'70.00%', description:'Trendy fashion apparel and accessories for the modern lifestyle', gradient:'from-violet-500 to-purple-500', rating:'4.7', products:'186' },
+  { id:'ZMKUQCSJEH', name:'Home Living Co', category:'Home & Garden', commission:'100.00%', description:'Quality home and garden products to elevate your living space', gradient:'from-emerald-500 to-teal-500', rating:'4.6', products:'154' },
+  { id:'ZMKUQCSJEH', name:'Home Living Co', category:'Home & Garden', commission:'100.00%', description:'Quality home and garden products to elevate your living space', gradient:'from-emerald-500 to-teal-500', rating:'4.6', products:'154' },
+  { id:'ZMKUQCSJEH', name:'Home Living Co', category:'Home & Garden', commission:'100.00%', description:'Quality home and garden products to elevate your living space', gradient:'from-emerald-500 to-teal-500', rating:'4.6', products:'154' },
+  { id:'ZMKUQCSJEH', name:'Home Living Co', category:'Home & Garden', commission:'100.00%', description:'Quality home and garden products to elevate your living space', gradient:'from-emerald-500 to-teal-500', rating:'4.6', products:'154' },
+  { id:'ZMKUQCSJEH', name:'Home Living Co', category:'Home & Garden', commission:'100.00%', description:'Quality home and garden products to elevate your living space', gradient:'from-emerald-500 to-teal-500', rating:'4.6', products:'154' },
+];
+
+/* ================= RENDER ================= */
+function el(html){ const t=document.createElement('template'); t.innerHTML=html.trim(); return t.content.firstElementChild; }
+
+// Hero benefits
+document.getElementById('heroBenefits').append(
+  ...heroBenefits.map((b,i)=>el(`
+  <div class="flex items-center gap-3 rounded-xl bg-white/5 border border-white/10 p-3">
+    <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-500/80 text-white"><span data-icon="${b.icon}" class="h-4 w-4"></span></div>
+    <div class="flex flex-1 items-center gap-3">
+      <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/10 text-xs font-bold text-primary-200">${i+1}</span>
+      <span class="text-sm text-white">${b.label}</span>
+    </div>
+    <span data-icon="check" class="h-4 w-4 shrink-0 text-success-400"></span>
+  </div>`))
+);
+
+// How it works
+document.getElementById('howSteps').append(
+  ...howSteps.map((s,i)=>{
+    const isLast = i===howSteps.length-1;
+    return el(`
+    <div class="group relative reveal" style="transition-delay:${i*0.15}s">
+      ${!isLast?'<div class="hidden lg:block absolute top-12 left-[60%] w-full h-0.5 bg-gradient-to-r from-ink-200 to-transparent z-0"></div>':''}
+      <div class="relative rounded-2xl ${s.bg} border border-ink-100 p-6 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl z-10 h-full flex flex-col">
+        <div class="absolute -top-3 -right-3 h-8 w-8 rounded-full ${s.iconBg} text-white text-sm font-bold flex items-center justify-center shadow-lg">${i+1}</div>
+        <div class="inline-flex h-14 w-14 rounded-2xl ${s.iconBg} items-center justify-center shadow-lg mb-5 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+          <span data-icon="${s.icon}" class="h-7 w-7 text-white"></span>
+        </div>
+        <h3 class="font-display text-xl font-bold text-ink-900 mb-2">${s.title}</h3>
+        <p class="text-sm text-ink-600 leading-relaxed">${s.description}</p>
+        <div class="mt-4 rounded-lg bg-white/60 border border-ink-100 px-3 py-2.5 text-xs leading-relaxed ${s.accent}">
+          <span class="font-semibold">提示 · </span>${s.detail}
+        </div>
+        ${isLast?`
+          <div class="mt-auto pt-4 flex items-center gap-1.5 text-xs font-medium text-success-600"><span data-icon="check" class="h-4 w-4"></span> 完成开单</div>
+        `:`
+          <div class="mt-auto pt-4 flex items-center gap-1.5 text-xs font-medium text-ink-400">下一步 <span data-icon="chevron-right" class="h-3.5 w-3.5"></span></div>
+        `}
+      </div>
+    </div>`);
+  })
+);
+
+// Contact methods
+document.getElementById('contactMethods').append(
+  ...contactMethods.map((m,i)=>{
+    const c = colorMap[m.color];
+    return el(`
+    <div class="group relative rounded-2xl bg-white border ${c.border} p-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl reveal" style="transition-delay:${i*0.15}s">
+      <div class="absolute -top-3 -left-3 h-9 w-9 rounded-full bg-ink-900 text-white text-sm font-bold flex items-center justify-center shadow-lg">${i+1}</div>
+      <div class="inline-flex h-14 w-14 rounded-2xl ${c.iconBg} items-center justify-center shadow-lg mb-5 transition-transform duration-300 group-hover:scale-110">
+        <span data-icon="${m.icon}" class="h-7 w-7 text-white"></span>
+      </div>
+      <h3 class="font-display text-xl font-bold text-ink-900 mb-2">${m.title}</h3>
+      <p class="text-sm text-ink-500 leading-relaxed mb-5">${m.description}</p>
+      <div class="space-y-2.5">
+        ${m.steps.map((st,si)=>`
+          <div class="flex items-start gap-2.5">
+            <div class="flex-shrink-0 h-5 w-5 rounded-full ${c.bg} ${c.text} flex items-center justify-center text-xs font-bold mt-0.5">${si+1}</div>
+            <span class="text-sm text-ink-600 leading-relaxed">${st}</span>
+          </div>`).join('')}
+      </div>
+    </div>`);
+  })
+);
+
+// FAQ
+document.getElementById('faqList').append(
+  ...faqs.map((f,i)=>{
+    const item = el(`
+    <div class="rounded-xl bg-white border border-ink-100 overflow-hidden transition-all hover:border-ink-200">
+      <button class="w-full flex items-center justify-between p-4 text-left">
+        <span class="font-semibold text-sm text-ink-800 pr-4">${f.q}</span>
+        <span data-icon="chevron-right" class="faq-chev h-5 w-5 flex-shrink-0 text-ink-400 transition-transform duration-300 ${i===0?'rotate-90':''}"></span>
+      </button>
+      <div class="faq-body overflow-hidden transition-all duration-300" style="max-height:${i===0?'200px':'0px'}">
+        <p class="px-4 pb-4 text-sm text-ink-500 leading-relaxed">${f.a}</p>
+      </div>
+    </div>`);
+    item.querySelector('button').addEventListener('click',()=>{
+      const body = item.querySelector('.faq-body');
+      const chev = item.querySelector('.faq-chev');
+      const open = body.style.maxHeight !== '0px';
+      body.style.maxHeight = open ? '0px' : '200px';
+      chev.classList.toggle('rotate-90', !open);
+    });
+    return item;
+  })
+);
+
+// Stores
+document.getElementById('storeGrid').append(
+  ...stores.map((s,i)=>el(`
+  <div class="group relative rounded-2xl bg-white border border-ink-100 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl reveal" style="transition-delay:${i*0.1}s">
+    <div class="relative h-24 bg-gradient-to-br ${s.gradient} overflow-hidden">
+      <div class="absolute inset-0 bg-grid-pattern opacity-20"></div>
+      <div class="absolute -bottom-4 -right-4 h-20 w-20 rounded-full bg-white/10"></div>
+      <div class="absolute top-3 right-3 rounded-full bg-white/20 backdrop-blur-sm px-2.5 py-1 text-xs font-bold text-white">${s.commission}</div>
+    </div>
+    <div class="px-5 -mt-8 relative">
+      <div class="h-14 w-14 rounded-2xl bg-gradient-to-br ${s.gradient} flex items-center justify-center shadow-lg border-4 border-white">
+        <span data-icon="shopping-bag" class="h-6 w-6 text-white"></span>
+      </div>
+    </div>
+    <div class="px-5 pt-3 pb-5">
+      <div class="text-xs font-medium text-ink-400 mb-1">${s.category}</div>
+      <h3 class="font-display text-base font-bold text-ink-900 leading-tight mb-2">${s.name}</h3>
+      <p class="text-xs text-ink-500 leading-relaxed mb-4 line-clamp-2">${s.description}</p>
+      <div class="flex">
+        <button class="store-contact flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl bg-primary-500 text-white px-3 py-2.5 text-xs font-semibold transition-all hover:bg-primary-600 shadow-sm">
+          <span data-icon="message-circle" class="h-3.5 w-3.5"></span> Join Now
+        </button>
+      </div>
+    </div>
+  </div>`))
+);
+
+/* ================= TRAINING CAMP (interactive) ================= */
+let activeStep = 0;
+let completedSteps = [];
+
+function renderTrainingList(){
+  const list = document.getElementById('trainingList');
+  list.innerHTML = '';
+  trainingSteps.forEach((step,i)=>{
+    const isActive = activeStep===i;
+    const isDone = completedSteps.includes(i);
+    const item = el(`
+    <button class="w-full text-left rounded-2xl border-2 p-4 transition-all duration-300 ${isActive?'border-primary-500 bg-primary-50 shadow-md':'border-ink-100 bg-white hover:border-ink-200 hover:bg-ink-50'}">
+      <div class="flex items-center gap-4">
+        <div class="relative flex-shrink-0 h-11 w-11 rounded-xl flex items-center justify-center transition-all ${isDone?'bg-success-500':isActive?'bg-primary-500':'bg-ink-100'}">
+          ${isDone?'<span data-icon="check" class="h-5 w-5 text-white"></span>':'<span data-icon="'+step.icon+'" class="h-5 w-5 text-white"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.6-5.2A1 1 0 0 1 5.56 3h12.88a1 1 0 0 1 .96.8L21 9"></path><path d="M4 9v11a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9"></path><path d="M9 21v-6h6v6"></path><path d="M3 9h18"></path></svg></span>'}
+          ${isActive&&!isDone?'<div class="absolute inset-0 rounded-xl bg-primary-500 animate-pulse-ring"></div>':''}
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold text-ink-400">STEP ${step.id}</span>
+            <span class="inline-flex items-center gap-1 text-xs text-ink-400"><span data-icon="clock" class="h-3 w-3"></span> ${step.duration}</span>
+          </div>
+          <div class="font-semibold text-sm mt-0.5 ${isActive?'text-primary-700':'text-ink-700'}">${step.title}</div>
+        </div>
+        <span data-icon="chevron-right" class="h-5 w-5 flex-shrink-0 transition-transform ${isActive?'text-primary-500 translate-x-0':'text-ink-300 -translate-x-1'}"></span>
+      </div>
+    </button>`);
+    item.addEventListener('click',()=>{ activeStep=i; renderTraining(); });
+    list.appendChild(item);
+  });
+}
+function renderTrainingDetail(){
+  const step = trainingSteps[activeStep];
+  const isDone = completedSteps.includes(activeStep);
+  const detail = document.getElementById('trainingDetail');
+  detail.innerHTML = `
+    <div class="animate-fade-in">
+      <div class="flex items-start gap-5 mb-6">
+        <div class="flex-shrink-0 h-16 w-16 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center shadow-lg">
+          <span data-icon="${step.icon}" class="h-8 w-8 text-white">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.6-5.2A1 1 0 0 1 5.56 3h12.88a1 1 0 0 1 .96.8L21 9"></path><path d="M4 9v11a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9"></path><path d="M9 21v-6h6v6"></path><path d="M3 9h18"></path></svg>
+          </span>
+        </div>
+        <div class="flex-1">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-xs font-bold text-primary-600 bg-primary-100 px-2 py-0.5 rounded-md">STEP ${step.id} OF ${trainingSteps.length}</span>
+            <span class="inline-flex items-center gap-1 text-xs text-ink-400"><span data-icon="clock" class="h-3 w-3"></span> ${step.duration}</span>
+          </div>
+          <h3 class="font-display text-2xl font-bold text-ink-900">${step.title}</h3>
+        </div>
+      </div>
+      <p class="text-ink-600 leading-relaxed mb-6">${step.description}</p>
+      <div class="space-y-3 mb-8">
+        <div class="flex items-center gap-2 text-sm font-semibold text-ink-700 mb-2"><span data-icon="lightbulb" class="h-4 w-4 text-accent-500"></span> Action Items</div>
+        ${step.tips.map((tip,ti)=>`
+          <div class="flex items-start gap-3 rounded-xl bg-white border border-ink-100 p-3.5 transition-all hover:border-primary-200 hover:shadow-sm">
+            <div class="flex-shrink-0 h-6 w-6 rounded-full flex items-center justify-center text-xs font-bold ${isDone?'bg-success-500 text-white':'bg-primary-100 text-primary-600'}">
+              ${isDone?'<span data-icon="check" class="h-3.5 w-3.5"></span>':ti+1}
+            </div>
+            <span class="text-sm text-ink-700 leading-relaxed">${tip}</span>
+          </div>`).join('')}
+      </div>
+      <div class="flex items-center gap-3">
+        <button id="markDone" class="inline-flex items-center gap-2 rounded-xl px-5 py-2.5 font-semibold text-sm transition-all ${isDone?'bg-success-100 text-success-700 hover:bg-success-200':'bg-primary-500 text-white hover:bg-primary-600 shadow-md shadow-primary-500/30'}">
+          <span data-icon="check" class="h-4 w-4"></span> ${isDone?'Completed':'Mark as Done'}
+        </button>
+        ${activeStep<trainingSteps.length-1?`
+          <button id="nextStep" class="inline-flex items-center gap-1 rounded-xl bg-ink-100 text-ink-700 px-5 py-2.5 font-semibold text-sm hover:bg-ink-200 transition-all">
+            Next Step <span data-icon="chevron-right" class="h-4 w-4"></span>
+          </button>`:''}
+      </div>
+    </div>`;
+  detail.querySelector('#markDone').addEventListener('click',()=>{
+    if(completedSteps.includes(activeStep)) completedSteps = completedSteps.filter(s=>s!==activeStep);
+    else completedSteps.push(activeStep);
+    updateProgress(); renderTraining();
+  });
+  const ns = detail.querySelector('#nextStep');
+  if(ns) ns.addEventListener('click',()=>{ if(activeStep<trainingSteps.length-1){ activeStep++; renderTraining(); } });
+}
+function updateProgress(){
+  const pct = Math.round((completedSteps.length/trainingSteps.length)*100);
+  document.getElementById('progCount').textContent = completedSteps.length;
+  document.getElementById('progPct').textContent = pct+'%';
+  document.getElementById('progBar').style.width = pct+'%';
+  const markers = document.getElementById('progMarkers');
+  markers.innerHTML = trainingSteps.map((_,i)=>`
+    <div class="absolute top-1/2 -translate-y-1/2 h-2 w-2 rounded-full border-2 border-white transition-all" style="left:calc(${(i/(trainingSteps.length-1))*100}% - 4px); background:${completedSteps.includes(i)?'#22c55e':'#cbd5e1'}"></div>`).join('');
+  const msg = document.getElementById('completionMsg');
+  if(completedSteps.length===trainingSteps.length) msg.classList.remove('hidden'); else msg.classList.add('hidden');
+}
+function renderTraining(){ renderTrainingList(); renderTrainingDetail(); }
+
+/* ================= TOAST ================= */
+const toastEl = document.getElementById('toast');
+let toastTimer;
+function showToast(text){
+  toastEl.textContent = text;
+  toastEl.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>toastEl.classList.remove('show'), 3000);
+}
+
+/* ================= WIRING ================= */
+document.getElementById('copyTemplate').addEventListener('click',()=>{
+  const text = `Hi! I'm a FlyLink distributor with [X] followers on [platform]. I love your products and would like to promote them. Could you share product images, key selling points, and any discount codes for my audience?`;
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(text).then(()=>showToast('Template copied to clipboard')).catch(()=>fallbackCopy(text));
+  } else fallbackCopy(text);
+  function fallbackCopy(t){
+    const ta=document.createElement('textarea'); ta.value=t; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); showToast('Template copied to clipboard'); }catch(e){ showToast('Copy failed — please copy manually'); }
+    document.body.removeChild(ta);
+  }
+});
+document.querySelectorAll('.store-contact').forEach(b=>b.addEventListener('click',()=>showToast('Opening chat with store admin…')));
+document.querySelectorAll('.store-join').forEach(b=>b.addEventListener('click',()=>showToast('Join request sent to store')));
+document.getElementById('backTop').addEventListener('click',(e)=>{ e.preventDefault(); window.scrollTo({top:0,behavior:'smooth'}); });
+
+/* ================= REVEAL ================= */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('is-visible'); io.unobserve(en.target); } });
+},{threshold:0.15});
+function setupReveal(){ document.querySelectorAll('.reveal:not(.is-visible)').forEach(el=>io.observe(el)); }
+
+/* ================= INIT ================= */
+injectIcons();
+renderTraining();
+updateProgress();
+setupReveal();
+</script>
+</body>
+</html>
