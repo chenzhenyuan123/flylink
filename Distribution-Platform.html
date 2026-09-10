@@ -167,9 +167,9 @@ h1, h2, h3, h4, p { margin: 0; }
 .btn--block { width: 100%; }
 .btn--sm { padding: .625rem 1rem; font-size: .875rem; }
 
-.btn--light         { background: var(--white); color: var(--brand); box-shadow: var(--shadow-lg); }
+.btn--light         { background: linear-gradient(270deg, #3b79ff, #5548ff); color: var(--white); box-shadow: var(--shadow-lg); }
 .btn--light:hover   { transform: scale(1.05); box-shadow: var(--shadow-xl); }
-.btn--outline-light { border: 2px solid rgba(255,255,255,.3); color: var(--white); backdrop-filter: blur(4px); }
+.btn--outline-light { border: 2px solid var(--gray-200); color: var(--ink-700); backdrop-filter: blur(4px); background: #fff; }
 .btn--outline-light:hover { background: rgba(255,255,255,.1); }
 .btn--brand         { background: var(--brand-soft); color: var(--white); }
 .btn--brand:hover   { background: var(--brand-soft-hover); }
@@ -214,18 +214,18 @@ h1, h2, h3, h4, p { margin: 0; }
 
 .brand { display: flex; align-items: center; gap: .5rem; }
 .brand__logo { width: 2.25rem; height: 2.25rem; object-fit: contain; }
-.brand__name { font-size: 1.125rem; font-weight: 700; color: var(--white); transition: color .3s var(--ease); }
+.brand__name { font-size: 1.125rem; font-weight: 700; color: var(--ink-900); transition: color .3s var(--ease); }
 .site-header.is-scrolled .brand__name { color: var(--ink-900); }
 
 .nav-links { display: none; align-items: center; gap: .25rem; }
 .nav-link {
   border-radius: var(--r-sm); padding: .5rem 1rem;
-  font-size: .875rem; font-weight: 500; color: rgba(255,255,255,.8);
+  font-size: .875rem; font-weight: 500; color: var(--ink-700);
   transition: background-color .2s var(--ease), color .2s var(--ease);
 }
-.nav-link:hover { background: rgba(255,255,255,.1); color: var(--white); }
+.nav-link:hover { background: rgba(255,255,255,.1); color: var(--ink-900); }
 .nav-link--cta { margin-left: .5rem; background: var(--white); color: var(--brand); font-weight: 600; }
-.nav-link--cta:hover { background: #f5f3ff; }
+.nav-link--cta:hover { background: var(--brand-soft);  color: var(--white); }
 
 .site-header.is-scrolled .nav-link { color: var(--gray-600); }
 .site-header.is-scrolled .nav-link:hover { background: var(--gray-100); color: var(--ink-900); }
@@ -258,11 +258,11 @@ h1, h2, h3, h4, p { margin: 0; }
 .hero__inner { position: relative; padding-top: 5rem; padding-bottom: 4rem; text-align: center; }
 @media (min-width: 768px) { .hero__inner { padding-top: 7rem; padding-bottom: 6rem; } }
 
-.pill { display: inline-flex; align-items: center; gap: .5rem; border-radius: 9999px; background: rgb(96 73 162 / 62%); padding: .375rem 1rem; font-size: .875rem; font-weight: 500; color: rgba(255,255,255,.9); backdrop-filter: blur(4px); }
+.pill { display: inline-flex; align-items: center; gap: .5rem; border-radius: 9999px; background: rgb(185 176 190 / 91%); padding: .375rem 1rem; font-size: .875rem; font-weight: 500; color: var(--white); backdrop-filter: blur(4px); }
 .pill__dot { width: .5rem; height: .5rem; border-radius: 9999px; background: #ddd6fe; animation: pulse 2s infinite; }
 
-.hero__title { margin-top: 1.5rem; font-size: 2.25rem; font-weight: 700; line-height: 1.2; color: var(--white); }
-.hero__desc  { margin: 1.25rem auto 0; max-width: 42rem; font-size: 1.125rem; color: rgba(255,255,255,.8); }
+.hero__title { margin-top: 1.5rem; font-size: 2.25rem; font-weight: 700; line-height: 1.2; color: transparent; background-image: linear-gradient(45deg, #5b48ff, #b14eff); background-clip: text; }
+.hero__desc  { margin: 1.25rem auto 0; max-width: 42rem; font-size: 1.125rem; color: var(--ink-700); }
 @media (min-width: 768px) { .hero__title { font-size: 3.75rem; } .hero__desc { font-size: 1.25rem; } }
 
 .hero__actions { margin-top: 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .75rem; }
@@ -626,8 +626,8 @@ h1, h2, h3, h4, p { margin: 0; }
   100% { box-shadow: 0 0 0 0 rgba(117, 59, 255, 0); }
 }
 @keyframes ctaGlow {
-  0%, 100% { box-shadow: 0 8px 20px rgba(35, 20, 100, .18); }
-  50%      { box-shadow: 0 10px 30px rgba(255, 255, 255, .32), 0 0 0 5px rgba(255, 255, 255, .12); }
+  0%, 100% { box-shadow: 0 8px 20px rgb(96 53 151 / 62%); }
+  50%      { box-shadow: 0 10px 30px rgb(98 61 120 / 32%), 0 0 0 5px rgba(255, 255, 255, .12); }
 }
 @keyframes float   { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
@@ -681,7 +681,7 @@ h1, h2, h3, h4, p { margin: 0; }
         无需囤货 · 佣金自动结算 · 零门槛开启副业
       </p>
 
-      <h1 class="hero__title animate-fade-in-up">分享好物，赚取佣金</h1>
+      <h1 class="hero__title animate-fade-in-up">分享好物，佣金到手</h1>
 
       <p class="hero__desc animate-fade-in-up">
         选择优质店铺加入分销 → 联系卖家沟通商品 → 获取推广链接分享给好友 → 买家下单后佣金自动结算
@@ -739,7 +739,7 @@ h1, h2, h3, h4, p { margin: 0; }
     <div class="container">
       <div class="section-head">
         <span class="section-head__eyebrow">优质店铺</span>
-        <h2 class="section-head__title">可加入分销的店铺</h2>
+        <h2 class="section-head__title">这些店铺，正在等你带货</h2>
         <p class="section-head__desc">精选优质店铺，高佣金好出单 — 选择适合你的品类加入分销</p>
       </div>
 
@@ -758,7 +758,8 @@ h1, h2, h3, h4, p { margin: 0; }
         </span>
         <h2 class="section-head__title">加入店铺后，如何联系卖家？</h2>
         <p class="section-head__desc section-head__desc--wide">
-          这是分销推广中最关键的一步 — 加入店铺后请第一时间联系卖家，确认商品信息和推广素材
+          这是分销推广中最关键的一步 — 加入店铺后请第一时间联系卖家，确认商品信息和推广素材。
+          话术都帮你写好了，复制就能用    
         </p>
       </div>
 
@@ -848,7 +849,7 @@ h1, h2, h3, h4, p { margin: 0; }
       <div class="guide-grid" id="guideGrid"><!-- JS 渲染 --></div>
 
       <div class="guarantee">
-        <h3 class="guarantee__title">四大保障，安心推广</h3>
+        <h3 class="guarantee__title">平台四大保障，安心推广</h3>
         <div class="guarantee__grid" id="guaranteeGrid"><!-- JS 渲染 --></div>
       </div>
     </div>
@@ -859,7 +860,7 @@ h1, h2, h3, h4, p { margin: 0; }
     <div class="container">
       <div class="section-head">
         <span class="section-head__eyebrow">常见问题</span>
-        <h2 class="section-head__title">你可能想问这些</h2>
+        <h2 class="section-head__title">你想问的，都在这儿</h2>
         <p class="section-head__desc">新手最常遇到的问题，这里都有答案 — 还有疑问可以联系客服</p>
       </div>
 
