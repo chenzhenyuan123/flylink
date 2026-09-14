@@ -139,6 +139,12 @@ h1, h2, h3, h4, p { margin: 0; }
 @media (min-width: 768px) { .section-head__title { font-size: 2.25rem; } }
 .section-head__desc--wide { max-width: 42rem; }
 
+.result-hint {
+    align-items: center;
+    color: #a17d44;
+    font-size: 14px;
+}
+
 /* 图标 */
 .icon { flex: none; display: block; transition: transform .2s var(--ease); }
 .icon--flip { transform: rotate(180deg); }
@@ -654,7 +660,7 @@ h1, h2, h3, h4, p { margin: 0; }
   <nav class="site-header__bar container">
     <a class="brand" href="#top">
       <img class="brand__logo" src="./Distribution-Platform_files/Flylinking-logo.fjmDM9jT.svg" alt="FlyLink">
-      <span class="brand__name">FlyLink分销平台</span>
+      <span class="brand__name">Distributor Recruitment Platform</span>
     </a>
 
     <div class="nav-links" id="navLinks"><!-- JS 渲染 --></div>
@@ -737,9 +743,9 @@ h1, h2, h3, h4, p { margin: 0; }
   <!-- ====================== 优质店铺 ====================== -->
   <section class="section" id="stores" style="background: #f3f0e9;">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head">     
         <span class="section-head__eyebrow">优质店铺</span>
-        <h2 class="section-head__title">这些店铺，正在等你带货</h2>
+        <h2 class="section-head__title">这些店铺，正在等你带货<span class="result-hint"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg> 佣金越高，收益空间越大</span></h2>
         <p class="section-head__desc">精选优质店铺，高佣金好出单 — 选择适合你的品类加入分销</p>
       </div>
 
@@ -1108,12 +1114,12 @@ h1, h2, h3, h4, p { margin: 0; }
 
     /* 优质店铺 */
     stores: [
-      { id: 1, name: '鲜橙直采旗舰店', category: '生鲜水果', commission: '15%', image: IMAGES.fruit,   joined: true,  desc: '产地直采的新鲜水果，适合日常家庭消费与节日送礼。' },
-      { id: 2, name: '素衣坊原创设计', category: '女装服饰', commission: '12%', image: IMAGES.fashion, joined: false, desc: '原创设计女装，款式更新快，适合追求品质与风格的女性客群。' },
-      { id: 3, name: '智家数码配件',   category: '数码3C',   commission: '8%',  image: IMAGES.digital, joined: false, desc: '实用型数码配件，覆盖手机、桌面与智能生活场景。' },
-      { id: 4, name: '山野茶韵茶业',   category: '茶饮冲调', commission: '20%', image: IMAGES.tea,     joined: false, desc: '精选茶叶与冲泡好物，适合注重生活品质与健康饮品的人群。' },
-      { id: 5, name: '趣玩童装工厂店', category: '母婴童装', commission: '10%', image: IMAGES.kids,    joined: false, desc: '舒适耐穿的儿童服饰，覆盖日常穿搭与亲子出行需求。' },
-      { id: 6, name: '轻食研究所',     category: '健康食品', commission: '18%', image: IMAGES.healthy, joined: false, desc: '轻负担的日常健康食品，适合健身、轻食与规律生活人群。' }
+      { id: 1, name: '鲜橙直采旗舰店', category: '生鲜水果', commission: '15%',   joined: true,  desc: '产地直采的新鲜水果，适合日常家庭消费与节日送礼。' },
+      { id: 2, name: '素衣坊原创设计', category: '女装服饰', commission: '12%', joined: false, desc: '原创设计女装，款式更新快，适合追求品质与风格的女性客群。' },
+      { id: 3, name: '智家数码配件',   category: '数码3C',   commission: '8%', joined: false, desc: '实用型数码配件，覆盖手机、桌面与智能生活场景。' },
+      { id: 4, name: '山野茶韵茶业',   category: '茶饮冲调', commission: '20%',     joined: false, desc: '精选茶叶与冲泡好物，适合注重生活品质与健康饮品的人群。' },
+      { id: 5, name: '趣玩童装工厂店', category: '母婴童装', commission: '10%',    joined: false, desc: '舒适耐穿的儿童服饰，覆盖日常穿搭与亲子出行需求。' },
+      { id: 6, name: '轻食研究所',     category: '健康食品', commission: '18%', joined: false, desc: '轻负担的日常健康食品，适合健身、轻食与规律生活人群。' }
     ],
 
     /* 联系卖家四步 */
@@ -1424,7 +1430,6 @@ h1, h2, h3, h4, p { margin: 0; }
     $('#storeGrid').innerHTML = DATA.stores.map(function (store) {
       return '<article class="store-card">' +
         '<div class="store-card__media">' +
-          '<img src="' + esc(store.image) + '" alt="' + esc(store.name) + '" loading="lazy">' +
           '<span class="store-card__scrim"></span>' +
           '<span class="store-card__tag">' + esc(store.category) + '</span>' +
         '</div>' +
