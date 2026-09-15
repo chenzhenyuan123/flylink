@@ -711,7 +711,7 @@ h1, h2, h3, h4, p { margin: 0; }
 
       <div class="hero__actions animate-fade-in-up">
         <a class="btn btn--light animate-cta-glow" href="#stores">
-          Join Affiliate Now
+          Join Now
           <span class="js-arrow" aria-hidden="true"></span>
         </a>
         <a class="btn btn--outline-light animate-cta-glow" href="#steps">See How It Works</a>
@@ -907,7 +907,7 @@ h1, h2, h3, h4, p { margin: 0; }
 
       <div class="cta__actions animate-fade-in-up">
         <a class="btn btn--light" href="#stores">
-          Join Affiliate Now
+          Join Now
           <span class="js-arrow" aria-hidden="true"></span>
         </a>
         <a class="btn btn--outline-light" href="#steps">See the Process</a>
@@ -943,19 +943,12 @@ h1, h2, h3, h4, p { margin: 0; }
      Image assets hub — all image paths are centralized here; change images in one place
      ========================================================================== */
   var IMAGES = {
-    logo:      './Distribution-Platform_files/Flylinking-logo.fjmDM9jT.svg',
-    browse:    './Distribution-Platform_files/pexels-photo-5076525.jpg',
-    whatsapp:  'https://kamelnet-prod-oss-public.oss-cn-beijing.aliyuncs.com/eos/1788339171034_20260902-164940.jpg',
-    share:     'https://kamelnet-prod-oss-public.oss-cn-beijing.aliyuncs.com/eos/1788339210635_faq-affiliate-link.png',
-    income:    './Distribution-Platform_files/pexels-photo-5849573.png',
-    fruit:     './Distribution-Platform_files/pexels-photo-18452311.jpg',
-    fashion:   './Distribution-Platform_files/pexels-photo-8386651.jpg',
-    digital:   './Distribution-Platform_files/pexels-photo-10703759.jpg',
-    tea:       './Distribution-Platform_files/pexels-photo-8952044.jpg',
-    kids:      './Distribution-Platform_files/pexels-photo-5560083.jpg',
-    healthy:   './Distribution-Platform_files/pexels-photo-842545.jpg',
-    videoFlow: './Distribution-Platform_files/pexels-photo-6214362.jpg',
-    videoPick: './Distribution-Platform_files/pexels-photo-6787918.jpg'
+    browse:    './Distribution-Platform_files/JoinNow.png',
+    whatsapp:  './Distribution-Platform_files/contact.png',
+    share:     './Distribution-Platform_files/getLink.png',
+    income:    './Distribution-Platform_files/wallet.png',
+    videoFlow: './Distribution-Platform_files/wallet.png',
+    videoPick: './Distribution-Platform_files/JoinNow.png'
   };
 
   /* Common external links */
@@ -1035,13 +1028,13 @@ h1, h2, h3, h4, p { margin: 0; }
     steps: [
       {
         num: 1, title: 'Join a Store as an Affiliate', tone: 'violet', icon: 'userPlus',
-        desc: 'Pick a quality store you like and tap "Join Affiliate" to become its promoter',
+        desc: 'Pick a quality store you like and tap "Join Now" to become its promoter',
         detail: 'Browse the store list below, choose stores with high commissions and products that fit your audience, then tap to join. Once joined, you\'ll get the promotion rights for that store.',
         image: IMAGES.browse,
         subSteps: [
           'Browse the store list and filter by category for stores you like',
           'Check commission rates and prioritize stores above 15%',
-          'Tap the "Join Affiliate" button to get promotion rights instantly',
+          'Tap the "Join Now" button to get promotion rights instantly',
           'Join multiple stores at once to promote different categories'
         ],
         tips: [
@@ -1222,7 +1215,7 @@ h1, h2, h3, h4, p { margin: 0; }
 
     /* FAQ */
     faqs: [
-      { q: 'Does joining cost anything?', a: 'Completely free. Joining a stores affiliate program costs nothing—just register to become an affiliate. Simply pick a store you like and tap "Join Affiliate" to get promotion rights.' },
+      { q: 'Does joining cost anything?', a: 'Completely free. Joining a stores affiliate program costs nothing—just register to become an affiliate. Simply pick a store you like and tap "Join Now" to get promotion rights.' },
       { q: 'When does commission arrive?', a: 'Commission settles automatically on a T+1 basis. After a buyer orders and pays via your link, the system records it and settles to your account on T+1—no manual withdrawal needed.' },
       { q: 'How do I contact the seller?', a: 'After joining, open the store page and find the "Contact" button—tap it to chat with the seller directly via WhatsApp. We recommend contacting the seller right away to confirm best-sellers, stock and promo materials.' },
       { q: 'What should I keep in mind when talking to sellers?', a: 'Communicate naturally as a buyer or partner and don\'t mention our platform name. Proactively ask about best-sellers, stock and commission policy, and request product images and promo materials from the seller.' },
@@ -1450,7 +1443,7 @@ h1, h2, h3, h4, p { margin: 0; }
                icon('check', 16) + 'Joined' +
              '</button>';
     }
-    return '<button class="store-card__btn store-card__btn--join js-join" type="button" data-store-id="' + store.id + '">Join Affiliate</button>';
+    return '<button class="store-card__btn store-card__btn--join js-join" type="button" data-store-id="' + store.id + '">Join Now</button>';
   }
 
   function renderStores() {
