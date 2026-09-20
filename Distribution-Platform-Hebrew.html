@@ -415,7 +415,7 @@ h1, h2, h3, h4, p { margin: 0; }
 .store-card:hover { box-shadow: var(--shadow-xl); }
 .store-card__media { display: flex; align-items: center; justify-content: space-between; padding: 8px 1.25rem 0px;}
 .store-card__scrim { background: linear-gradient(to top, rgba(0,0,0,.6), transparent); pointer-events: none; }
-.store-card__merchant-icon { display: inline-flex; align-items: center; justify-content: center; width: 2.5rem; height: 2.5rem; border-radius: var(--r-md); background: rgb(212 232 235 / 69%); box-shadow: var(--shadow-sm); }
+.store-card__merchant-icon { display: inline-flex; align-items: center; justify-content: center; width: 2.5rem; height: 2.5rem; border-radius: var(--r-md); background: rgb(229 229 229); box-shadow: var(--shadow-sm); }
 .store-card__merchant-icon .icon { width: 1.5rem; height: 1.5rem; }
 .store-card__tags { display: inline-flex; align-items: center; gap: .375rem; }
 .store-card__tag { border-radius: 9999px; background: #dee7e0; padding: .125rem .625rem; font-size: .75rem; font-weight: 500; color: #0e5529; }
@@ -957,7 +957,7 @@ h1, h2, h3, h4, p { margin: 0; }
   var ICONS = {
     menu:        '<line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>',
     x:           '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
-    store:       '<svg t="1789355560327" class="icon" viewBox="0 0 1088 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6437" width="200" height="200"><path d="M280.64 54.656l512.064 0.064c4.48 0 8.832 0.192 13.184 0.64l3.776 0.256 1.92 0.32c39.04 4.864 74.496 24.832 99.072 55.552 1.472 1.792 2.56 3.776 3.456 5.824l4.8 6.592 87.296 124.608 4.8 7.296a164.864 164.864 0 0 1-78.72 240.448l-0.064 392.704c0 60.096-46.784 109.312-105.92 113.152l-7.488 0.192H229.184c-60.096 0-109.312-46.72-113.152-105.92l-0.192-7.424V492.672A164.864 164.864 0 0 1 37.12 252.288l4.736-7.36 84.736-121.024A164.8 164.8 0 0 1 280.64 54.656z m58.688 340.16l-27.392 39.232a164.8 164.8 0 0 1-150.784 69.568v385.28c0 35.392 27.008 64.448 61.44 67.776l6.592 0.32h589.632c35.392 0 64.448-27.008 67.712-61.504l0.32-6.528V507.2a164.864 164.864 0 0 1-144-60.544l-6.72-8.96-27.712-39.68c-27.776 63.232-100.096 107.456-183.872 107.456-85.12 0-158.528-45.76-185.216-110.656z m320.768 392.512c12.48 0 22.656 14.336 22.656 32 0 15.744-8 28.8-18.56 31.488l-4.096 0.512H387.968c-12.544 0-22.72-14.336-22.72-32 0-15.68 8.064-28.8 18.624-31.488l4.096-0.512h272.128zM277.952 100.032h-21.504c-22.784 0-44.416 7.232-62.336 20.416l-3.584 1.92c-7.936 5.888-15.232 12.8-21.632 20.736l-5.12 6.784-84.8 121.024A119.488 119.488 0 0 0 270.272 414.08l4.48-6.08 56.32-80.384a22.656 22.656 0 0 1 18.688-9.6l1.472-0.064c12.544 0 22.72 10.112 22.72 22.656 0 64.896 66.56 119.488 150.592 119.488 84.096 0 150.656-54.592 150.656-119.488a22.656 22.656 0 0 1 44.8-4.8l0.64 0.768 52.608 75.072 4.48 6.016a119.488 119.488 0 0 0 196.864-134.4l-5.568-8.704-87.232-124.672-5.376-7.04c-16.384-20.096-38.464-33.984-63.168-40.256l-9.152-1.92-1.088-0.064a106.496 106.496 0 0 0-2.24-0.192l-8.064-0.32H286.208a22.656 22.656 0 0 1-7.04 0.128l-1.28-0.192z" fill="#1a8eed" p-id="6438"></path></svg>',
+    store:       '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-store w-5 h-5" data-v-058d4036=""><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7" data-v-058d4036=""></path><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" data-v-058d4036=""></path><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4" data-v-058d4036=""></path><path d="M2 7h20" data-v-058d4036=""></path><path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7" data-v-058d4036=""></path></svg>',
     trendingUp:  '<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>',
     clock:       '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
     gift:        '<rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/>',
@@ -1128,12 +1128,12 @@ h1, h2, h3, h4, p { margin: 0; }
 
     /* Featured stores */
     stores: [
-      { id: 1, name: 'פרי הדר טרי — חנות הדגל', category: 'תוצרת טריה', commission: '20%',   joined: true,  desc: 'פירות טריים ישירות מהחקלאי, מצוינים לשימוש משפחתי יומיומי ומתנות לחג.' },
-      { id: 2, name: 'סוייפנג — עיצוב מקורי', category: 'אופנת נשים', commission: '20%', joined: false, desc: 'ביגוד נשים בעיצוב מקורי עם עדכוני סגנון מהירים, אידיאלי לקהל נשי המודע לאיכות ולסגנון.' },
-      { id: 3, name: 'ג\'יג\'יה — אביזרים דיגיטליים', category: 'דיגיטל ו-3C', commission: '8%', joined: false, desc: 'אביזרים דיגיטליים פרקטיים לטלפונים, שולחנות עבודה וחיים חכמים.' },
-      { id: 4, name: 'שאן יה — בית תה', category: 'תה ומשקאות', commission: '15%',     joined: false, desc: 'תה נבחר ואביזרי הכנה למי שמעריך חיים איכותיים ומשקאות בריאים.' },
-      { id: 5, name: 'קואן — מפעל ילדים', category: 'ילדים ותינוקות', commission: '10%',    joined: false, desc: 'ביגוד ילדים נוח ועמיד ללבישה יומיומית ויציאות הורים-ילדים.' },
-      { id: 6, name: 'מעבדת אוכל קל', category: 'מזון בריאות', commission: '18%', joined: false, desc: 'מזונות בריאות קלים ליום-יום לקהל של כושר, אכילה קלה וחיים שגרתיים.' }
+      { id: 1, name: 'happy store', category: 'Bag&Shoes', commission: '20%',   joined: false,  desc: 'Main products: various styles of bags, shoes, and clothes' },
+      { id: 2, name: 'Wuhan Ruiyina E-commerce Co Ltd', category: "Bag&Shoes", commission: '12%', joined: false, desc: 'Main products: Household Tablecloths' },
+      { id: 3, name: 'Yision', category: 'Bag', commission: '20%', joined: false, desc: 'Main products include Bracelet&Bag etc' },
+      { id: 4, name: 'flower store', category: 'Bracelet&Bag&Sell Hot', commission: '15%',     joined: false, desc: 'Main products include comfortable cloth shoes, T-shirts, and women's bags' },
+      { id: 5, name: 'Zhang Ting Man', category: 'T Shirt', commission: '10%',    joined: false, desc: 'Main products include women's clothing, travel bags, shoes, hats, accessories, men's clothing, shoes' },
+      { id: 6, name: 'tonycoco3', category: 'Whole', commission: '18%', joined: false, desc: 'Main products include children's clothing, women's clothing, travel bags, and women's shoes' }
     ],
 
     /* Four seller-contact steps */
