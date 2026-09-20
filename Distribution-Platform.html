@@ -418,9 +418,9 @@ h1, h2, h3, h4, p { margin: 0; }
 .store-card:hover { box-shadow: var(--shadow-xl); }
 .store-card__media { display: flex; align-items: center; justify-content: space-between; padding: 8px 1.25rem 0px;}
 .store-card__scrim { background: linear-gradient(to top, rgba(0,0,0,.6), transparent); pointer-events: none; }
-.store-card__merchant-icon { display: inline-flex; align-items: center; justify-content: center; width: 2.5rem; height: 2.5rem; border-radius: var(--r-md); background: rgb(229 229 229); box-shadow: var(--shadow-sm); }
+.store-card__merchant-icon { display: inline-flex; align-items: center; justify-content: center; width: 2.5rem; height: 2.5rem; border-radius: var(--r-md); background: rgb(232 235 235); box-shadow: var(--shadow-sm); }
 .store-card__merchant-icon .icon { width: 1.5rem; height: 1.5rem; }
-.store-card__tags { display: inline-flex; align-items: center; gap: .375rem; }
+.store-card__tags { display: inline-flex; align-items: center; gap: .375rem; max-width: 80%; }
 .store-card__tag { border-radius: 9999px; background: #dee7e0; padding: .125rem .625rem; font-size: .75rem; font-weight: 500; color: #0e5529; }
 .store-card__tag--commission { background: #ff9c17; color: #fff; }
 .store-card__body { padding: 1.25rem; }
@@ -1133,10 +1133,10 @@ h1, h2, h3, h4, p { margin: 0; }
     stores: [
       { id: 1, name: 'happy store', category: 'Bag&Shoes', commission: '20%',   joined: false,  desc: 'Main products: various styles of bags, shoes, and clothes' },
       { id: 2, name: 'Wuhan Ruiyina E-commerce Co Ltd', category: "Bag&Shoes", commission: '12%', joined: false, desc: 'Main products: Household Tablecloths' },
-      { id: 3, name: 'Yision', category: 'Bag', commission: '20%', joined: false, desc: 'Main products include Bracelet&Bag etc' },
-      { id: 4, name: 'flower store', category: 'Bracelet&Bag&Sell Hot', commission: '15%',     joined: false, desc: 'Main products include comfortable cloth shoes, T-shirts, and women's bags' },
-      { id: 5, name: 'Zhang Ting Man', category: 'T Shirt', commission: '10%',    joined: false, desc: 'Main products include women's clothing, travel bags, shoes, hats, accessories, men's clothing, shoes' },
-      { id: 6, name: 'tonycoco3', category: 'Whole', commission: '18%', joined: false, desc: 'Main products include children's clothing, women's clothing, travel bags, and women's shoes' }
+      { id: 3, name: 'Yision', category: 'Bracelet&Bag&Sell Hot', commission: '20%', joined: false, desc: 'Main products include Bracelet&Bag etc' },
+      { id: 4, name: 'flower store', category: 'Bag', commission: '15%',     joined: false, desc: "Main products include comfortable cloth shoes, T-shirts, and women's bags" },
+      { id: 5, name: 'Zhang Ting Man', category: 'T Shirt', commission: '10%',    joined: false, desc: "Main products include women's clothing, travel bags, shoes, hats, accessories, men's clothing, shoes" },
+      { id: 6, name: 'tonycoco3', category: 'Clothing&Sell Hot', commission: '18%', joined: false, desc: "Main products include children's clothing, women's clothing, travel bags, and women's shoes" }
     ],
 
     /* Four seller-contact steps */
@@ -1434,15 +1434,43 @@ h1, h2, h3, h4, p { margin: 0; }
     return acc;
   }, {});
   var storePage = 1;
-  var storePageSize = 8;
-  var storePageSizeOptions = [8, 16, 24, 32];
+  var storePageSize = 9;
+  var storePageSizeOptions = [9, 18, 24, 32];
 
-  function storeButtonHtml(store) {
-    if (joinedStoreIds[store.id]) {
-      return '<button class="store-card__btn store-card__btn--joined" type="button" disabled>' +
-               icon('check', 16) + 'Joined' +
-             '</button>';
-    }
+  var STORE_API = 'https://da-test.flylinking.com/distribution/client/affiliate/listStoreCanJoin';
+
+  /* Fetch joinable stores from the API and re-render the grid */
+  function loadStores() {
+    fetch(STORE_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pageNo: 1, pageSize: 100 })
+    })
+      .then(function (res) { return res.json(); })
+      .then(function (json) {
+        var payload = json && json.data;
+        var list = payload && Array.isArray(payload.list) ? payload.list : [];
+        if (!list.length) return;
+        DATA.stores = list.map(function (item) {
+          var rate = parseFloat(item.commissionRate);
+          return {
+            id: item.storeId,
+            name: item.storeName,
+            category: item.storeFlag,
+            commission: isNaN(rate) ? '' : (Math.round(rate * 100) + '%'),
+            desc: item.storeDesc,
+            joined: false,
+            joinUrl: item.joinUrl
+          };
+        });
+        renderStores();
+      })
+      .catch(function (err) {
+        console.error('[stores] failed to load from API:', err);
+      });
+  }
+
+  function storeButtonHtml(store) {    
     return '<button class="store-card__btn store-card__btn--join js-join" type="button" data-store-id="' + store.id + '">Join Now</button>';
   }
 
@@ -1458,7 +1486,7 @@ h1, h2, h3, h4, p { margin: 0; }
         '<div class="store-card__media">' +
           '<span class="store-card__merchant-icon" aria-hidden="true">' + icon('store', 40) + '</span>' +
           '<span class="store-card__tags">' +
-            (parseFloat(store.commission) >= 20 ? '<span class="store-card__tag store-card__tag--commission">High Commission</span>' : '') +
+            (parseFloat(store.commission) >= 20 ? '<span class="store-card__tag store-card__tag--commission">High</span>' : '') +
             '<span class="store-card__tag">' + esc(store.category) + '</span>' +
           '</span>' +
         '</div>' +
@@ -1737,7 +1765,12 @@ h1, h2, h3, h4, p { margin: 0; }
     $('#storeGrid').addEventListener('click', function (e) {
       var btn = e.target.closest('.js-join');
       if (!btn) return;
-      joinedStoreIds[Number(btn.getAttribute('data-store-id'))] = true;
+      var id = btn.getAttribute('data-store-id');
+      joinedStoreIds[id] = true;
+      var store = DATA.stores.filter(function (s) { return String(s.id) === String(id); })[0];
+      if (store && store.joinUrl) {
+        window.open(store.joinUrl, '_blank');
+      }
       renderStores();
     });
   }
@@ -1852,6 +1885,7 @@ h1, h2, h3, h4, p { margin: 0; }
     renderSteps();
     renderWalkthrough();
     renderStores();
+    loadStores();
     renderContactSteps();
     renderTemplateTabs();
     renderTemplateContent();
