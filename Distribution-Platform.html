@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="FlyLink Affiliate Platform — Join quality stores as an affiliate, share product links, and earn commission settled automatically on a T+1 basis.">
+<meta name="description" content="FlyLink Affiliate Platform">
 <title>FlyLink Affiliate Platform</title>
 <link rel="icon" type="image/svg+xml" href="https://da-test.flylinking.com/_nuxt/Flylinking-logo.fjmDM9jT.svg">
 
@@ -70,7 +70,7 @@
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / .1), 0 8px 10px -6px rgb(0 0 0 / .1);
 
   /* Layout */
-  --container: 72rem;
+  --container: 1360px;
   --section-y: 3rem;
 
   --ease: cubic-bezier(.4, 0, .2, 1);
@@ -345,7 +345,7 @@ h1, h2, h3, h4, p { margin: 0; }
 .flow__figure img { aspect-ratio: 15 / 10; width: 100%; object-fit: cover; }
 
 .flow__sub { display: grid; }
-.flow__sub-item { display: flex; align-items: center; gap: .625rem; border-radius: var(--r-sm); background: rgba(255,255,255,.5); padding: .5rem .75rem; }
+.flow__sub-item { display: flex; gap: .625rem; border-radius: var(--r-sm); background: rgba(255,255,255,.5); padding: .5rem .75rem; }
 .flow__sub-item span:last-child { font-size: .875rem; color: var(--ink-700); }
 
 .flow__extra { margin-top: 1.5rem; display: grid; gap: .75rem; }
@@ -413,8 +413,9 @@ h1, h2, h3, h4, p { margin: 0; }
 .store-grid { margin-top: 3rem; display: grid; gap: 1.5rem; }
 @media (min-width: 640px)  { .store-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .store-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1280px) { .store-grid { grid-template-columns: repeat(4, 1fr); } }
 
-.store-card { overflow: hidden; border: 1px solid var(--gray-100); border-radius: var(--r-xl); background: var(--white); box-shadow: var(--shadow-sm); transition: box-shadow .3s var(--ease); }
+.store-card { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--gray-100); border-radius: var(--r-xl); background: var(--white); box-shadow: var(--shadow-sm); transition: box-shadow .3s var(--ease); }
 .store-card:hover { box-shadow: var(--shadow-xl); }
 .store-card__media { display: flex; align-items: center; justify-content: space-between; padding: 8px 1.25rem 0px;}
 .store-card__scrim { background: linear-gradient(to top, rgba(0,0,0,.6), transparent); pointer-events: none; }
@@ -423,13 +424,13 @@ h1, h2, h3, h4, p { margin: 0; }
 .store-card__tags { display: inline-flex; align-items: center; gap: .375rem; max-width: 80%; }
 .store-card__tag { border-radius: 9999px; background: #dee7e0; padding: .125rem .625rem; font-size: .75rem; font-weight: 500; color: #0e5529; }
 .store-card__tag--commission { background: #ff9c17; color: #fff; }
-.store-card__body { padding: 1.25rem; }
+.store-card__body { display: flex; flex-direction: column; flex: 1 1 auto; padding: 1.25rem; }
 .store-card__name { font-size: 1.125rem; font-weight: 700; }
-.store-card__desc { margin-top: .5rem; min-height: 4.5rem; font-size: .875rem; line-height: 1.7; color: var(--gray-500); }
-.store-card__commission { margin-top: 1.25rem; display: flex; align-items: center; justify-content: space-between; }
+.store-card__desc { margin-top: .5rem; font-size: .875rem; line-height: 1.7; color: var(--gray-500); }
+.store-card__commission { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 1rem; }
 .store-card__commission dt { font-size: .875rem; font-weight: 500; color: var(--gray-600); }
 .store-card__commission dd { margin: 0; font-size: 1.875rem; font-weight: 700; line-height: 1; color: var(--whatsapp); }
-.store-card__btn { margin-top: 1rem; width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: .375rem; border-radius: var(--r-md); padding: .625rem 0; font-weight: 600; color: var(--white); transition: background-color .2s var(--ease), box-shadow .2s var(--ease), transform .2s var(--ease); }
+.store-card__btn { width: 100%; margin-top: .75rem; display: inline-flex; align-items: center; justify-content: center; gap: .375rem; border-radius: var(--r-md); padding: .625rem 0; font-weight: 600; color: var(--white); transition: background-color .2s var(--ease), box-shadow .2s var(--ease), transform .2s var(--ease); }
 .store-card__btn--join { background: var(--brand-soft); }
 .store-card__btn--join:hover { background: var(--brand-soft-hover); box-shadow: var(--shadow-md); }
 .store-card__btn--joined { background: rgba(117, 59, 255, .7); cursor: default; }
@@ -668,6 +669,7 @@ h1, h2, h3, h4, p { margin: 0; }
 .mt1 {
   margin-top: 1rem;
 }
+#stores { background: url(./Distribution-Platform_files/stores_bg.png); }
 </style>
 </head>
 
@@ -745,7 +747,7 @@ h1, h2, h3, h4, p { margin: 0; }
   </section>
 
   <!-- ====================== Featured Stores ====================== -->
-  <section class="section" id="stores" style="background: #f3f0e9;">
+  <section class="section" id="stores">
     <div class="container">
       <div class="section-head">
         <span class="section-head__eyebrow">Featured Stores</span>
@@ -802,7 +804,7 @@ h1, h2, h3, h4, p { margin: 0; }
                 <span class="js-icon-external" aria-hidden="true"></span>
               </a>
               <button class="btn btn--outline-whatsapp js-copy" type="button"
-                      data-copy-text="Hello, I'm very interested in your products and would like to learn about your current best-sellers, stock and affiliate partnership policy. Could we discuss further? Looking forward to your reply, thank you!"
+                      data-copy-text="Hello， I am a distributor on the Flylink platform and I am very interested in the products in your store. Could you please introduce your product category and commission policy? Looking forward to cooperation! Thank you."
                       data-icon="copy" data-label="Copy Message" data-label-copied="Message Copied">
                 <span class="js-icon-copy" aria-hidden="true"></span>
                 <span class="js-copy-label">Copy Message</span>
@@ -824,7 +826,7 @@ h1, h2, h3, h4, p { margin: 0; }
             </button>
             <div class="note">
               <span class="js-icon-alert" aria-hidden="true"></span>
-              <p>Important: Don't mention our platform name when chatting with sellers — communicate naturally as a buyer or partner.</p>
+              <p>Important reminder: Do not disconnect from the Flylink platform when chatting with sellers - communicate naturally as buyers or partners.</p>
             </div>
           </div>
         </div>
@@ -1030,24 +1032,22 @@ h1, h2, h3, h4, p { margin: 0; }
     steps: [
       {
         num: 1, title: 'Join a Store as an Affiliate', tone: 'violet', icon: 'userPlus',
-        desc: 'Pick a quality store you like and tap "Join Now" to become its promoter',
         detail: 'Browse the store list below, choose stores with high commissions and products that fit your audience, then tap to join. Once joined, you\'ll get the promotion rights for that store.',
         image: IMAGES.browse,
         subSteps: [
           'Browse the store list and filter by category for stores you like',
-          'Check commission rates and prioritize stores above 15%',
+          'Check commission rates stores above 10%',
           'Tap the "Join Now" button to get promotion rights instantly',
           'Join multiple stores at once to promote different categories'
         ],
         tips: [
-          'Prioritize stores with high commissions (above 15%)',
+          'Check commission rates stores (above 10%)',
           'Choose categories you know well for more natural promotion',
           'You can join multiple stores at once'
         ]
       },
       {
         num: 2, title: 'Contact the Seller about Products', tone: 'purple', icon: 'message',
-        desc: 'Reach the seller via WhatsApp to confirm best-sellers, stock and promo materials',
         detail: 'After joining, open the Products page and tap the "Contact" button to chat directly with the seller via WhatsApp. Communicate naturally as a buyer or partner, and confirm the best-sellers, stock and available promo materials.',
         image: IMAGES.whatsapp,
         subSteps: [
@@ -1058,7 +1058,7 @@ h1, h2, h3, h4, p { margin: 0; }
         ],
         tips: [
           'Click on "Contact Information" on the product page to start WhatsApp chat',
-          'Don\'t mention our platform name when chatting—just communicate naturally',
+          'Don\'t leave the Flylink platform when chatting, just communicate naturally',
           'Proactively ask about best-sellers, stock and commission policy',
           'Ask the seller for product images and promo materials'
         ],
@@ -1067,7 +1067,6 @@ h1, h2, h3, h4, p { margin: 0; }
       },
       {
         num: 3, title: 'Get Your Link & Share with Buyers', tone: 'indigo', icon: 'share',
-        desc: 'Get your unique promo link from the homepage or product page and share it with friends or groups',
         detail: 'After confirming products with the seller, go to the store homepage or product page and copy your unique promo link with your affiliate ID. Share it to your Moments, WeChat groups, or privately with friends who might need it.',
         image: IMAGES.share,
         subSteps: [
@@ -1085,20 +1084,19 @@ h1, h2, h3, h4, p { margin: 0; }
       },
       {
         num: 4, title: 'Wait for Payment, Earn Commission', tone: 'fuchsia', icon: 'wallet',
-        desc: 'Once buyers order and pay via your link, commission settles automatically on a T+1 basis',
-        detail: 'When a buyer places and pays for an order through your promo link, the system records the commission automatically. It settles to your account on a T+1 basis—no manual request needed, safe and reliable.',
+        detail: 'When buyers place orders and successfully make payments through your promotional link, they can immediately see the commission income, and the system will automatically settle the commission to your wallet without manual request, which is safe and reliable.',
         image: IMAGES.income,
         subSteps: [
-          'Buyer enters the store and orders via your link',
-          'After payment, the system records the commission automatically',
-          'Commission settles to your account on a T+1 basis',
-          'Check commission details and payouts in the affiliate dashboard'
+          'Buyers can enter the product through your distribution link and place an order',
+          'After successful payment, you can immediately see the expected commission income',
+          'The system will automatically settle the commission to your wallet',
+          'View commission details and expenses in the wallet'
         ],
         tips: [
-          'Commission is recorded automatically after buyer payment',
-          'T+1 settlement, no manual withdrawal needed',
-          'View commission details in the affiliate dashboard',
-          'Platform-guaranteed transactions keep funds safe'
+          'After the buyer makes the payment, the commission will be automatically recorded',
+          'Automatically settle commission to your wallet',
+          'View commission details in the wallet',
+          'Platform guarantee transactions ensure the safety of funds'
         ]
       }
     ],
@@ -1124,10 +1122,10 @@ h1, h2, h3, h4, p { margin: 0; }
         highlights: ['Copy your unique link with your affiliate ID', 'Pairing with genuine copy works better', 'Share to groups, Moments or privately']
       },
       {
-        step: 4, icon: 'wallet', title: 'Buyer Pays, Commission Arrives', subtitle: 'T+1 auto settlement, no withdrawal needed',
+        step: 4, icon: 'wallet', title: 'Buyer Pays, Commission Arrives', subtitle: 'You can immediately see the income of commission for the period',
         image: IMAGES.income,
-        desc: 'After a buyer orders and pays via your link, the system records commission automatically. It settles to your account on a T+1 basis—no manual request needed, safe and reliable.',
-        highlights: ['Commission recorded automatically after payment', 'T+1 settlement, no manual withdrawal', 'Platform-guaranteed, funds are safe']
+        desc: 'When buyers place orders and successfully make payments through your promotional link, they can immediately see the commission income, and the system will automatically settle the commission to your wallet without manual request, which is safe and reliable.',
+        highlights: ['You can immediately see the commission income after payment', 'No need for manual request', 'The platform is secure and the funds are safe']
       }
     ],
 
@@ -1151,7 +1149,7 @@ h1, h2, h3, h4, p { margin: 0; }
 
     /* WhatsApp message templates */
     templates: [
-      { label: 'Formal', content: 'Hello, I\'m very interested in your products and would like to learn about your current best-sellers, stock and affiliate partnership policy. Could we discuss further? Looking forward to your reply, thank you!' },
+      { label: 'Formal', content: 'Hello， I am a distributor on the Flylink platform and I am very interested in the products in your store. Could you please introduce your product category and commission policy? Looking forward to cooperation! Thank you.' },
       { label: 'Casual Buyer', content: 'Hi! I\'ve been recommending good products to friends lately and came across your store—really nice items. Which best-sellers would you recommend? Could you send some product links and images for reference?' },
       { label: 'Community Promo', content: 'Hello, I run a shopping-sharing community and would like to recommend your products to the group. Could you provide best-seller links, image materials and the affiliate commission policy? Thank you!' }
     ],
@@ -1160,25 +1158,24 @@ h1, h2, h3, h4, p { margin: 0; }
     scripts: [
       {
         id: 'seller-contact', title: 'Message the Seller', category: 'Seller Outreach',
-        content: 'Hello, I\'m very interested in your products and would like to learn about your current best-sellers, stock and affiliate partnership policy. Could we discuss further? Looking forward to your reply, thank you!',
+        content: 'Hello， I am a distributor on the Flylink platform and I am very interested in the products in your store. Could you please introduce your product category and commission policy? Looking forward to cooperation! Thank you.',
         usage: 'Right after joining, confirm best-sellers and partnership details with the seller',
         tip: 'State the category you\'re interested in first, then ask about stock, commission and materials for a more efficient chat. Note: don\'t mention the platform name—communicate naturally as a buyer.'
       },
       {
         id: 'product-link', title: 'Request Product Link', category: 'Seller Outreach',
-        content: 'Hello, I\'d like to recommend your products to friends. Which best-sellers would you suggest? Could you send some product links and image materials for reference?',
-        usage: 'After connecting with the seller, ask for the promo link and materials',
+        content: 'Hello， I am a distributor on the Flylink platform and would like to recommend your product to my friends. May I ask which hot selling products are recommended? Could you please send me the product link and image materials? Thank you.',
         tip: 'Once you get the link, make sure it includes your affiliate ID so commission is tracked correctly.'
       },
       {
         id: 'friend-recommend', title: 'Private Recommendation', category: '1-on-1 Recommendation',
-        content: 'Hi~ remember you mentioned wanting to find XX? I just found a store that really thoughtful—reliable quality at a fair price. Here my personal recommendation link, take a look, and feel free to ask me anything~',
+        content: 'Hi~Last time I heard that you were looking for XX products, I happened to find a very reliable store with good quality and prices. This is my exclusive recommendation link. Please take a look and let me know if it meets your expectations. Feel free to contact me if you have any questions~',
         usage: 'Great for recommending products to friends in private chat, natural and not pushy',
         tip: 'Understand their needs before recommending to avoid a mass-message feel, and follow up on their experience after.'
       },
       {
         id: 'group-share', title: 'Group Share', category: 'Community Promo',
-        content: 'Hi everyone~ I recently got a super useful XX and honestly think it\'s great value—sharing it with you all. Link here, check it out if interested, and ask me anything anytime!',
+        content: 'My family, I recently found a good item with good quality and reasonable price. I have been using it for a while and think it\'s good. I want to share it with you! The link is here. If you are interested, take a look and feel free to ask me any questions~',
         usage: 'Great for sharing in WeChat groups and communities, friendly and natural',
         tip: 'Better to interact in the group first; dropping a link out of nowhere can be off-putting.'
       }
@@ -1187,16 +1184,16 @@ h1, h2, h3, h4, p { margin: 0; }
 
     /* Video tutorials */
     videos: [
-      { id: 'full-flow',      title: 'Distribution in 5 Minutes', desc: 'Full flow demo from joining a store to receiving commission', duration: '01::18', image: IMAGES.videoFlow },
-      { id: 'pick-store',     title: 'How to Pick High-Commission Stores', desc: 'Product selection strategy and commission comparison tips', duration: '01::18', image: IMAGES.videoPick },
-      { id: 'whatsapp-guide', title: 'Contact Sellers & Get Links via WhatsApp', desc: 'Hands-on WhatsApp walkthrough, learn in 3 minutes', duration: '01::18', image: IMAGES.whatsapp }
+      { id: 'full-flow',      title: 'Distribution in 5 Minutes', desc: 'Full flow demo from joining a store to receiving commission', duration: '03:13', image: IMAGES.videoFlow, video:'./Distribution-Platform_files/all.mp4' },
+      { id: 'pick-store',     title: 'How to join the store', desc: 'Product selection strategy and commission comparison tips', duration: '00:50', image: IMAGES.videoPick, video:'./Distribution-Platform_files/joinStore.mp4.mp4' },
+      { id: 'whatsapp-guide', title: 'Contact Sellers & Get Links via WhatsApp', desc: 'Hands-on WhatsApp walkthrough, learn in 3 minutes', duration: '01:18', image: IMAGES.whatsapp, video:'./Distribution-Platform_files/ContactSellers_GetLinks.mp4' }
     ],
     videoFeature: {
       title: 'How to Contact Sellers & Get Product Links?',
       desc: 'This is the most critical step in promotion. After joining a store, you need to chat with the seller via WhatsApp to confirm best-sellers and promo materials. This video shows the full process.',
       steps: ['1. Open the Products page', '2. Click on the contact information', '3. Chat on WhatsApp', '4. Get Affiliate Link'],
       image: IMAGES.whatsapp,
-      duration: '01::18'
+      duration: '01:18'
     },
 
     /* Beginner guide */
@@ -1211,14 +1208,14 @@ h1, h2, h3, h4, p { margin: 0; }
     guarantees: [
       { icon: 'shield',     title: 'Fund Safety', desc: 'Platform-guaranteed transactions with automatic commission settlement' },
       { icon: 'lock',       title: 'Info Security', desc: 'Encrypted promo links protect affiliate privacy' },
-      { icon: 'badgeCheck', title: 'Commission Guarantee', desc: 'T+1 settlement, no withdrawal threshold' },
+      { icon: 'badgeCheck', title: 'Commission Guarantee', desc: 'Automatic transfer, no withdrawal threshold' },
       { icon: 'headset',    title: 'Dedicated Support', desc: 'Online 7×12 hours with timely responses' }
     ],
 
     /* FAQ */
     faqs: [
       { q: 'Does joining cost anything?', a: 'Completely free. Joining a stores affiliate program costs nothing—just register to become an affiliate. Simply pick a store you like and tap "Join Now" to get promotion rights.' },
-      { q: 'When does commission arrive?', a: 'Commission settles automatically on a T+1 basis. After a buyer orders and pays via your link, the system records it and settles to your account on T+1—no manual withdrawal needed.' },
+      { q: 'When does commission arrive?', a: 'When a buyer places an order through your promotional link and successfully pays, they can immediately see the commission income for the period, and the system will automatically settle the commission to your wallet without the need for manual requests.' },
       { q: 'How do I contact the seller?', a: 'After joining, open the Product page and find the "Contact" button—tap it to chat with the seller directly via WhatsApp. We recommend contacting the seller right away to confirm best-sellers, stock and promo materials.' },
       { q: 'What should I keep in mind when talking to sellers?', a: 'Communicate naturally as a buyer or partner and don\'t mention our platform name. Proactively ask about best-sellers, stock and commission policy, and request product images and promo materials from the seller.' },
       { q: 'How do I get the promo link?', a: 'After confirming products with the seller, tap "Get Affiliate Link" on the store homepage or product page and copy your unique link with your affiliate ID. Share it with friends or groups to track commission.' },
@@ -1228,7 +1225,7 @@ h1, h2, h3, h4, p { margin: 0; }
     ],
 
     /* Footer CTA benefits */
-    benefits: ['Free to join, no threshold', 'No stocking or shipping', 'T+1 auto commission settlement', 'Platform-guaranteed safe trading']
+    benefits: ['Free to join, no threshold', 'No stocking or shipping', 'Commission automatically credited to the account', 'Platform-guaranteed safe trading']
   };
 
   /* ==========================================================================
@@ -1328,12 +1325,7 @@ h1, h2, h3, h4, p { margin: 0; }
     if (s.hasLink) {
       extra =
         '<div class="flow__extra">' +
-          '<button class="btn btn--dashed js-copy" type="button" data-icon="copy"' +
-                  ' data-copy-text="' + esc(DATA.scripts[0].content) + '"' +
-                  ' data-label="One-tap copy seller message" data-label-copied="Copied! Paste in WhatsApp to send">' +
-            icon('copy', 16) + '<span class="js-copy-label">One-tap copy seller message</span>' +
-          '</button>' +
-          '<p class="flow__extra-note">Tip: Don\'t mention the platform name when chatting—just communicate naturally</p>' +
+          '<p class="flow__extra-note">Tip: One click copy seller contact is</p>' +
         '</div>';
     }
 
@@ -1436,8 +1428,27 @@ h1, h2, h3, h4, p { margin: 0; }
     return acc;
   }, {});
   var storePage = 1;
-  var storePageSize = 9;
-  var storePageSizeOptions = [9, 18, 24, 32];
+  var storePageSize = 12;
+  var storePageSizeOptions = [12, 24, 36];
+
+  /* Columns of the store grid, matching the CSS breakpoints */
+  function storeColumns() {
+    var w = window.innerWidth || document.documentElement.clientWidth || 1280;
+    if (w >= 1280) return 4;
+    if (w >= 1024) return 3;
+    if (w >= 640) return 2;
+    return 1;
+  }
+
+  var storeCols = storeColumns();
+
+  /* Keep exactly two rows per page; options are multiples of that */
+  function syncStorePageSize() {
+    storeCols = storeColumns();
+    storePageSize = storeCols * 2;
+    storePageSizeOptions = [storeCols * 2, storeCols * 4, storeCols * 6, storeCols * 8];
+    storePage = 1;
+  }
 
   var STORE_API = 'https://da-test.flylinking.com/distribution/client/affiliate/listStoreCanJoin';
 
@@ -1608,14 +1619,6 @@ h1, h2, h3, h4, p { margin: 0; }
             '<p>' + esc(script.tip) + '</p>' +
           '</div>' +
         '</div>' +
-        (needsNote
-          ? '<div class="note note--brand">' + icon('message', 20) +
-              '<div>' +
-                '<strong>Important Reminder</strong>' +
-                '<p>Don\'t mention our platform name when chatting with sellers—communicate naturally as a buyer or partner. After copying, open the Product page and tap "Contact" to start a WhatsApp chat.</p>' +
-              '</div>' +
-            '</div>'
-          : '') +
       '</div>';
   }
 
@@ -1631,7 +1634,7 @@ h1, h2, h3, h4, p { margin: 0; }
     $('#videoGrid').innerHTML = DATA.videos.map(function (video, i) {
       return '<article class="video-card" style="animation-delay:' + (i * 0.1) + 's">' +
         '<div class="video-card__media">' +
-          '<video class="video-card__video" src="./Distribution-Platform_files/all.mp4" poster="' + esc(video.image) + '" controls preload="metadata" playsinline></video>' +
+          '<video class="video-card__video" src="' + video.video + '" poster="' + esc(video.image) + '" controls preload="metadata" playsinline></video>' +
           '<span class="video-card__duration">' + icon('clock', 12) + esc(video.duration) + '</span>' +
         '</div>' +
         '<div class="video-card__body">' +
@@ -1655,7 +1658,7 @@ h1, h2, h3, h4, p { margin: 0; }
           '</div>' +
           '<div class="video-feature__media">' +
             '<div class="video-feature__frame">' +
-              '<video class="video-feature__video" src="./Distribution-Platform_files/all.mp4" poster="' + esc(f.image) + '" controls preload="metadata" playsinline></video>' +
+              '<video class="video-feature__video" src="./Distribution-Platform_files/ContactSellers_GetLinks.mp4" poster="' + esc(f.image) + '" controls preload="metadata" playsinline></video>' +
             '</div>' +
             '<div class="video-feature__time"><b>' + esc(f.duration) + '</b><span>min to learn</span></div>' +
           '</div>' +
@@ -1884,6 +1887,7 @@ h1, h2, h3, h4, p { margin: 0; }
     renderStats();
     renderSteps();
     renderWalkthrough();
+    syncStorePageSize();
     renderStores();
     loadStores();
     renderContactSteps();
@@ -1905,6 +1909,18 @@ h1, h2, h3, h4, p { margin: 0; }
     bindScripts();
     bindFaqs();
     bindCopy();
+
+    /* Re-sync page size when the number of columns changes */
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        if (storeColumns() !== storeCols) {
+          syncStorePageSize();
+          renderStores();
+        }
+      }, 150);
+    });
   }
 
   if (document.readyState === 'loading') {
