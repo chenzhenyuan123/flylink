@@ -533,6 +533,7 @@ h1, h2, h3, h4, p { margin: 0; }
 .video-card:hover { box-shadow: var(--shadow-xl); transform: translateY(-.25rem); }
 .video-card__media { position: relative; height: 12rem; overflow: hidden; }
 .video-card__media img { height: 100%; width: 100%; object-fit: cover; transition: transform .5s var(--ease); }
+.video-card__media video { height: 100%; width: 100%; object-fit: cover; display: block; }
 .video-card:hover .video-card__media img { transform: scale(1.1); }
 .video-card__play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,.3); transition: background-color .3s var(--ease); }
 .video-card:hover .video-card__play { background: rgba(0,0,0,.4); }
@@ -557,6 +558,7 @@ h1, h2, h3, h4, p { margin: 0; }
 .video-feature__media { position: relative; }
 .video-feature__frame { position: relative; overflow: hidden; border-radius: var(--r-xl); box-shadow: var(--shadow-xl); }
 .video-feature__frame img { width: 100%; object-fit: cover; }
+.video-feature__frame video { width: 100%; object-fit: cover; display: block; }
 .video-feature__frame .video-feature__overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,.3); }
 .video-feature__overlay > .icon { color: rgba(255,255,255,.9); }
 .video-feature__time { position: absolute; right: -1rem; bottom: -1rem; border-radius: var(--r-md); background: var(--white); padding: 1rem; box-shadow: var(--shadow-xl); }
@@ -1185,16 +1187,16 @@ h1, h2, h3, h4, p { margin: 0; }
 
     /* Video tutorials */
     videos: [
-      { id: 'full-flow',      title: 'Distribution in 5 Minutes', desc: 'Full flow demo from joining a store to receiving commission', duration: '05:12', image: IMAGES.videoFlow },
-      { id: 'pick-store',     title: 'How to Pick High-Commission Stores', desc: 'Product selection strategy and commission comparison tips', duration: '03:45', image: IMAGES.videoPick },
-      { id: 'whatsapp-guide', title: 'Contact Sellers & Get Links via WhatsApp', desc: 'Hands-on WhatsApp walkthrough, learn in 3 minutes', duration: '03:20', image: IMAGES.whatsapp }
+      { id: 'full-flow',      title: 'Distribution in 5 Minutes', desc: 'Full flow demo from joining a store to receiving commission', duration: '00:54', image: IMAGES.videoFlow },
+      { id: 'pick-store',     title: 'How to Pick High-Commission Stores', desc: 'Product selection strategy and commission comparison tips', duration: '00:54', image: IMAGES.videoPick },
+      { id: 'whatsapp-guide', title: 'Contact Sellers & Get Links via WhatsApp', desc: 'Hands-on WhatsApp walkthrough, learn in 3 minutes', duration: '00:54', image: IMAGES.whatsapp }
     ],
     videoFeature: {
       title: 'How to Contact Sellers & Get Product Links?',
       desc: 'This is the most critical step in promotion. After joining a store, you need to chat with the seller via WhatsApp to confirm best-sellers and promo materials. This video shows the full process.',
       steps: ['1. Open the Products page', '2. Click on the contact information', '3. Chat on WhatsApp', '4. Get Affiliate Link'],
       image: IMAGES.whatsapp,
-      duration: '03:20'
+      duration: '00:54'
     },
 
     /* Beginner guide */
@@ -1629,8 +1631,7 @@ h1, h2, h3, h4, p { margin: 0; }
     $('#videoGrid').innerHTML = DATA.videos.map(function (video, i) {
       return '<article class="video-card" style="animation-delay:' + (i * 0.1) + 's">' +
         '<div class="video-card__media">' +
-          '<img src="' + esc(video.image) + '" alt="' + esc(video.title) + '" loading="lazy">' +
-          '<span class="video-card__play">' + icon('playCircle', 56) + '</span>' +
+          '<video class="video-card__video" src="./Distribution-Platform_files/all.mp4" poster="' + esc(video.image) + '" controls preload="metadata" playsinline></video>' +
           '<span class="video-card__duration">' + icon('clock', 12) + esc(video.duration) + '</span>' +
         '</div>' +
         '<div class="video-card__body">' +
@@ -1654,8 +1655,7 @@ h1, h2, h3, h4, p { margin: 0; }
           '</div>' +
           '<div class="video-feature__media">' +
             '<div class="video-feature__frame">' +
-              '<img src="' + esc(f.image) + '" alt="' + esc(f.title) + '" loading="lazy">' +
-              '<span class="video-feature__overlay">' + icon('playCircle', 64) + '</span>' +
+              '<video class="video-feature__video" src="./Distribution-Platform_files/all.mp4" poster="' + esc(f.image) + '" controls preload="metadata" playsinline></video>' +
             '</div>' +
             '<div class="video-feature__time"><b>' + esc(f.duration) + '</b><span>min to learn</span></div>' +
           '</div>' +
