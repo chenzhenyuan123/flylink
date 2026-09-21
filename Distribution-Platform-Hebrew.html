@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="FlyLink פלטפורמת שותפים — הצטרף לחנויות איכות כשותף, שתף קישורי מוצרים, והרוויח עמלה שנסגרת אוטומטית על בסיס T+1.">
-<title>FlyLink פלטפורמת שותפים</title>
+<meta name="description" content="FlyLink Affiliate Platform">
+<title>FlyLink Affiliate Platform</title>
 <link rel="icon" type="image/svg+xml" href="https://da-test.flylinking.com/_nuxt/Flylinking-logo.fjmDM9jT.svg">
 
 <!--
@@ -70,7 +70,7 @@
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / .1), 0 8px 10px -6px rgb(0 0 0 / .1);
 
   /* Layout */
-  --container: 72rem;
+  --container: 1360px;
   --section-y: 3rem;
 
   --ease: cubic-bezier(.4, 0, .2, 1);
@@ -342,7 +342,7 @@ h1, h2, h3, h4, p { margin: 0; }
 .flow__figure img { aspect-ratio: 15 / 10; width: 100%; object-fit: cover; }
 
 .flow__sub { display: grid; }
-.flow__sub-item { display: flex; align-items: center; gap: .625rem; border-radius: var(--r-sm); background: rgba(255,255,255,.5); padding: .5rem .75rem; }
+.flow__sub-item { display: flex; gap: .625rem; border-radius: var(--r-sm); background: rgba(255,255,255,.5); padding: .5rem .75rem; }
 .flow__sub-item span:last-child { font-size: .875rem; color: var(--ink-700); }
 
 .flow__extra { margin-top: 1.5rem; display: grid; gap: .75rem; }
@@ -410,8 +410,9 @@ h1, h2, h3, h4, p { margin: 0; }
 .store-grid { margin-top: 3rem; display: grid; gap: 1.5rem; }
 @media (min-width: 640px)  { .store-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .store-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1280px) { .store-grid { grid-template-columns: repeat(4, 1fr); } }
 
-.store-card { overflow: hidden; border: 1px solid var(--gray-100); border-radius: var(--r-xl); background: var(--white); box-shadow: var(--shadow-sm); transition: box-shadow .3s var(--ease); }
+.store-card { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--gray-100); border-radius: var(--r-xl); background: var(--white); box-shadow: var(--shadow-sm); transition: box-shadow .3s var(--ease); }
 .store-card:hover { box-shadow: var(--shadow-xl); }
 .store-card__media { display: flex; align-items: center; justify-content: space-between; padding: 8px 1.25rem 0px;}
 .store-card__scrim { background: linear-gradient(to top, rgba(0,0,0,.6), transparent); pointer-events: none; }
@@ -420,13 +421,13 @@ h1, h2, h3, h4, p { margin: 0; }
 .store-card__tags { display: inline-flex; align-items: center; gap: .375rem; max-width: 80%; }
 .store-card__tag { border-radius: 9999px; background: #dee7e0; padding: .125rem .625rem; font-size: .75rem; font-weight: 500; color: #0e5529; }
 .store-card__tag--commission { background: #ff9c17; color: #fff; }
-.store-card__body { padding: 1.25rem; }
+.store-card__body { display: flex; flex-direction: column; flex: 1 1 auto; padding: 1.25rem; }
 .store-card__name { font-size: 1.125rem; font-weight: 700; }
-.store-card__desc { margin-top: .5rem; min-height: 4.5rem; font-size: .875rem; line-height: 1.7; color: var(--gray-500); }
-.store-card__commission { margin-top: 1.25rem; display: flex; align-items: center; justify-content: space-between; }
+.store-card__desc { margin-top: .5rem; font-size: .875rem; line-height: 1.7; color: var(--gray-500); }
+.store-card__commission { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 1rem; }
 .store-card__commission dt { font-size: .875rem; font-weight: 500; color: var(--gray-600); }
 .store-card__commission dd { margin: 0; font-size: 1.875rem; font-weight: 700; line-height: 1; color: var(--whatsapp); }
-.store-card__btn { margin-top: 1rem; width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: .375rem; border-radius: var(--r-md); padding: .625rem 0; font-weight: 600; color: var(--white); transition: background-color .2s var(--ease), box-shadow .2s var(--ease), transform .2s var(--ease); }
+.store-card__btn { width: 100%; margin-top: .75rem; display: inline-flex; align-items: center; justify-content: center; gap: .375rem; border-radius: var(--r-md); padding: .625rem 0; font-weight: 600; color: var(--white); transition: background-color .2s var(--ease), box-shadow .2s var(--ease), transform .2s var(--ease); }
 .store-card__btn--join { background: var(--brand-soft); }
 .store-card__btn--join:hover { background: var(--brand-soft-hover); box-shadow: var(--shadow-md); }
 .store-card__btn--joined { background: rgba(117, 59, 255, .7); cursor: default; }
@@ -665,6 +666,7 @@ h1, h2, h3, h4, p { margin: 0; }
 .mt1 {
   margin-top: 1rem;
 }
+#stores { background: url(./Distribution-Platform_files/stores_bg.png); }
 </style>
 </head>
 
@@ -742,7 +744,7 @@ h1, h2, h3, h4, p { margin: 0; }
   </section>
 
   <!-- ====================== Featured Stores ====================== -->
-  <section class="section" id="stores" style="background: #f3f0e9;">
+  <section class="section" id="stores">
     <div class="container">
       <div class="section-head">
         <span class="section-head__eyebrow">חנויות נבחרות</span>
@@ -799,7 +801,7 @@ h1, h2, h3, h4, p { margin: 0; }
                 <span class="js-icon-external" aria-hidden="true"></span>
               </a>
               <button class="btn btn--outline-whatsapp js-copy" type="button"
-                      data-copy-text="שלום, אני מאוד מתעניין במוצרים שלך ורציתי ללמוד על המוצרים המובילים הנוכחיים, המלאי ומדיניות השותפות. האם נוכל להמשיך לדון? מחכה לתשובתך, תודה!"
+                      data-copy-text="שלום, אני מפיץ בפלטפורמת Flylink ואני מאוד מעוניין במוצרים בחנות שלך. תוכלו בבקשה להציג את קטגוריית המוצר ומדיניות העמלה שלכם? מצפה לשיתוף פעולה! תודה רבה."
                       data-icon="copy" data-label="העתק הודעה" data-label-copied="ההודעה הועתקה">
                 <span class="js-icon-copy" aria-hidden="true"></span>
                 <span class="js-copy-label">העתק הודעה</span>
@@ -821,7 +823,7 @@ h1, h2, h3, h4, p { margin: 0; }
             </button>
             <div class="note">
               <span class="js-icon-alert" aria-hidden="true"></span>
-              <p>חשוב: אל תזכיר את שם הפלטפורמה שלנו בשיחה עם המוכרים — תקשר באופן טבעי כקונה או כשותף.</p>
+              <p>תזכורת חשובה: אל תנתק מפלטפורמת Flylink בעת צ'אט עם מוכרים - תקשר באופן טבעי כקונים או שותפים.</p>
             </div>
           </div>
         </div>
@@ -1026,24 +1028,22 @@ h1, h2, h3, h4, p { margin: 0; }
     steps: [
       {
         num: 1, title: 'הצטרף לחנות כשותף', tone: 'violet', icon: 'userPlus',
-        desc: 'בחר חנות איכותית שאתה אוהב ולחץ "הצטרף כשותף" כדי להפוך למקדם שלה',
         detail: 'עיין ברשימת החנויות שלהלן, בחר חנויות עם עמלות גבוהות ומוצרים המתאימים לקהל שלך, ואז לחץ כדי להצטרף. לאחר ההצטרפות, תקבל את זכויות הקידום של חנות זו.',
         image: IMAGES.browse,
         subSteps: [
           'עיין ברשימת החנויות וסנן לפי קטגוריה לחנויות שאתה אוהב',
-          'בדוק שיעורי עמלה והעדף חנויות מעל 15%',
+          'בדוק את שיעורי העמלה בחנויות מעל 10%',
           'לחץ על כפתור "הצטרף כשותף" כדי לקבל זכויות קידום מיידית',
           'הצטרף למספר חנויות בבת אחת כדי לקדם קטגוריות שונות'
         ],
         tips: [
-          'העדף חנויות עם עמלות גבוהות (מעל 15%)',
+          'בדוק את שיעורי העמלה בחנויות (מעל 10%)',
           'בחר קטגוריות שאתה מכיר היטב לקידום טבעי יותר',
           'ניתן להצטרף למספר חנויות בבת אחת'
         ]
       },
       {
         num: 2, title: 'צור קשר עם המוכר לגבי מוצרים', tone: 'purple', icon: 'message',
-        desc: 'צור קשר עם המוכר ב-WhatsApp כדי לאשר מוצרים מובילים, מלאי וחומרי קידום',
         detail: 'לאחר ההצטרפות, פתח את דף החנות ולחץ על כפתור "צור קשר" כדי לשוחח ישירות עם המוכר ב-WhatsApp. תקשר באופן טבעי כקונה או כשותף, ואשר את המוצרים המובילים, המלאי וחומרי הקידום הזמינים.',
         image: IMAGES.whatsapp,
         subSteps: [
@@ -1054,7 +1054,7 @@ h1, h2, h3, h4, p { margin: 0; }
         ],
         tips: [
           'לחץ על "פרטי קשר" בדף המוצר כדי להתחיל צ\'אט WhatsApp',
-          'אל תזכיר את שם הפלטפורמה שלנו בשיחה—פשוט תקשר באופן טבעי',
+          'אל תעזוב את פלטפורמת Flylink בעת צ\'אט, פשוט תקשר באופן טבעי',
           'שאל יזום לגבי מוצרים מובילים, מלאי ומדיניות עמלות',
           'בקש מהמוכר תמונות מוצר וחומרי קידום'
         ],
@@ -1063,7 +1063,6 @@ h1, h2, h3, h4, p { margin: 0; }
       },
       {
         num: 3, title: 'קבל את הקישור שלך ושתף עם קונים', tone: 'indigo', icon: 'share',
-        desc: 'קבל את קישור הקידום הייחודי שלך מדף הבית או דף המוצר ושתף אותו עם חברים או קבוצות',
         detail: 'לאחר אישור המוצרים עם המוכר, עבור לדף הבית של החנות או לדף המוצר והעתק את קישור הקידום הייחודי שלך עם מזהה השותף שלך. שתף אותו ברגעים שלך, בקבוצות WeChat, או באופן פרטי עם חברים שעשויים להזדקק לכך.',
         image: IMAGES.share,
         subSteps: [
@@ -1081,20 +1080,19 @@ h1, h2, h3, h4, p { margin: 0; }
       },
       {
         num: 4, title: 'המתן לתשלום, הרוויח עמלה', tone: 'fuchsia', icon: 'wallet',
-        desc: 'ברגע שהקונים מזמינים ומשלמים דרך הקישור שלך, העמלה נסגרת אוטומטית על בסיס T+1',
-        detail: 'כאשר קונה מבצע ומשלם הזמנה דרך קישור הקידום שלך, המערכת רושמת את העמלה אוטומטית. היא נסגרת לחשבונך על בסיס T+1—ללא צורך בבקשה ידנית, בטוחה ואמינה.',
+        detail: 'כאשר הקונים מבצעים הזמנות ומבצעים תשלומים בהצלחה דרך הקישור המבצע שלך, הם יכולים לראות מיד את ההכנסה של העמלה, והמערכת תסדר באופן אוטומטי את העמלה לארנק שלך ללא בקשה ידנית, אשר בטוחה ואמינה.',
         image: IMAGES.income,
         subSteps: [
-          'הקונה נכנס לחנות ומזמין דרך הקישור שלך',
-          'לאחר התשלום, המערכת רושמת את העמלה אוטומטית',
-          'העמלה נסגרת לחשבונך על בסיס T+1',
-          'בדוק פרטי עמלה ותשלומים בלוח השותפים'
+          'הקונים יכולים להכניס את המוצר דרך קישור ההפצה שלך ולהזמין',
+          'לאחר תשלום מוצלח, ניתן לראות מיד את ההכנסה הצפויה של העמלה',
+          'המערכת תסדר באופן אוטומטי את העמלה לארנק שלך',
+          'הצג פרטי עמלות והוצאות בארנק'
         ],
         tips: [
-          'העמלה נרשמת אוטומטית לאחר תשלום הקונה',
-          'סגירה T+1, ללא צורך במשיכה ידנית',
-          'צפה בפרטי עמלה בלוח השותפים',
-          'עסקאות מובטחות פלטפורמה שומרות על הכספים בטוחים'
+          'לאחר שהקונה יבצע את התשלום, העמלה תירשם באופן אוטומטי',
+          'תשלום עומלה באופן אוטומטי לארנק שלך',
+          'צפו בפרטי העמלה בארנק',
+          'עסקאות ערבות פלטפורמה מבטיחות את בטיחות הכספים'
         ]
       }
     ],
@@ -1120,10 +1118,10 @@ h1, h2, h3, h4, p { margin: 0; }
         highlights: ['העתק את הקישור הייחודי שלך עם מזהה השותף', 'שילוב עם טקסט אמיתי עובד טוב יותר', 'שתף בקבוצות, ברגעים או באופן פרטי']
       },
       {
-        step: 4, icon: 'wallet', title: 'הקונה משלם, העמלה מגיעה', subtitle: 'סגירה אוטומטית T+1, ללא צורך במשיכה',
+        step: 4, icon: 'wallet', title: 'הקונה משלם, העמלה מגיעה', subtitle: 'ניתן לראות מיד את ההכנסה של עמלה לתקופה',
         image: IMAGES.income,
-        desc: 'לאחר שהקונה מזמין ומשלם דרך הקישור שלך, המערכת רושמת עמלה אוטומטית. היא נסגרת לחשבונך על בסיס T+1—ללא צורך בבקשה ידנית, בטוחה ואמינה.',
-        highlights: ['עמלה נרשמת אוטומטית לאחר התשלום', 'סגירה T+1, ללא משיכה ידנית', 'מובטחת פלטפורמה, הכספים בטוחים']
+        desc: 'כאשר הקונים מבצעים הזמנות ומבצעים תשלומים בהצלחה דרך הקישור המבצע שלך, הם יכולים לראות מיד את ההכנסה של העמלה, והמערכת תסדר באופן אוטומטי את העמלה לארנק שלך ללא בקשה ידנית, אשר בטוחה ואמינה.',
+        highlights: ['אתה יכול לראות מיד את ההכנסה של העמלה לאחר התשלום', 'אין צורך בבקשה ידנית', 'הפלטפורמה בטוחה והכספים בטוחים.']
       }
     ],
 
@@ -1147,7 +1145,7 @@ h1, h2, h3, h4, p { margin: 0; }
 
     /* WhatsApp message templates */
     templates: [
-      { label: 'רשמי', content: 'שלום, אני מאוד מתעניין במוצרים שלך ורציתי ללמוד על המוצרים המובילים הנוכחיים, המלאי ומדיניות השותפות. האם נוכל להמשיך לדון? מחכה לתשובתך, תודה!' },
+      { label: 'רשמי', content: 'שלום, אני מפיץ בפלטפורמת Flylink ואני מאוד מעוניין במוצרים בחנות שלך. תוכלו בבקשה להציג את קטגוריית המוצר ומדיניות העמלה שלכם? מצפה לשיתוף פעולה! תודה רבה.' },
       { label: 'קונה רגיל', content: 'היי! לאחרונה אני ממליץ על מוצרים טובים לחברים ונתקלתי בחנות שלך—פריטים נהדרים באמת. אילו מוצרים מובילים היית ממליץ? תוכל לשלוח כמה קישורי מוצר ותמונות להתייחסות?' },
       { label: 'קידום קהילתי', content: 'שלום, אני מנהל קהילת שיתוף קניות ורציתי להמליץ על המוצרים שלך לקבוצה. תוכל לספק קישורים למוצרים מובילים, חומרי תמונות ומדיניות עמלות שותפים? תודה!' }
     ],
@@ -1156,25 +1154,25 @@ h1, h2, h3, h4, p { margin: 0; }
     scripts: [
       {
         id: 'seller-contact', title: 'שלח הודעה למוכר', category: 'פנייה למוכר',
-        content: 'שלום, אני מאוד מתעניין במוצרים שלך ורציתי ללמוד על המוצרים המובילים הנוכחיים, המלאי ומדיניות השותפות. האם נוכל להמשיך לדון? מחכה לתשובתך, תודה!',
+        content: 'שלום, אני מפיץ בפלטפורמת Flylink ואני מאוד מעוניין במוצרים בחנות שלך. תוכלו בבקשה להציג את קטגוריית המוצר ומדיניות העמלה שלכם? מצפה לשיתוף פעולה! תודה רבה.',
         usage: 'מיד לאחר ההצטרפות, אשר את המוצרים המובילים ופרטי השותפות עם המוכר',
         tip: 'ציין תחילה את הקטגוריה שמעניינת אותך, ואז שאל על מלאי, עמלה וחומרים לשיחה יעילה יותר. הערה: אל תזכיר את שם הפלטפורמה—תקשר באופן טבעי כקונה.'
       },
       {
         id: 'product-link', title: 'בקש קישור מוצר', category: 'פנייה למוכר',
-        content: 'שלום, הייתי רוצה להמליץ על המוצרים שלך לחברים. אילו מוצרים מובילים היית מציע? תוכל לשלוח כמה קישורי מוצר וחומרי תמונות להתייחסות?',
+        content: 'שלום, אני מפיץ בפלטפורמת Flylink ורוצה להמליץ על המוצר שלך לחברים שלי. אפשר לשאול אילו מוצרים מומלצים למכירה חמה? תוכלו בבקשה לשלוח לי את הקישור למוצר וחומרי התמונה? תודה רבה.',
         usage: 'לאחר יצירת קשר עם המוכר, בקש את קישור הקידום ואת החומרים',
         tip: 'ברגע שתקבל את הקישור, וודא שהוא כולל את מזהה השותף שלך כדי שהעמלה תעקוב כראוי.'
       },
       {
         id: 'friend-recommend', title: 'המלצה פרטית', category: 'המלצה אישית',
-        content: 'היי~ זוכר שציינת שרצית למצוא XX? מצאתי עכשיו חנות שהיא באמת מהורהרת—איכות אמינה במחיר הוגן. הנה קישור ההמלצה האישי שלי, תסתכל, ואל תהסס לשאול אותי כל דבר~',
+        content: 'היי ~ בפעם האחרונה ששמעתי שאתה מחפש מוצרים XX, במקרה מצאתי חנות אמינה מאוד עם איכות טובה ומחירים. זהו קישור ההמלצה הבלעדית שלי. תסתכלו על זה ותודעו לי אם זה עומד בציפיות שלכם. תרגיש חופשי ליצור איתי קשר אם יש לך שאלות',
         usage: 'מצוין להמלצה על מוצרים לחברים בצ\'אט פרטי, טבעי ולא תקיף',
         tip: 'הבן את הצרכים שלהם לפני ההמלצה כדי להימנע מתחושת הודעה המונית, ועקוב אחר החוויה שלהם לאחר מכן.'
       },
       {
         id: 'group-share', title: 'שיתוף בקבוצה', category: 'קידום קהילתי',
-        content: 'היי לכולם~ לאחרונה קיבלתי XX שימושי מאוד ואני באמת חושב שזה שווה מאוד—משתף אתכם. הקישור כאן, תבדקו אם מעניין, ושאלו אותי כל דבר בכל עת!',
+        content: 'משפחתי, מצאתי לאחרונה פריט טוב עם איכות טובה ומחיר סביר. אני משתמש בו כבר זמן מה וחושב שזה טוב. אני רוצה לחלוק אותו איתך! הקישור כאן. אם אתם מעוניינים, תסתכלו ותרגישו חופשיים לשאול אותי כל שאלה.',
         usage: 'מצוין לשיתוף בקבוצות וקהילות WeChat, ידידותי וטבעי',
         tip: 'עדיף לקיים אינטראקציה בקבוצה תחילה; זריקת קישור משום מקום יכולה להרתיע.'
       }
@@ -1183,16 +1181,16 @@ h1, h2, h3, h4, p { margin: 0; }
 
     /* Video tutorials */
     videos: [
-      { id: 'full-flow',      title: 'שותפות ב-5 דקות', desc: 'הדגמה מלאה של התהליך מהצטרפות לחנות ועד לקבלת עמלה', duration: '01::18', image: IMAGES.videoFlow },
-      { id: 'pick-store',     title: 'איך לבחור חנויות עם עמלה גבוהה', desc: 'אסטרטגיית בחירת מוצרים וטיפים להשוואת עמלות', duration: '01::18', image: IMAGES.videoPick },
-      { id: 'whatsapp-guide', title: 'צור קשר עם מוכרים וקבל קישורים ב-WhatsApp', desc: 'מדריך מעשי ב-WhatsApp, למדו תוך 3 דקות', duration: '01::18', image: IMAGES.whatsapp }
+      { id: 'full-flow',      title: 'שותפות ב-5 דקות', desc: 'הדגמה מלאה של התהליך מהצטרפות לחנות ועד לקבלת עמלה', duration: '03:13', image: IMAGES.videoFlow, video:'./Distribution-Platform_files/all.mp4' },
+      { id: 'pick-store',     title: 'איך להצטרף לחנות', desc: 'אסטרטגיית בחירת מוצרים וטיפים להשוואת עמלות', duration: '01:18', image: IMAGES.videoPick, video:'./Distribution-Platform_files/joinStore.mp4.mp4' },
+      { id: 'whatsapp-guide', title: 'צור קשר עם מוכרים וקבל קישורים ב-WhatsApp', desc: 'מדריך מעשי ב-WhatsApp, למדו תוך 3 דקות', duration: '01:18', image: IMAGES.whatsapp, video:'./Distribution-Platform_files/ContactSellers_GetLinks.mp4' }
     ],
     videoFeature: {
       title: 'איך ליצור קשר עם מוכרים ולקבל קישורי מוצר?',
       desc: 'זהו השלב הקריטי ביותר בקידום. לאחר ההצטרפות לחנות, עליך לשוחח עם המוכר ב-WhatsApp כדי לאשר מוצרים מובילים וחומרי קידום. הסרטון מציג את התהליך המלא.',
       steps: ['1. פתח את דף מוצרים', '2. לחץ על פרטי הקשר', '3. שוחח ב-WhatsApp', '4. קבל קשר מחובר'],
       image: IMAGES.whatsapp,
-      duration: '01::18'
+      duration: '01:18'
     },
 
     /* Beginner guide */
@@ -1207,14 +1205,14 @@ h1, h2, h3, h4, p { margin: 0; }
     guarantees: [
       { icon: 'shield',     title: 'ביטחון כספים', desc: 'עסקאות מובטחות פלטפורמה עם סגירת עמלה אוטומטית' },
       { icon: 'lock',       title: 'אבטחת מידע', desc: 'קישורי קידום מוצפנים מגנים על פרטיות השותף' },
-      { icon: 'badgeCheck', title: 'ערבות עמלה', desc: 'סגירה T+1, ללא סף משיכה' },
+      { icon: 'badgeCheck', title: 'ערבות עמלה', desc: 'העברה אוטומטית, ללא סף נסיגה' },
       { icon: 'headset',    title: 'תמיכה ייעודית', desc: 'זמינה 7×12 שעות עם תגובות בזמן' }
     ],
 
     /* FAQ */
     faqs: [
       { q: 'האם ההצטרפות עולה משהו?', a: 'בחינם לחלוטין. ההצטרפות לתוכנית השותפים של חנות לא עולה דבר—פשוט הירשם כדי להפוך לשותף. פשוט בחר חנות שאתה אוהב ולחץ "הצטרף כשותף" כדי לקבל זכויות קידום.' },
-      { q: 'מתי העמלה מגיעה?', a: 'העמלה נסגרת אוטומטית על בסיס T+1. לאחר שהקונה מזמין ומשלם דרך הקישור שלך, המערכת רושמת אותה וסוגרת לחשבונך ב-T+1—ללא צורך במשיכה ידנית.' },
+      { q: 'מתי העמלה מגיעה?', a: 'כאשר קונה מבצע הזמנה דרך הקישור המבצע שלך ומשלם בהצלחה, הוא יכול מיד לראות את ההכנסה של העמלה לתקופה, והמערכת תסדר באופן אוטומטי את העמלה לארנק שלך ללא צורך בבקשות ידניות.' },
       { q: 'איך יוצרים קשר עם המוכר?', a: 'לאחר ההצטרפות, פתח את דף החנות ומצא את כפתור "צור קשר"—לחץ עליו כדי לשוחח עם המוכר ישירות ב-WhatsApp. אנו ממליצים ליצור קשר עם המוכר מיד כדי לאשר מוצרים מובילים, מלאי וחומרי קידום.' },
       { q: 'על מה לשים לב כשמדברים עם מוכרים?', a: 'תקשר באופן טבעי כקונה או כשותף ואל תזכיר את שם הפלטפורמה שלנו. שאל יזום לגבי מוצרים מובילים, מלאי ומדיניות עמלות, ובקש תמונות מוצר וחומרי קידום מהמוכר.' },
       { q: 'איך אני מקבל את קישור הקידום?', a: 'לאחר אישור המוצרים עם המוכר, לחץ "קבל קישור קידום" בדף הבית של החנות או בדף המוצר והעתק את הקישור הייחודי שלך עם מזהה השותף שלך. שתף אותו עם חברים או קבוצות כדי לעקוב אחר העמלה.' },
@@ -1224,7 +1222,7 @@ h1, h2, h3, h4, p { margin: 0; }
     ],
 
     /* Footer CTA benefits */
-    benefits: ['הצטרפות בחינם, ללא סף', 'ללא מלאי או משלוח', 'סגירת עמלה אוטומטית T+1', 'מסחר בטוח מובטח פלטפורמה']
+    benefits: ['הצטרפות בחינם, ללא סף', 'ללא מלאי או משלוח', 'עמולה מוזכרת באופן אוטומטי לחשבון', 'מסחר בטוח מובטח פלטפורמה']
   };
 
   /* ==========================================================================
@@ -1324,12 +1322,7 @@ h1, h2, h3, h4, p { margin: 0; }
     if (s.hasLink) {
       extra =
         '<div class="flow__extra">' +
-          '<button class="btn btn--dashed js-copy" type="button" data-icon="copy"' +
-                  ' data-copy-text="' + esc(DATA.scripts[0].content) + '"' +
-                  ' data-label="העתקה בלחיצה אחת של הודעה למוכר" data-label-copied="הועתק! הדבק ב-WhatsApp לשליחה">' +
-            icon('copy', 16) + '<span class="js-copy-label">העתקה בלחיצה אחת של הודעה למוכר</span>' +
-          '</button>' +
-          '<p class="flow__extra-note">טיפ: אל תזכיר את שם הפלטפורמה בשיחה—פשוט תקשר באופן טבעי</p>' +
+          '<p class="flow__extra-note">עצה: הקשר של מוכר העתק בלחיצה אחת הוא</p>' +
         '</div>';
     }
 
@@ -1432,8 +1425,27 @@ h1, h2, h3, h4, p { margin: 0; }
     return acc;
   }, {});
   var storePage = 1;
-  var storePageSize = 9;
-  var storePageSizeOptions = [9, 18, 24, 32];
+  var storePageSize = 12;
+  var storePageSizeOptions = [12, 24, 36];
+
+  /* Columns of the store grid, matching the CSS breakpoints */
+  function storeColumns() {
+    var w = window.innerWidth || document.documentElement.clientWidth || 1280;
+    if (w >= 1280) return 4;
+    if (w >= 1024) return 3;
+    if (w >= 640) return 2;
+    return 1;
+  }
+
+  var storeCols = storeColumns();
+
+  /* Keep exactly two rows per page; options are multiples of that */
+  function syncStorePageSize() {
+    storeCols = storeColumns();
+    storePageSize = storeCols * 2;
+    storePageSizeOptions = [storeCols * 2, storeCols * 4, storeCols * 6, storeCols * 8];
+    storePage = 1;
+  }
 
   var STORE_API = 'https://da-test.flylinking.com/distribution/client/affiliate/listStoreCanJoin';
 
@@ -1604,14 +1616,6 @@ h1, h2, h3, h4, p { margin: 0; }
             '<p>' + esc(script.tip) + '</p>' +
           '</div>' +
         '</div>' +
-        (needsNote
-          ? '<div class="note note--brand">' + icon('message', 20) +
-              '<div>' +
-                '<strong>תזכורת חשובה</strong>' +
-                '<p>אל תזכיר את שם הפלטפורמה בשיחה עם המוכרים—תקשר באופן טבעי כקונה או כשותף. לאחר ההעתקה, פתח את דף החנות ולחץ "צור קשר" כדי להתחיל צ\'אט ב-WhatsApp.</p>' +
-              '</div>' +
-            '</div>'
-          : '') +
       '</div>';
   }
 
@@ -1627,7 +1631,7 @@ h1, h2, h3, h4, p { margin: 0; }
     $('#videoGrid').innerHTML = DATA.videos.map(function (video, i) {
       return '<article class="video-card" style="animation-delay:' + (i * 0.1) + 's">' +
         '<div class="video-card__media">' +
-          '<video class="video-card__video" src="./Distribution-Platform_files/all.mp4" poster="' + esc(video.image) + '" controls preload="metadata" playsinline></video>' +
+          '<video class="video-card__video" src="' + video.video + '" poster="' + esc(video.image) + '" controls preload="metadata" playsinline></video>' +
           '<span class="video-card__duration">' + icon('clock', 12) + esc(video.duration) + '</span>' +
         '</div>' +
         '<div class="video-card__body">' +
@@ -1651,7 +1655,7 @@ h1, h2, h3, h4, p { margin: 0; }
           '</div>' +
           '<div class="video-feature__media">' +
             '<div class="video-feature__frame">' +
-              '<video class="video-feature__video" src="./Distribution-Platform_files/all.mp4" poster="' + esc(f.image) + '" controls preload="metadata" playsinline></video>' +
+              '<video class="video-feature__video" src="./Distribution-Platform_files/ContactSellers_GetLinks.mp4" poster="' + esc(f.image) + '" controls preload="metadata" playsinline></video>' +
             '</div>' +
             '<div class="video-feature__time"><b>' + esc(f.duration) + '</b><span>דקות ללמידה</span></div>' +
           '</div>' +
@@ -1880,6 +1884,7 @@ h1, h2, h3, h4, p { margin: 0; }
     renderStats();
     renderSteps();
     renderWalkthrough();
+    syncStorePageSize();
     renderStores();
     loadStores();
     renderContactSteps();
@@ -1901,6 +1906,18 @@ h1, h2, h3, h4, p { margin: 0; }
     bindScripts();
     bindFaqs();
     bindCopy();
+
+    /* Re-sync page size when the number of columns changes */
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        if (storeColumns() !== storeCols) {
+          syncStorePageSize();
+          renderStores();
+        }
+      }, 150);
+    });
   }
 
   if (document.readyState === 'loading') {
