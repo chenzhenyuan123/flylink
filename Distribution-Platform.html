@@ -177,8 +177,8 @@ h1, h2, h3, h4, p { margin: 0; }
 .btn--light:hover   { transform: scale(1.05); box-shadow: var(--shadow-xl); }
 .btn--outline-light { border: 2px solid var(--gray-200); color: var(--ink-700); backdrop-filter: blur(4px); background: #fff; }
 .btn--outline-light:hover { background: rgba(255,255,255,.1); }
-.btn--brand         { background: var(--brand-soft); color: var(--white); }
-.btn--brand:hover   { background: var(--brand-soft-hover); }
+.btn--brand         { background: var(--whatsapp); color: var(--white); }
+.btn--brand:hover   { background: var(--whatsapp-dark); }
 .btn--whatsapp      { background: var(--whatsapp); color: var(--white); box-shadow: var(--shadow-md); }
 .btn--whatsapp:hover{ background: var(--whatsapp-dark); box-shadow: var(--shadow-lg); transform: scale(1.05); }
 .btn--outline-whatsapp { border: 2px solid var(--whatsapp); color: var(--whatsapp); background: var(--white); }
@@ -266,9 +266,9 @@ h1, h2, h3, h4, p { margin: 0; }
 @media (min-width: 768px) { .hero__inner { padding-top: 7rem; padding-bottom: 6rem; } }
 
 .pill { display: inline-flex; align-items: center; gap: .5rem; border-radius: 9999px; background: rgb(185 176 190 / 91%); padding: .375rem 1rem; font-size: .875rem; font-weight: 500; color: var(--white); backdrop-filter: blur(4px); }
-.pill__dot { width: .5rem; height: .5rem; border-radius: 9999px; background: #ddd6fe; animation: pulse 2s infinite; }
+.pill__dot { width: .5rem; height: .5rem; border-radius: 9999px; background: #8a4cff; animation: pulse 2s infinite; }
 
-.hero__title { margin-top: 1.5rem; font-size: 2.25rem; font-weight: 700; line-height: 1.2; color: transparent; background-image: linear-gradient(45deg, #5b48ff, #b14eff); background-clip: text; }
+.hero__title { margin-top: 1.5rem; font-size: 2.25rem; font-weight: 700; color: transparent; background-image: linear-gradient(45deg, #5b48ff, #b14eff); background-clip: text; }
 .hero__desc  { margin: 1.25rem auto 0; max-width: 42rem; font-size: 1.125rem; color: var(--ink-700); }
 @media (min-width: 768px) { .hero__title { font-size: 3.75rem; } .hero__desc { font-size: 1.25rem; } }
 
@@ -469,7 +469,7 @@ h1, h2, h3, h4, p { margin: 0; }
 .contact-cta { margin-top: 2.5rem; overflow: hidden; border: 1px solid #ede9fe; border-radius: var(--r-2xl); background: linear-gradient(to bottom right, #f5f3ff, #faf5ff); padding: 2rem; }
 @media (min-width: 768px) { .contact-cta { padding: 2.5rem; } }
 .contact-cta__grid { display: grid; gap: 2rem; align-items: center; }
-@media (min-width: 768px) { .contact-cta__grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 768px) { .contact-cta__grid { grid-template-columns: 1fr 2fr; } }
 .contact-cta__title { font-size: 1.25rem; font-weight: 700; }
 @media (min-width: 768px) { .contact-cta__title { font-size: 1.5rem; } }
 .contact-cta__desc { margin-top: .5rem; color: var(--gray-600); }
@@ -493,26 +493,30 @@ h1, h2, h3, h4, p { margin: 0; }
 /* ==========================================================================
    11. Promo Scripts
    ========================================================================== */
-.scripts { margin-top: 3rem; display: grid; gap: 1.5rem; }
-@media (min-width: 1024px) { .scripts { grid-template-columns: 300px 1fr; } }
+.scripts { margin-top: 3rem;  }
 
-.script-list { display: grid; gap: .5rem; align-content: start; }
+.script-list { display: flex; gap: .5rem; margin-bottom: 0.8rem;}
 .script-item { display: flex; width: 100%; align-items: flex-start; gap: .75rem; border: 1px solid var(--gray-200); border-radius: var(--r-md); background: rgba(255,255,255,.5); padding: 1rem; text-align: left; transition: all .2s var(--ease); }
 .script-item:hover { border-color: var(--gray-300); background: var(--white); }
-.script-item.is-active { border-color: #c4b5fd; background: var(--white); box-shadow: var(--shadow-md); }
+.script-item.is-active { border-color: #695dff; background: var(--white); box-shadow: var(--shadow-md); }
 .script-item__index { display: flex; height: 2.25rem; width: 2.25rem; flex: none; align-items: center; justify-content: center; border-radius: var(--r-sm); background: var(--gray-100); font-size: .875rem; font-weight: 700; color: var(--gray-400); transition: all .2s var(--ease); }
 .script-item.is-active .script-item__index { background: var(--brand); color: var(--white); }
 .script-item > span:last-child { display: block; min-width: 0; }
 .script-item__title { display: block; font-weight: 600; }
 .script-item .tag { margin-top: .25rem; }
 
+.script-detail__content { display: flex; align-items: end; }
 .script-detail { border: 1px solid var(--gray-100); border-radius: var(--r-xl); background: var(--white); padding: 1.5rem; box-shadow: var(--shadow-sm); }
 @media (min-width: 768px) { .script-detail { padding: 2rem; } }
+@media (max-width: 768px) {
+  .script-item__index { display: none; }
+  .script-detail__content { display: block; }
+}
 .script-detail__head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .script-detail__title { font-size: 1.25rem; font-weight: 700; }
-.script-detail__quote { margin-top: 1.25rem; border-radius: var(--r-md); background: var(--gray-50); padding: 1.25rem; }
+.script-detail__quote { margin: 20px 20px 0 0; border-radius: var(--r-md); background: var(--whatsapp-soft);; padding: 1.25rem; }
 .script-detail__quote p { font-size: 1.125rem; line-height: 1.75; color: var(--ink-800); }
-.script-detail .btn { margin-top: 1rem; }
+.script-detail .btn { margin-top: 1rem; height: 40px; max-width: 300px;}
 
 .facts { margin-top: 1.5rem; display: grid; gap: 1rem; }
 @media (min-width: 640px) { .facts { grid-template-columns: 1fr 1fr; } }
@@ -704,7 +708,7 @@ h1, h2, h3, h4, p { margin: 0; }
     <div class="hero__inner container">
       <p class="pill animate-fade-in">
         <span class="pill__dot" aria-hidden="true"></span>
-        No stocking · Auto commission · Start a side hustle with zero barrier
+        No stocking · High commission · abundant promotion resources · zero cost
       </p>
 
       <h1 class="hero__title animate-fade-in-up">Share great products, earn commissions</h1>
@@ -762,7 +766,7 @@ h1, h2, h3, h4, p { margin: 0; }
   </section>
 
   <!-- ====================== Visual Walkthrough ====================== -->
-  <section class="section" id="walkthrough">
+  <section class="section" id="walkthrough" style="display: none;">
     <div class="container">
       <div class="section-head">
         <span class="section-head__eyebrow">Visual Guide</span>
@@ -798,17 +802,11 @@ h1, h2, h3, h4, p { margin: 0; }
             <h3 class="contact-cta__title">Ready to start?</h3>
             <p class="contact-cta__desc">Tap the button below to open the Product page, then find the "Contact" button to chat with the seller via WhatsApp.</p>
             <div class="contact-cta__actions">
-              <a class="btn btn--whatsapp js-store-link" rel="noopener noreferrer">
+              <a class="btn btn--whatsapp js-store-link" href="https://da.flylinking.com/products" target="_blank">
                 <span class="js-icon-whatsapp" aria-hidden="true"></span>
                 Go to Store &amp; Contact Seller
                 <span class="js-icon-external" aria-hidden="true"></span>
               </a>
-              <button class="btn btn--outline-whatsapp js-copy" type="button"
-                      data-copy-text="Hello， I am a distributor on the Flylink platform and I am very interested in the products in your store. Could you please introduce your product category and commission policy? Looking forward to cooperation! Thank you."
-                      data-icon="copy" data-label="Copy Message" data-label-copied="Message Copied">
-                <span class="js-icon-copy" aria-hidden="true"></span>
-                <span class="js-copy-label">Copy Message</span>
-              </button>
             </div>
           </div>
 
@@ -820,9 +818,9 @@ h1, h2, h3, h4, p { margin: 0; }
             <div class="script-box__tabs" id="templateTabs"><!-- Rendered by JS --></div>
             <div class="script-box__body"><p id="templateContent"></p></div>
             <button class="script-box__copy js-copy" type="button" id="templateCopy" data-icon="copy"
-                    data-label="Copy This Template" data-label-copied="Copied! Paste in WhatsApp">
+                    data-label="Copy Message" data-label-copied="Copied! Paste in WhatsApp">
               <span class="js-icon-copy" aria-hidden="true"></span>
-              <span class="js-copy-label">Copy This Template</span>
+              <span class="js-copy-label">Copy Message</span>
             </button>
             <div class="note">
               <span class="js-icon-alert" aria-hidden="true"></span>
@@ -1603,12 +1601,12 @@ h1, h2, h3, h4, p { margin: 0; }
           '<h3 class="script-detail__title">' + esc(script.title) + '</h3>' +
           '<span class="tag ' + tagClass(script.category) + '">' + esc(script.category) + '</span>' +
         '</div>' +
-        '<blockquote class="script-detail__quote"><p>“' + esc(script.content) + '”</p></blockquote>' +
+        '<div class="script-detail__content"><blockquote class="script-detail__quote"><p>“' + esc(script.content) + '”</p></blockquote>' +
         '<button class="btn btn--brand btn--block js-copy" type="button" data-icon="copy"' +
                 ' data-copy-text="' + esc(script.content) + '"' +
                 ' data-label="One-tap copy script" data-label-copied="Copied! Paste to use">' +
           icon('copy', 20) + '<span class="js-copy-label">One-tap copy script</span>' +
-        '</button>' +
+        '</button></div>' +
         '<div class="facts">' +
           '<div class="fact">' +
             '<div class="fact__head">' + icon('target', 16) + '<span class="fact__label">Use Case</span></div>' +
