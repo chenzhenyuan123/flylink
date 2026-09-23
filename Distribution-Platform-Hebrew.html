@@ -262,7 +262,16 @@ h1, h2, h3, h4, p { margin: 0; }
 .hero__inner { position: relative; padding-top: 5rem; padding-bottom: 4rem; text-align: center; }
 @media (min-width: 768px) { .hero__inner { padding-top: 7rem; padding-bottom: 6rem; } }
 
-.pill { display: inline-flex; align-items: center; gap: .5rem; border-radius: 9999px; background: rgb(185 176 190 / 91%); padding: .375rem 1rem; font-size: .875rem; font-weight: 500; color: var(--white); backdrop-filter: blur(4px); }
+.pill {    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    border-radius: 9999px;
+    background: rgb(172 154 182 / 63%);
+    padding: .375rem 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #010d3b;
+    backdrop-filter: blur(4px);}
 .pill__dot { width: .5rem; height: .5rem; border-radius: 9999px; background: #8a4cff; animation: pulse 2s infinite; }
 
 .hero__title { margin-top: 1.5rem; font-size: 2.25rem; font-weight: 700; color: transparent; background-image: linear-gradient(45deg, #5b48ff, #b14eff); background-clip: text; }
@@ -492,21 +501,15 @@ h1, h2, h3, h4, p { margin: 0; }
    ========================================================================== */
 .scripts { margin-top: 3rem; }
 
-.script-list { display: flex; gap: .5rem; margin-bottom: 0.8rem;}
-.script-item { display: flex; width: 100%; align-items: flex-start; gap: .75rem; border: 1px solid var(--gray-200); border-radius: var(--r-md); background: rgba(255,255,255,.5); padding: 1rem; text-align: left; transition: all .2s var(--ease); }
-.script-item:hover { border-color: var(--gray-300); background: var(--white); }
-.script-item.is-active { border-color: #695dff; background: var(--white); box-shadow: var(--shadow-md); }
-.script-item__index { display: flex; height: 2.25rem; width: 2.25rem; flex: none; align-items: center; justify-content: center; border-radius: var(--r-sm); background: var(--gray-100); font-size: .875rem; font-weight: 700; color: var(--gray-400); transition: all .2s var(--ease); }
-.script-item.is-active .script-item__index { background: var(--brand); color: var(--white); }
-.script-item > span:last-child { display: block; min-width: 0; }
-.script-item__title { display: block; font-weight: 600; }
-.script-item .tag { margin-top: .25rem; }
+.script-tabs { display: flex; gap: 2rem; border-bottom: 1px solid var(--gray-200); margin-bottom: 1.25rem; }
+.script-tab { flex: none; padding: .75rem 0; font-size: .9375rem; font-weight: 500; color: var(--gray-500); background: none; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; cursor: pointer; white-space: nowrap; transition: color .2s var(--ease), border-color .2s var(--ease); }
+.script-tab:hover { color: var(--brand); }
+.script-tab.is-active { color: var(--brand); border-bottom-color: var(--brand); font-weight: 600; }
 
 .script-detail__content { display: flex; align-items: end; }
 .script-detail { border: 1px solid var(--gray-100); border-radius: var(--r-xl); background: var(--white); padding: 1.5rem; box-shadow: var(--shadow-sm); }
 @media (min-width: 768px) { .script-detail { padding: 2rem; } }
 @media (max-width: 768px) {
-  .script-item__index { display: none; }
   .script-detail__content { display: block; }
 }
 .script-detail__head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
@@ -710,9 +713,9 @@ h1, h2, h3, h4, p { margin: 0; }
 
       <h1 class="hero__title animate-fade-in-up">שתף מוצרים מעולים, הרוויח עמלות</h1>
 
-      <p class="hero__desc animate-fade-in-up">
+      <!-- <p class="hero__desc animate-fade-in-up">
         בחר חנות איכותית והצטרף → צור קשר עם המוכר לגבי המוצרים → קבל את הקישור שלך ושתף עם חברים → העמלה נסגרת אוטומטית לאחר ההזמנה
-      </p>
+      </p> -->
 
       <div class="hero__actions animate-fade-in-up">
         <a class="btn btn--light animate-cta-glow" href="#stores">
@@ -797,7 +800,7 @@ h1, h2, h3, h4, p { margin: 0; }
         <div class="contact-cta__grid">
           <div>
             <h3 class="contact-cta__title">מוכן להתחיל?</h3>
-            <p class="contact-cta__desc">לחץ על הכפתור למטה כדי לפתוח את דף החנות, ומצא את כפתור צור קשר כדי לשוחח עם המוכר ב-WhatsApp.</p>
+            <p class="contact-cta__desc">לחץ על הכפתור למטה כדי לפתוח את תפריט המוצר, ולאחר מכן למצוא את הכפתור "צור קשר" כדי לשוחח עם המוכר באמצעות WhatsApp.</p>
             <div class="contact-cta__actions">
               <a class="btn btn--whatsapp js-store-link" href="https://da.flylinking.com/products" target="_blank">
                 <span class="js-icon-whatsapp" aria-hidden="true"></span>
@@ -839,7 +842,6 @@ h1, h2, h3, h4, p { margin: 0; }
       </div>
 
       <div class="scripts">
-        <div class="script-list" id="scriptList" role="tablist" aria-label="רשימת תסריטים"><!-- Rendered by JS --></div>
         <div id="scriptDetail"><!-- Rendered by JS --></div>
       </div>
     </div>
@@ -862,13 +864,13 @@ h1, h2, h3, h4, p { margin: 0; }
   <!-- ====================== Beginner Guide ====================== -->
   <section class="section section--alt">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head" style="display: none;">
         <span class="section-head__eyebrow">לשדרג</span>
         <h2 class="section-head__title">מדריך קידום למתחילים</h2>
         <p class="section-head__desc">שלוט בכישורים המרכזיים של קידום שותפים בארבעה שלבים — מהמתחיל למקצוען</p>
       </div>
 
-      <div class="guide-grid" id="guideGrid"><!-- Rendered by JS --></div>
+      <div class="guide-grid" id="guideGrid" style="display: none;"><!-- Rendered by JS --></div>
 
       <div class="guarantee">
         <h3 class="guarantee__title">ארבע ערבויות פלטפורמה לקידום ללא דאגות</h3>
@@ -1008,7 +1010,7 @@ h1, h2, h3, h4, p { margin: 0; }
     nav: [
       { href: '#steps',       label: 'תהליך השותפות' },
       { href: '#stores',      label: 'חנויות נבחרות' },
-      { href: '#walkthrough', label: 'מדריך חזותי' },
+      // { href: '#walkthrough', label: 'מדריך חזותי' },
       { href: '#scripts',     label: 'תסריטי קידום' },
       { href: '#videos',      label: 'מדריכי וידאו' },
       { href: '#faq',         label: 'שאלות נפוצות' }
@@ -1029,29 +1031,29 @@ h1, h2, h3, h4, p { margin: 0; }
         detail: 'עיין ברשימת החנויות שלהלן, בחר חנויות עם עמלות גבוהות ומוצרים המתאימים לקהל שלך, ואז לחץ כדי להצטרף. לאחר ההצטרפות, תקבל את זכויות הקידום של חנות זו.',
         image: IMAGES.browse,
         subSteps: [
-          'עיין ברשימת החנויות וסנן לפי קטגוריה לחנויות שאתה אוהב',
-          'בדוק את שיעורי העמלה בחנויות מעל 10%',
-          'לחץ על כפתור "הצטרף כשותף" כדי לקבל זכויות קידום מיידית',
-          'הצטרף למספר חנויות בבת אחת כדי לקדם קטגוריות שונות'
+          'דף בחנויות לפי קטגוריה ​ –  מצא חנויות שמתאימות לאינטרסים שלך.',
+          'בחרו חנות מקומיות פופולריות לפי קטגוריה.',
+          'לחץ על "הצטרף עכשיו" ​ –  קבל זכויות קידום מיידיות.',
+          'הצטרפו לחנויות מרובות ​ –  קידום קטגוריות שונות בבת אחת.'
         ],
         tips: [
-          'בדוק את שיעורי העמלה בחנויות (מעל 10%)',
-          'בחר קטגוריות שאתה מכיר היטב לקידום טבעי יותר',
-          'ניתן להצטרף למספר חנויות בבת אחת'
+          'דבק בקטגוריות מוכרות ​ –  תוכלו לקדם באופן טבעי יותר ולבנות אמון.',
+          'התחל קטן, קנה מידה מהיר ​.',
+          'בדוק קודם חנות אחת, ואז הצטרף יותר כדי למקסם את ההגעה.'
         ]
       },
       {
         num: 2, title: 'צור קשר עם המוכר לגבי מוצרים', tone: 'purple', icon: 'message',
-        detail: 'לאחר ההצטרפות, פתח את דף החנות ולחץ על כפתור "צור קשר" כדי לשוחח ישירות עם המוכר ב-WhatsApp. תקשר באופן טבעי כקונה או כשותף, ואשר את המוצרים המובילים, המלאי וחומרי הקידום הזמינים.',
+        detail: 'לאחר ההצטרפות, פתח את תפריט המוצרים והלחץ על הכפתור "צור קשר" כדי לשוחח ישירות עם המוכר באמצעות WhatsApp. תקשר באופן טבעי כקונה או שותף, ואשר את הנמכרים ביותר, המניות וחומרי הפרומו הזמינים.',
         image: IMAGES.whatsapp,
         subSteps: [
-          'פתח את דף המוצר כדי למצוא את "פרטי הקשר של החנות"',
+          'פתח את תפריט המוצר ומצא "חנות מידע קשר',
           'לחיצה עליו פותחת את חלון הצ\'אט ב-WhatsApp אוטומטית',
           'שלח הודעה כדי להציג את כוונת הקידום שלך',
           'בקש מהמוכר קישורים למוצרים מובילים, תמונות וחומרים'
         ],
         tips: [
-          'לחץ על "פרטי קשר" בדף המוצר כדי להתחיל צ\'אט WhatsApp',
+          'לחץ על "מידע קשר" בתפריט המוצר כדי להתחיל צ\'אט WhatsApp',
           'אל תעזוב את פלטפורמת Flylink בעת צ\'אט, פשוט תקשר באופן טבעי',
           'שאל יזום לגבי מוצרים מובילים, מלאי ומדיניות עמלות',
           'בקש מהמוכר תמונות מוצר וחומרי קידום'
@@ -1061,16 +1063,16 @@ h1, h2, h3, h4, p { margin: 0; }
       },
       {
         num: 3, title: 'קבל את הקישור שלך ושתף עם קונים', tone: 'indigo', icon: 'share',
-        detail: 'לאחר אישור המוצרים עם המוכר, עבור לדף הבית של החנות או לדף המוצר והעתק את קישור הקידום הייחודי שלך עם מזהה השותף שלך. שתף אותו ברגעים שלך, בקבוצות WeChat, או באופן פרטי עם חברים שעשויים להזדקק לכך.',
+        detail: 'לאחר אישור המוצרים עם המוכר, לך לתפריט הבית של החנות או המוצר והעתיק את קישור הפרומו הייחודי שלך עם מזהה השותף שלך. שתף אותו עם הרגעים שלך, קבוצות WeChat, או בפרטיות עם חברים שעשויים לזקוק לו.',
         image: IMAGES.share,
         subSteps: [
-          'לחץ "קבל קשר מחובר" בדף הבית של החנות או בדף המוצר',
+          'הקש על "קבל קישור שותף" בתפריט הבית או המוצר של החנות',
           'העתק את הקישור הייחודי שלך עם מזהה השותף שלך',
           'שלב אותו עם ביקורת אמיתית ושתף ברגעים או בקבוצות',
           'או המלץ עליו באופן פרטי לחברים הזקוקים לכך'
         ],
         tips: [
-          'לחץ "קבל קשר מחובר" בדף הבית של החנות או בדף המוצר',
+          'הקש על "קבל קישור שותף" בתפריט הבית או המוצר של החנות',
           'העתק את הקישור הייחודי שלך עם מזהה השותף שלך',
           'שתף ברגעים, בקבוצות או המלץ באופן פרטי',
           'שילוב עם טקסט חוויה אמיתי עובד טוב יותר'
@@ -1135,10 +1137,10 @@ h1, h2, h3, h4, p { margin: 0; }
 
     /* Four seller-contact steps */
     contactSteps: [
-      { key: 'A', title: 'פתח את דף החנותפתח את דף המוצרים', desc: 'לאחר הצטרפות, פתח את דף המוצר, בחר את החנות, ותראה את פרטי הקשר של החנות' },
-      { key: 'B', title: 'לחץ על פרטי הקשר של החנות', desc: 'מצא את פרטי הקשר של החנות בדף המוצר ולחץ על התחלת צ\'אט WhatsApp' },
+      { key: 'A', title: 'פתח את תפריט המוצרים', desc: 'לאחר ההצטרפות, פתח את תפריט המוצר, בחר את החנות, ותצפה במידע הקשר של החנות' },
+      { key: 'B', title: 'לחץ על פרטי הקשר של החנות', desc: 'מצא את פרטי הקשר של החנות המתאימים בתפריט המוצר ולחץ על Start WhatsApp Chat' },
       { key: 'C', title: 'שלח הודעה', desc: 'העתק את התבנית שלהלן, הדבק אותה בצ\'אט ה-WhatsApp ושלח למוכר כדי להציג באופן טבעי את כוונת הקידום שלך' },
-      { key: 'D', title: 'קבל קישורי מוצר', desc: 'לאחר אישור המוצרים המובילים עם המוכר, בקש קישורי קידום ותמונות מוצר, וודא שהקישור כולל את מזהה השותף שלך' }
+      { key: 'D', title: 'קבל פרטי מוצר', desc: 'לאחר אישור המוצרים המובילים עם המוכר, בקש קישורי קידום ותמונות מוצר, וודא שהקישור כולל את מזהה השותף שלך' }
     ],
 
     /* WhatsApp message templates */
@@ -1150,18 +1152,6 @@ h1, h2, h3, h4, p { margin: 0; }
 
     /* Promo scripts */
     scripts: [
-      {
-        id: 'seller-contact', title: 'שלח הודעה למוכר', category: 'פנייה למוכר',
-        content: 'שלום, אני מפיץ בפלטפורמת Flylink ואני מאוד מעוניין במוצרים בחנות שלך. תוכלו בבקשה להציג את קטגוריית המוצר ומדיניות העמלה שלכם? מצפה לשיתוף פעולה! תודה רבה.',
-        usage: 'מיד לאחר ההצטרפות, אשר את המוצרים המובילים ופרטי השותפות עם המוכר',
-        tip: 'ראשית, ציין את הקטגוריה שאתה מעוניין, ולאחר מכן לשאול על מלאי, עמלה, וחומרים לשיחה יעילה יותר. תשומת לב: אל תנתק מפלטפורמת Flylink - תקשר באופן טבעי כקונה.'
-      },
-      {
-        id: 'product-link', title: 'בקש קישור מוצר', category: 'פנייה למוכר',
-        content: 'שלום, אני מפיץ בפלטפורמת Flylink ורוצה להמליץ על המוצר שלך לחברים שלי. אפשר לשאול אילו מוצרים מומלצים למכירה חמה? תוכלו בבקשה לשלוח לי את הקישור למוצר וחומרי התמונה? תודה רבה.',
-        usage: 'לאחר יצירת קשר עם המוכר, בקש את קישור הקידום ואת החומרים',
-        tip: 'ברגע שתקבל את הקישור, וודא שהוא כולל את מזהה השותף שלך כדי שהעמלה תעקוב כראוי.'
-      },
       {
         id: 'friend-recommend', title: 'המלצה פרטית', category: 'המלצה אישית',
         content: 'היי ~ בפעם האחרונה ששמעתי שאתה מחפש מוצרים XX, במקרה מצאתי חנות אמינה מאוד עם איכות טובה ומחירים. זהו קישור ההמלצה הבלעדית שלי. תסתכלו על זה ותודעו לי אם זה עומד בציפיות שלכם. תרגיש חופשי ליצור איתי קשר אם יש לך שאלות',
@@ -1184,9 +1174,9 @@ h1, h2, h3, h4, p { margin: 0; }
       { id: 'whatsapp-guide', title: 'צור קשר עם מוכרים וקבל קישורים ב-WhatsApp', desc: 'מדריך מעשי ב-WhatsApp, למדו תוך 3 דקות', duration: '00:46', image: IMAGES.whatsapp, video:'./Distribution-Platform_files/ContactSellers_GetLinks.mp4' }
     ],
     videoFeature: {
-      title: 'איך ליצור קשר עם מוכרים ולקבל קישורי מוצר?',
+      title: 'איך צור קשר עם המוכרים ולקבל פרטי מוצר?',
       desc: 'זהו השלב הקריטי ביותר בקידום. לאחר ההצטרפות לחנות, עליך לשוחח עם המוכר ב-WhatsApp כדי לאשר מוצרים מובילים וחומרי קידום. הסרטון מציג את התהליך המלא.',
-      steps: ['1. פתח את דף מוצרים', '2. לחץ על פרטי הקשר', '3. שוחח ב-WhatsApp', '4. קבל קשר מחובר'],
+      steps: ['1. פתח את תפריט המוצרים', '2. לחץ על פרטי הקשר', '3. שוחח ב-WhatsApp', '4. קבל קשר מחובר'],
       image: IMAGES.whatsapp,
       duration: '00:55'
     },
@@ -1211,16 +1201,16 @@ h1, h2, h3, h4, p { margin: 0; }
     faqs: [
       { q: 'האם ההצטרפות עולה משהו?', a: 'בחינם לחלוטין. ההצטרפות לתוכנית השותפים של חנות לא עולה דבר—פשוט הירשם כדי להפוך לשותף. פשוט בחר חנות שאתה אוהב ולחץ "הצטרף כשותף" כדי לקבל זכויות קידום.' },
       { q: 'מתי העמלה מגיעה?', a: 'כאשר קונה מבצע הזמנה דרך הקישור המבצע שלך ומשלם בהצלחה, הוא יכול מיד לראות את ההכנסה של העמלה לתקופה, והמערכת תסדר באופן אוטומטי את העמלה לארנק שלך ללא צורך בבקשות ידניות.' },
-      { q: 'איך יוצרים קשר עם המוכר?', a: 'לאחר ההצטרפות, פתח את דף החנות ומצא את כפתור "צור קשר"—לחץ עליו כדי לשוחח עם המוכר ישירות ב-WhatsApp. אנו ממליצים ליצור קשר עם המוכר מיד כדי לאשר מוצרים מובילים, מלאי וחומרי קידום.' },
+      { q: 'איך יוצרים קשר עם המוכר?', a: 'לאחר ההצטרפות, פתח את תפריט המוצר ומצא את הכפתור "צור קשר" הקש עליו כדי לשוחח עם המוכר ישירות באמצעות WhatsApp. אנו ממליצים ליצור קשר מיד עם המוכר כדי לאשר את הנמכרים ביותר, חומרי המניות והפרומו.' },
       { q: 'על מה לשים לב כשמדברים עם מוכרים?', a: 'תקשר באופן טבעי כקונה או כשותף ואל תזכיר את שם הפלטפורמה שלנו. שאל יזום לגבי מוצרים מובילים, מלאי ומדיניות עמלות, ובקש תמונות מוצר וחומרי קידום מהמוכר.' },
-      { q: 'איך אני מקבל את קישור הקידום?', a: 'לאחר אישור המוצרים עם המוכר, לחץ "קבל קישור קידום" בדף הבית של החנות או בדף המוצר והעתק את הקישור הייחודי שלך עם מזהה השותף שלך. שתף אותו עם חברים או קבוצות כדי לעקוב אחר העמלה.' },
+      { q: 'איך אני מקבל את קישור הקידום?', a: 'לאחר אישור המוצרים עם המוכר, הקש על "קבל קישור שותף" בתפריט הבית של החנות או המוצר והעתיק את הקישור הייחודי שלך עם מזהה השותף שלך. שתף אותו עם חברים או קבוצות כדי לעקוב אחר עמלה.' },
       { q: 'האם אני יכול להצטרף למספר חנוות?', a: 'כן. אתה יכול להצטרף לתוכניות שותפים של מספר חנוות ולקדם קטגוריות שונות. אנו ממליצים להעדיף חנוות שאתה מכיר היטב עם עמלות גבוהות ' },
       { q: 'מה קורה אם הקונה מחזיר את הפריט?', a: 'אם קונה מבקש החזר/החזרת כסף, עמלת ההזמנה ההיא מנוכה אוטומטית. רק הזמנות ששולמו ולא הוחזרו נסגרות סופית.' },
       { q: 'איך אני יכול לבדוק את מצב העמלה שלי?', a: 'בדף הארנק, תוכל לראות את היתרון שלך, עמלה בהמתנה לאישור, ורישומי עסקאות הפצה.' }
     ],
 
     /* Footer CTA benefits */
-    benefits: ['הצטרפות בחינם, ללא סף', 'ללא מלאי או משלוח', 'עמולה מוזכרת באופן אוטומטי לחשבון', 'מסחר בטוח מובטח פלטפורמה']
+    benefits: ['הצטרפות בחינם, ללא סף', 'אין גרביים, מוכר לאחר מכירות', 'עמולה מוזכרת באופן אוטומטי לחשבון', 'מסחר בטוח מובטח פלטפורמה']
   };
 
   /* ==========================================================================
@@ -1575,25 +1565,20 @@ h1, h2, h3, h4, p { margin: 0; }
     return DATA.scriptCategoryTag[category] || 'tag--gray';
   }
 
-  function renderScriptList() {
-    $('#scriptList').innerHTML = DATA.scripts.map(function (script, idx) {
-      return '<button class="script-item ' + (script.id === activeScriptId ? 'is-active' : '') + '" type="button"' +
-                     ' role="tab" aria-selected="' + (script.id === activeScriptId) + '" data-script="' + esc(script.id) + '">' +
-               '<span class="script-item__index">' + (idx + 1) + '</span>' +
-               '<span>' +
-                 '<span class="script-item__title">' + esc(script.title) + '</span>' +
-                 '<span class="tag ' + tagClass(script.category) + '">' + esc(script.category) + '</span>' +
-               '</span>' +
-             '</button>';
-    }).join('');
-  }
-
   function renderScriptDetail() {
     var script = DATA.scripts.filter(function (s) { return s.id === activeScriptId; })[0];
     var needsNote = script.id === 'seller-contact' || script.id === 'product-link';
 
+    var tabs = DATA.scripts.map(function (s) {
+      return '<button class="script-tab ' + (s.id === activeScriptId ? 'is-active' : '') + '" type="button"' +
+             ' role="tab" aria-selected="' + (s.id === activeScriptId) + '" data-script="' + esc(s.id) + '">' +
+               esc(s.title) +
+             '</button>';
+    }).join('');
+
     $('#scriptDetail').innerHTML =
       '<div class="script-detail animate-fade-in">' +
+        '<div class="script-tabs" role="tablist" aria-label="רשימת תסריטים">' + tabs + '</div>' +
         '<div class="script-detail__head">' +
           '<h3 class="script-detail__title">' + esc(script.title) + '</h3>' +
           '<span class="tag ' + tagClass(script.category) + '">' + esc(script.category) + '</span>' +
@@ -1618,7 +1603,6 @@ h1, h2, h3, h4, p { margin: 0; }
   }
 
   function renderScripts() {
-    renderScriptList();
     renderScriptDetail();
   }
 
@@ -1809,7 +1793,7 @@ h1, h2, h3, h4, p { margin: 0; }
   }
 
   function bindScripts() {
-    $('#scriptList').addEventListener('click', function (e) {
+    $('#scriptDetail').addEventListener('click', function (e) {
       var btn = e.target.closest('[data-script]');
       if (!btn) return;
       activeScriptId = btn.getAttribute('data-script');
