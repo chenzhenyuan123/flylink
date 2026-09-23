@@ -265,7 +265,16 @@ h1, h2, h3, h4, p { margin: 0; }
 .hero__inner { position: relative; padding-top: 5rem; padding-bottom: 4rem; text-align: center; }
 @media (min-width: 768px) { .hero__inner { padding-top: 7rem; padding-bottom: 6rem; } }
 
-.pill { display: inline-flex; align-items: center; gap: .5rem; border-radius: 9999px; background: rgb(185 176 190 / 91%); padding: .375rem 1rem; font-size: .875rem; font-weight: 500; color: var(--white); backdrop-filter: blur(4px); }
+.pill {    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    border-radius: 9999px;
+    background: rgb(172 154 182 / 63%);
+    padding: .375rem 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #010d3b;
+    backdrop-filter: blur(4px);}
 .pill__dot { width: .5rem; height: .5rem; border-radius: 9999px; background: #8a4cff; animation: pulse 2s infinite; }
 
 .hero__title { margin-top: 1.5rem; font-size: 2.25rem; font-weight: 700; color: transparent; background-image: linear-gradient(45deg, #5b48ff, #b14eff); background-clip: text; }
@@ -495,21 +504,15 @@ h1, h2, h3, h4, p { margin: 0; }
    ========================================================================== */
 .scripts { margin-top: 3rem;  }
 
-.script-list { display: flex; gap: .5rem; margin-bottom: 0.8rem;}
-.script-item { display: flex; width: 100%; align-items: flex-start; gap: .75rem; border: 1px solid var(--gray-200); border-radius: var(--r-md); background: rgba(255,255,255,.5); padding: 1rem; text-align: left; transition: all .2s var(--ease); }
-.script-item:hover { border-color: var(--gray-300); background: var(--white); }
-.script-item.is-active { border-color: #695dff; background: var(--white); box-shadow: var(--shadow-md); }
-.script-item__index { display: flex; height: 2.25rem; width: 2.25rem; flex: none; align-items: center; justify-content: center; border-radius: var(--r-sm); background: var(--gray-100); font-size: .875rem; font-weight: 700; color: var(--gray-400); transition: all .2s var(--ease); }
-.script-item.is-active .script-item__index { background: var(--brand); color: var(--white); }
-.script-item > span:last-child { display: block; min-width: 0; }
-.script-item__title { display: block; font-weight: 600; }
-.script-item .tag { margin-top: .25rem; }
+.script-tabs { display: flex; gap: 2rem; border-bottom: 1px solid var(--gray-200); margin-bottom: 1.25rem; }
+.script-tab { flex: none; padding: .75rem 0; font-size: .9375rem; font-weight: 500; color: var(--gray-500); background: none; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; cursor: pointer; white-space: nowrap; transition: color .2s var(--ease), border-color .2s var(--ease); }
+.script-tab:hover { color: var(--brand); }
+.script-tab.is-active { color: var(--brand); border-bottom-color: var(--brand); font-weight: 600; }
 
 .script-detail__content { display: flex; align-items: end; }
 .script-detail { border: 1px solid var(--gray-100); border-radius: var(--r-xl); background: var(--white); padding: 1.5rem; box-shadow: var(--shadow-sm); }
 @media (min-width: 768px) { .script-detail { padding: 2rem; } }
 @media (max-width: 768px) {
-  .script-item__index { display: none; }
   .script-detail__content { display: block; }
 }
 .script-detail__head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
@@ -713,9 +716,9 @@ h1, h2, h3, h4, p { margin: 0; }
 
       <h1 class="hero__title animate-fade-in-up">Share great products, earn commissions</h1>
 
-      <p class="hero__desc animate-fade-in-up">
+      <!-- <p class="hero__desc animate-fade-in-up">
         Pick a quality store and join → contact the seller about products → get your link and share with friends → commission settles automatically after the order
-      </p>
+      </p> -->
 
       <div class="hero__actions animate-fade-in-up">
         <a class="btn btn--light animate-cta-glow" href="#stores">
@@ -800,7 +803,7 @@ h1, h2, h3, h4, p { margin: 0; }
         <div class="contact-cta__grid">
           <div>
             <h3 class="contact-cta__title">Ready to start?</h3>
-            <p class="contact-cta__desc">Tap the button below to open the Product page, then find the "Contact" button to chat with the seller via WhatsApp.</p>
+            <p class="contact-cta__desc">Tap the button below to open the Product menu, then find the "Contact" button to chat with the seller via WhatsApp.</p>
             <div class="contact-cta__actions">
               <a class="btn btn--whatsapp js-store-link" href="https://da.flylinking.com/products" target="_blank">
                 <span class="js-icon-whatsapp" aria-hidden="true"></span>
@@ -842,7 +845,6 @@ h1, h2, h3, h4, p { margin: 0; }
       </div>
 
       <div class="scripts">
-        <div class="script-list" id="scriptList" role="tablist" aria-label="Script list"><!-- Rendered by JS --></div>
         <div id="scriptDetail"><!-- Rendered by JS --></div>
       </div>
     </div>
@@ -865,13 +867,13 @@ h1, h2, h3, h4, p { margin: 0; }
   <!-- ====================== Beginner Guide ====================== -->
   <section class="section section--alt">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head" style="display: none;">
         <span class="section-head__eyebrow">Level Up</span>
         <h2 class="section-head__title">Beginner's Promotion Guide</h2>
         <p class="section-head__desc">Master the core skills of affiliate promotion in four steps — from beginner to pro</p>
       </div>
 
-      <div class="guide-grid" id="guideGrid"><!-- Rendered by JS --></div>
+      <div class="guide-grid" id="guideGrid" style="display: none;"><!-- Rendered by JS --></div>
 
       <div class="guarantee">
         <h3 class="guarantee__title">Four Platform Guarantees for Worry-free Promotion</h3>
@@ -1012,7 +1014,7 @@ h1, h2, h3, h4, p { margin: 0; }
     nav: [
       { href: '#steps',       label: 'Distribution Flow' },
       { href: '#stores',      label: 'Featured Stores' },
-      { href: '#walkthrough', label: 'Visual Guide' },
+      // { href: '#walkthrough', label: 'Visual Guide' },
       { href: '#scripts',     label: 'Promo Scripts' },
       { href: '#videos',      label: 'Video Tutorials' },
       { href: '#faq',         label: 'FAQ' }
@@ -1033,29 +1035,29 @@ h1, h2, h3, h4, p { margin: 0; }
         detail: 'Browse the store list below, choose stores with high commissions and products that fit your audience, then tap to join. Once joined, you\'ll get the promotion rights for that store.',
         image: IMAGES.browse,
         subSteps: [
-          'Browse the store list and filter by category for stores you like',
-          'Check commission rates stores above 10%',
-          'Tap the "Join Now" button to get promotion rights instantly',
-          'Join multiple stores at once to promote different categories'
+          'Browse stores by category​ – Find shops that match your interests.',
+          'Pick a popular local store by category.',
+          'Tap “Join Now”​ – Get instant promotion rights.',
+          'Join multiple stores​ – Promote different categories at once.'
         ],
         tips: [
-          'Check commission rates stores (above 10%)',
-          'Choose categories you know well for more natural promotion',
-          'You can join multiple stores at once'
+          'Stick to familiar categories​ – You’ll promote more naturally and build trust.',
+          'Start small, scale fast​.',
+          'Test one store first, then Join more to maximize reach.'
         ]
       },
       {
         num: 2, title: 'Contact the Seller about Products', tone: 'purple', icon: 'message',
-        detail: 'After joining, open the Products page and tap the "Contact" button to chat directly with the seller via WhatsApp. Communicate naturally as a buyer or partner, and confirm the best-sellers, stock and available promo materials.',
+        detail: 'After joining, open the Products menu and tap the "Contact" button to chat directly with the seller via WhatsApp. Communicate naturally as a buyer or partner, and confirm the best-sellers, stock and available promo materials.',
         image: IMAGES.whatsapp,
         subSteps: [
-          'Open the product page and find "Store Contact Information"',
+          'Open the product menu and find "Store Contact Information"',
           'Tapping it opens the WhatsApp chat window automatically',
           'Send a message to introduce your promotion intent',
           'Ask the seller for best-seller links, images and materials'
         ],
         tips: [
-          'Click on "Contact Information" on the product page to start WhatsApp chat',
+          'Click on "Contact Information" on the product menu to start WhatsApp chat',
           'Don\'t leave the Flylink platform when chatting, just communicate naturally',
           'Proactively ask about best-sellers, stock and commission policy',
           'Ask the seller for product images and promo materials'
@@ -1065,16 +1067,16 @@ h1, h2, h3, h4, p { margin: 0; }
       },
       {
         num: 3, title: 'Get Your Link & Share with Buyers', tone: 'indigo', icon: 'share',
-        detail: 'After confirming products with the seller, go to the store homepage or product page and copy your unique promo link with your affiliate ID. Share it to your Moments, WeChat groups, or privately with friends who might need it.',
+        detail: 'After confirming products with the seller, go to the store home or product menu and copy your unique promo link with your affiliate ID. Share it to your Moments, WeChat groups, or privately with friends who might need it.',
         image: IMAGES.share,
         subSteps: [
-          'Tap "Get Affiliate Link" on the store homepage or product page',
+          'Tap "Get Affiliate Link" on the store home or product menu',
           'Copy your unique link with your affiliate ID',
           'Pair it with a genuine review and share to Moments or groups',
           'Or recommend it privately to friends in need'
         ],
         tips: [
-          'Tap "Get Affiliate Link" on the store homepage or product page',
+          'Tap "Get Affiliate Link" on the store home or product menu',
           'Copy your unique link with your affiliate ID',
           'Share to Moments, groups or recommend privately',
           'Pairing with genuine experience copy works better'
@@ -1110,13 +1112,13 @@ h1, h2, h3, h4, p { margin: 0; }
       {
         step: 2, icon: 'message', title: 'Contact Seller via WhatsApp', subtitle: 'Confirm best-sellers and promo materials',
         image: IMAGES.whatsapp,
-        desc: 'After joining, open the product page, click on "WhatsApp contact information", and chat with the seller through WhatsApp. As a buyer, communicate naturally to confirm best-selling products, inventory, and commission policies.',
-        highlights: ['Click on "Contact Information" on the product page to start chatting', 'Ask the seller for product images and promo materials', 'Don\'t mention the platform name when chatting']
+        desc: 'After joining, open the product menu, click on "WhatsApp contact information", and chat with the seller through WhatsApp. As a buyer, communicate naturally to confirm best-selling products, inventory, and commission policies.',
+        highlights: ['Click on "Contact Information" on the product menu to start chatting', 'Ask the seller for product images and promo materials', 'Don\'t mention the platform name when chatting']
       },
       {
         step: 3, icon: 'share', title: 'Get Link & Share', subtitle: 'Copy your unique link and share with friends',
         image: IMAGES.share,
-        desc: 'After confirming products with the seller, get your unique promo link from the store homepage or product page. Pair it with a genuine review and share to Moments, WeChat groups or privately.',
+        desc: 'After confirming products with the seller, get your unique promo link from the store home or product menu. Pair it with a genuine review and share to Moments, WeChat groups or privately.',
         highlights: ['Copy your unique link with your affiliate ID', 'Pairing with genuine copy works better', 'Share to groups, Moments or privately']
       },
       {
@@ -1139,10 +1141,10 @@ h1, h2, h3, h4, p { margin: 0; }
 
     /* Four seller-contact steps */
     contactSteps: [
-      { key: 'A', title: 'Open the Products Page', desc: 'After joining, open the product page, select the store, and view the store contact information' },
-      { key: 'B', title: 'Click on the store contact information', desc: 'Find the corresponding store contact information on the product page and click on Start WhatsApp Chat' },
+      { key: 'A', title: 'Open the Products menu', desc: 'After joining, open the product menu, select the store, and view the store contact information' },
+      { key: 'B', title: 'Click on the store contact information', desc: 'Find the corresponding store contact information on the product menu and click on Start WhatsApp Chat' },
       { key: 'C', title: 'Send a Message', desc: 'Copy the template below, paste it into the WhatsApp chat and send it to the seller to naturally introduce your promotion intent' },
-      { key: 'D', title: 'Get Product Links', desc: 'After confirming best-sellers with the seller, ask for promo links and product images, and make sure the link includes your affiliate ID' }
+      { key: 'D', title: 'Get Product Details', desc: 'After confirming best-sellers with the seller, ask for promo links and product images, and make sure the link includes your affiliate ID' }
     ],
 
     /* WhatsApp message templates */
@@ -1154,17 +1156,6 @@ h1, h2, h3, h4, p { margin: 0; }
 
     /* Promo scripts */
     scripts: [
-      {
-        id: 'seller-contact', title: 'Message the Seller', category: 'Seller Outreach',
-        content: 'Hello， I am a distributor on the Flylink platform and I am very interested in the products in your store. Could you please introduce your product category and commission policy? Looking forward to cooperation! Thank you.',
-        usage: 'Right after joining, confirm best-sellers and partnership details with the seller',
-        tip: 'Firstly, state the category you are interested in, and then inquire about inventory, commission, and materials for a more effective chat. Attention: Do not disconnect from the Flylink platform - communicate naturally as a buyer.'
-      },
-      {
-        id: 'product-link', title: 'Request Product Link', category: 'Seller Outreach',
-        content: 'Hello， I am a distributor on the Flylink platform and would like to recommend your product to my friends. May I ask which hot selling products are recommended? Could you please send me the product link and image materials? Thank you.',
-        tip: 'Once you get the link, make sure it includes your affiliate ID so commission is tracked correctly.'
-      },
       {
         id: 'friend-recommend', title: 'Private Recommendation', category: '1-on-1 Recommendation',
         content: 'Hi~Last time I heard that you were looking for XX products, I happened to find a very reliable store with good quality and prices. This is my exclusive recommendation link. Please take a look and let me know if it meets your expectations. Feel free to contact me if you have any questions~',
@@ -1187,9 +1178,9 @@ h1, h2, h3, h4, p { margin: 0; }
       { id: 'whatsapp-guide', title: 'Contact Sellers & Get Links via WhatsApp', desc: 'Hands-on WhatsApp walkthrough, learn in 3 minutes', duration: '00:46', image: IMAGES.whatsapp, video:'./Distribution-Platform_files/ContactSellers_GetLinks.mp4' }
     ],
     videoFeature: {
-      title: 'How to Contact Sellers & Get Product Links?',
+      title: 'How to Contact Sellers & Get Product Details?',
       desc: 'This is the most critical step in promotion. After joining a store, you need to chat with the seller via WhatsApp to confirm best-sellers and promo materials. This video shows the full process.',
-      steps: ['1. Open the Products page', '2. Click on the contact information', '3. Chat on WhatsApp', '4. Get Affiliate Link'],
+      steps: ['1. Open the Products menu', '2. Click on the contact information', '3. Chat on WhatsApp', '4. Get Affiliate Link'],
       image: IMAGES.whatsapp,
       duration: '00:55'
     },
@@ -1214,16 +1205,16 @@ h1, h2, h3, h4, p { margin: 0; }
     faqs: [
       { q: 'Does joining cost anything?', a: 'Completely free. Joining a stores affiliate program costs nothing—just register to become an affiliate. Simply pick a store you like and tap "Join Now" to get promotion rights.' },
       { q: 'When does commission arrive?', a: 'When a buyer places an order through your promotional link and successfully pays, they can immediately see the commission income for the period, and the system will automatically settle the commission to your wallet without the need for manual requests.' },
-      { q: 'How do I contact the seller?', a: 'After joining, open the Product page and find the "Contact" button—tap it to chat with the seller directly via WhatsApp. We recommend contacting the seller right away to confirm best-sellers, stock and promo materials.' },
+      { q: 'How do I contact the seller?', a: 'After joining, open the Product menu and find the "Contact" button—tap it to chat with the seller directly via WhatsApp. We recommend contacting the seller right away to confirm best-sellers, stock and promo materials.' },
       { q: 'What should I keep in mind when talking to sellers?', a: 'Communicate naturally as a buyer or partner and don\'t mention our platform name. Proactively ask about best-sellers, stock and commission policy, and request product images and promo materials from the seller.' },
-      { q: 'How do I get the promo link?', a: 'After confirming products with the seller, tap "Get Affiliate Link" on the store homepage or product page and copy your unique link with your affiliate ID. Share it with friends or groups to track commission.' },
+      { q: 'How do I get the promo link?', a: 'After confirming products with the seller, tap "Get Affiliate Link" on the store home or product menu and copy your unique link with your affiliate ID. Share it with friends or groups to track commission.' },
       { q: 'Can I join multiple stores?', a: 'Yes. You can join multiple stores affiliate programs and promote different categories. We recommend prioritizing stores you know well with high commissions.' },
       { q: 'What if a buyer returns the item?', a: 'If a buyer requests a return/refund, that orders commission is deducted automatically. Only orders that are paid and not refunded are finally settled.' },
-      { q: 'How can I check my commission status?', a: 'On the wallet page, you can view your balance, commission pending confirmation, and distribution transaction records..' }
+      { q: 'How can I check my commission status?', a: 'On the wallet menu, you can view your balance, commission pending confirmation, and distribution transaction records..' }
     ],
 
     /* Footer CTA benefits */
-    benefits: ['Free to join, no threshold', 'No stocking or shipping', 'Commission automatically credited to the account', 'Platform-guaranteed safe trading']
+    benefits: ['Free to join, no threshold', 'No stocking, Seller after-sales', 'Commission automatically credited to the account', 'Platform-guaranteed safe trading']
   };
 
   /* ==========================================================================
@@ -1578,25 +1569,20 @@ h1, h2, h3, h4, p { margin: 0; }
     return DATA.scriptCategoryTag[category] || 'tag--gray';
   }
 
-  function renderScriptList() {
-    $('#scriptList').innerHTML = DATA.scripts.map(function (script, idx) {
-      return '<button class="script-item ' + (script.id === activeScriptId ? 'is-active' : '') + '" type="button"' +
-                     ' role="tab" aria-selected="' + (script.id === activeScriptId) + '" data-script="' + esc(script.id) + '">' +
-               '<span class="script-item__index">' + (idx + 1) + '</span>' +
-               '<span>' +
-                 '<span class="script-item__title">' + esc(script.title) + '</span>' +
-                 '<span class="tag ' + tagClass(script.category) + '">' + esc(script.category) + '</span>' +
-               '</span>' +
-             '</button>';
-    }).join('');
-  }
-
   function renderScriptDetail() {
     var script = DATA.scripts.filter(function (s) { return s.id === activeScriptId; })[0];
     var needsNote = script.id === 'seller-contact' || script.id === 'product-link';
 
+    var tabs = DATA.scripts.map(function (s) {
+      return '<button class="script-tab ' + (s.id === activeScriptId ? 'is-active' : '') + '" type="button"' +
+             ' role="tab" aria-selected="' + (s.id === activeScriptId) + '" data-script="' + esc(s.id) + '">' +
+               esc(s.title) +
+             '</button>';
+    }).join('');
+
     $('#scriptDetail').innerHTML =
       '<div class="script-detail animate-fade-in">' +
+        '<div class="script-tabs" role="tablist" aria-label="Script list">' + tabs + '</div>' +
         '<div class="script-detail__head">' +
           '<h3 class="script-detail__title">' + esc(script.title) + '</h3>' +
           '<span class="tag ' + tagClass(script.category) + '">' + esc(script.category) + '</span>' +
@@ -1621,7 +1607,6 @@ h1, h2, h3, h4, p { margin: 0; }
   }
 
   function renderScripts() {
-    renderScriptList();
     renderScriptDetail();
   }
 
@@ -1812,7 +1797,7 @@ h1, h2, h3, h4, p { margin: 0; }
   }
 
   function bindScripts() {
-    $('#scriptList').addEventListener('click', function (e) {
+    $('#scriptDetail').addEventListener('click', function (e) {
       var btn = e.target.closest('[data-script]');
       if (!btn) return;
       activeScriptId = btn.getAttribute('data-script');
